@@ -35,6 +35,12 @@ public struct Stack<Element> {
     }
 }
 
+extension Stack: ExpressibleByArrayLiteral {
+    public init(arrayLiteral elements: Element...) {
+        storage = elements
+    }
+}
+
 extension Stack: CustomStringConvertible {
     public var description: String {
         """

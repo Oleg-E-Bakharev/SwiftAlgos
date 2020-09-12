@@ -67,8 +67,8 @@
 			isa = PBXGroup;
 			children = (
 				CF85D9EC250905810099EABF /* Sandbox */,
-				CF85DA1725090C210099EABF /* Tests */,
 				CF85DA2325090CB30099EABF /* Lib */,
+				CF85DA1725090C210099EABF /* Tests */,
 				CF85D9EB250905810099EABF /* Products */,
 				CF85DA2C25090D980099EABF /* Frameworks */,
 			);
