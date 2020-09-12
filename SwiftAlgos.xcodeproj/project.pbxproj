@@ -12,6 +12,8 @@
 		CF85DA2B25090CC60099EABF /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF85D9F42509059C0099EABF /* Stack.swift */; };
 		CF85DA2D25090D980099EABF /* libSwiftAlgosLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CF85DA2225090CB30099EABF /* libSwiftAlgosLib.a */; };
 		CF85DA2E25090EF70099EABF /* libSwiftAlgosLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CF85DA2225090CB30099EABF /* libSwiftAlgosLib.a */; };
+		CF876237250D0A7D00F4FAB0 /* ListNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF876236250D0A7D00F4FAB0 /* ListNode.swift */; };
+		CF876239250D0D0F00F4FAB0 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF876238250D0D0F00F4FAB0 /* List.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -35,6 +37,8 @@
 		CF85DA1A25090C210099EABF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CF85DA2225090CB30099EABF /* libSwiftAlgosLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSwiftAlgosLib.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF876232250CF1F500F4FAB0 /* SwiftAlgosLib.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = SwiftAlgosLib.xctestplan; sourceTree = "<group>"; };
+		CF876236250D0A7D00F4FAB0 /* ListNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListNode.swift; sourceTree = "<group>"; };
+		CF876238250D0D0F00F4FAB0 /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +111,8 @@
 			isa = PBXGroup;
 			children = (
 				CF85D9F42509059C0099EABF /* Stack.swift */,
+				CF876236250D0A7D00F4FAB0 /* ListNode.swift */,
+				CF876238250D0D0F00F4FAB0 /* List.swift */,
 			);
 			path = Lib;
 			sourceTree = "<group>";
@@ -255,6 +261,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF85DA2B25090CC60099EABF /* Stack.swift in Sources */,
+				CF876237250D0A7D00F4FAB0 /* ListNode.swift in Sources */,
+				CF876239250D0D0F00F4FAB0 /* List.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
