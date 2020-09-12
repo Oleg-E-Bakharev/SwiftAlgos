@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "B9A098CE-DF0E-400A-B230-A6F0ACBB47D2",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:SwiftAlgos.xcodeproj",
+        "identifier" : "CF85DA1525090C210099EABF",
+        "name" : "SwiftAlgosTests"
+      }
+    }
+  ],
+  "version" : 1
+}
