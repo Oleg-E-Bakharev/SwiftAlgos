@@ -83,47 +83,17 @@ extension List: ExpressibleByArrayLiteral {
     }
 }
 
-extension List: Collection {
-    
-    public struct Index: Comparable {
+extension List: Sequence {
+    public struct Iterator: IteratorProtocol {
         public var node: Node?
-        
-        public static func == (lhs: Index, rhs: Index) -> Bool {
-            switch (lhs.node, rhs.node) {
-            case let (left?, right?):
-                return left === right
-            case (nil, nil):
-                return true
-            default:
-                return false
-            }
-        }
-        
-        public static func < (lhs: Index, rhs: Index) -> Bool {
-            fatalError("unsupported")
-//            print("<")
-            guard lhs != rhs else {
-                return false
-            }
-            let nodes = sequence(first: lhs.node) { $0?.next }
-            return nodes.contains {$0 === rhs.node }
+        public mutating func next() -> Value? {
+            node = node?.next
+            return node?.value
         }
     }
     
-    public var startIndex: Index {
-        Index(node: head)
-    }
-    
-    public var endIndex: Index {
-        Index(node: tail?.next)
-    }
-    
-    public func index(after i: Index) -> Index {
-        Index(node: i.node?.next)
-    }
-    
-    public subscript(position: Index) -> Value {
-        position.node!.value
+    public __consuming func makeIterator() -> Iterator {
+        return Iterator(node: head)
     }
 }
 
