@@ -26,7 +26,7 @@ public struct List<Value> {
     
     /// O1 Adds before head
     public mutating func push(_ value: Value)  {
-        copyNodesIfNotUnique()
+        // On push we can avoid copy on write
         head = Node(value: value, next: head)
         if tail == nil {
             tail = head
@@ -60,7 +60,7 @@ public struct List<Value> {
     /// O1 Remove Value in head.
     @discardableResult
     public mutating func pop() -> Value? {
-        copyNodesIfNotUnique()
+        // On push we can avoid copy on write
         defer {
             head = head?.next
             if isEmpty {

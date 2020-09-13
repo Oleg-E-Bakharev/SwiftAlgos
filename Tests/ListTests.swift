@@ -134,4 +134,21 @@ class ListTest: XCTestCase {
         XCTAssertEqual(String(describing: list), "1 -> 2 -> 3")
         XCTAssertEqual(String(describing: list1), "1 -> 2 -> 3 -> 4")
     }
+    
+    func testPushAvoidCopyOnWrite() throws {
+        list = [1, 2, 3]
+        var list1 = list
+        list1.push(0)
+        XCTAssertEqual(String(describing: list), "1 -> 2 -> 3")
+        XCTAssertEqual(String(describing: list1), "0 -> 1 -> 2 -> 3")
+    }
+    
+    func testPopAvoidCopyOnWrite() throws {
+        list = [1, 2, 3, 4]
+        var list1 = list
+        list1.pop()
+        XCTAssertEqual(String(describing: list), "1 -> 2 -> 3 -> 4")
+        XCTAssertEqual(String(describing: list1), "2 -> 3 -> 4")
+    }
+
 }
