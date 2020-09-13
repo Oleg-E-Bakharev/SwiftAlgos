@@ -11,6 +11,10 @@ import Foundation
 public struct List<Value> {
     public typealias Node = ListNode<Value>
     
+    // Marker for copy-on-write
+    private class UniqueMarker {}
+    private var uniqueMarker = UniqueMarker()
+    
     public private(set) var head: Node?
     public private(set) var tail: Node?
     
@@ -22,6 +26,7 @@ public struct List<Value> {
     
     /// O1 Adds before head
     public mutating func push(_ value: Value)  {
+        copyNodesIfNotUnique()
         head = Node(value: value, next: head)
         if tail == nil {
             tail = head
@@ -30,6 +35,7 @@ public struct List<Value> {
     
     /// O1 Adds after tail
     public mutating func append(_ value: Value) {
+        copyNodesIfNotUnique()
         guard let tail = tail else {
             push(value)
             return
@@ -42,6 +48,7 @@ public struct List<Value> {
     /// O1 Insert Value after Node
     @discardableResult
     public mutating func insert(_ value: Value, after node: Node) -> Node {
+        copyNodesIfNotUnique()
         guard tail !== node else {
             append(value)
             return tail!
@@ -53,6 +60,7 @@ public struct List<Value> {
     /// O1 Remove Value in head.
     @discardableResult
     public mutating func pop() -> Value? {
+        copyNodesIfNotUnique()
         defer {
             head = head?.next
             if isEmpty {
@@ -73,6 +81,22 @@ public struct List<Value> {
         }
         return node.next?.value
     }
+    
+    private mutating func copyNodesIfNotUnique() {
+        guard !isKnownUniquelyReferenced(&uniqueMarker), var oldNode = head else {
+            return
+        }
+        head = ListNode(value: oldNode.value)
+        var newNode = head
+        
+        while let oldNodeNext = oldNode.next {
+            newNode!.next = ListNode(value: oldNodeNext.value)
+            oldNode = oldNodeNext
+            newNode = newNode!.next
+        }
+        
+        tail = newNode
+    }
 }
 
 extension List: ExpressibleByArrayLiteral {
@@ -87,7 +111,9 @@ extension List: Sequence {
     public struct Iterator: IteratorProtocol {
         public var node: Node?
         public mutating func next() -> Value? {
-            node = node?.next
+            defer {
+                node = node?.next
+            }
             return node?.value
         }
     }

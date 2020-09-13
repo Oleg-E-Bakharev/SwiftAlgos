@@ -28,7 +28,6 @@ class AlgosTests: XCTestCase {
         stack.push(1)
         stack.push(2)
         stack.push(3)
-        print(stack)
         try pops()
     }
     
@@ -63,5 +62,22 @@ class AlgosTests: XCTestCase {
         XCTAssertFalse(stack.isEmpty)
         stack.pop()
         XCTAssertTrue(stack.isEmpty)
+    }
+    
+    func testSequesnce() throws {
+        stack = [1, 2, 3]
+        var v = 3
+        for i in stack {
+            XCTAssertEqual(i, v)
+            v -= 1
+        }
+    }
+    
+    func testDescription() throws {
+        XCTAssertEqual(String(describing: stack), "---top---\n")
+        stack.push(1)
+        XCTAssertEqual(String(describing: stack), "---top---\n1")
+        stack.push(2)
+        XCTAssertEqual(String(describing: stack), "---top---\n2\n1")
     }
 }

@@ -56,3 +56,15 @@ do {
     let sum = list.reduce(0, +)
     print("Sum of all values: \(sum)")
 }
+
+do {
+    var list1: List<Int> = [1, 2, 3]
+    print(list1)
+//    print("List1 uniquely referenced: \(isKnownUniquelyReferenced(&list1.head))")
+    var list2 = list1
+//    print("List1 uniquely referenced: \(isKnownUniquelyReferenced(&list1.head))")
+    print(list2)
+    list1.append(4)
+    print(list1)
+    print(list2)
+}

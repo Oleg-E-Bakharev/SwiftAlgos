@@ -46,6 +46,19 @@ extension Stack: ExpressibleByArrayLiteral {
     }
 }
 
+extension Stack: Sequence {
+    public struct Iterator: IteratorProtocol {
+        public var stack: Stack
+        public mutating func next() -> Element? {
+            return stack.pop()
+        }
+    }
+    
+    public __consuming func makeIterator() -> Iterator {
+        return Iterator(stack: self)
+    }
+}
+
 extension Stack: CustomStringConvertible {
     public var description: String {
         """
