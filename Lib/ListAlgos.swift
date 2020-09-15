@@ -10,7 +10,7 @@ import Foundation
 
 public extension List {
     
-    /// On
+    /// On-time O1-memory
     mutating func reverse() {
         var prev = head
         setTail(head)
@@ -23,5 +23,11 @@ public extension List {
         }
         setHead(prev)
         tail?.next = nil
+    }
+    
+    /// On-time O1-memory. Destructive merge sorted lists inplace
+    static func mergeSorted(lhs: inout List, rhs: inout List) -> List {
+        let list = List()
+        return list
     }
 }
