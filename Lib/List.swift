@@ -97,6 +97,14 @@ public struct List<Value> {
         
         tail = newNode
     }
+    
+    internal mutating func setHead(_ head: Node?) {
+        self.head = head
+    }
+    
+    internal mutating func setTail(_ tail: Node?) {
+        self.tail = head
+    }
 }
 
 extension List: ExpressibleByArrayLiteral {

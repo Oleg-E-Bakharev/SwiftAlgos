@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF83EB5F25115FAC000AEFB1 /* ListAlgosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF83EB5C25115B72000AEFB1 /* ListAlgosTests.swift */; };
+		CF83EB6025115FB0000AEFB1 /* ListAlgos.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8E2EE725111F1900419D36 /* ListAlgos.swift */; };
 		CF85D9EE250905810099EABF /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF85D9ED250905810099EABF /* main.swift */; };
 		CF85DA1925090C210099EABF /* StackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF85DA1825090C210099EABF /* StackTests.swift */; };
 		CF85DA2B25090CC60099EABF /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF85D9F42509059C0099EABF /* Stack.swift */; };
@@ -30,6 +32,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		CF83EB5C25115B72000AEFB1 /* ListAlgosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAlgosTests.swift; sourceTree = "<group>"; };
 		CF85D9EA250905810099EABF /* SwiftAlgosSandbox */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SwiftAlgosSandbox; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF85D9ED250905810099EABF /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		CF85D9F42509059C0099EABF /* Stack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
@@ -41,6 +44,7 @@
 		CF876236250D0A7D00F4FAB0 /* ListNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListNode.swift; sourceTree = "<group>"; };
 		CF876238250D0D0F00F4FAB0 /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
 		CF87623A250E258B00F4FAB0 /* ListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTests.swift; sourceTree = "<group>"; };
+		CF8E2EE725111F1900419D36 /* ListAlgos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListAlgos.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +109,7 @@
 				CF876232250CF1F500F4FAB0 /* SwiftAlgosLib.xctestplan */,
 				CF85DA1825090C210099EABF /* StackTests.swift */,
 				CF87623A250E258B00F4FAB0 /* ListTests.swift */,
+				CF83EB5C25115B72000AEFB1 /* ListAlgosTests.swift */,
 				CF85DA1A25090C210099EABF /* Info.plist */,
 			);
 			path = Tests;
@@ -116,6 +121,7 @@
 				CF85D9F42509059C0099EABF /* Stack.swift */,
 				CF876236250D0A7D00F4FAB0 /* ListNode.swift */,
 				CF876238250D0D0F00F4FAB0 /* List.swift */,
+				CF8E2EE725111F1900419D36 /* ListAlgos.swift */,
 			);
 			path = Lib;
 			sourceTree = "<group>";
@@ -256,6 +262,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF85DA1925090C210099EABF /* StackTests.swift in Sources */,
+				CF83EB5F25115FAC000AEFB1 /* ListAlgosTests.swift in Sources */,
 				CF87623B250E258B00F4FAB0 /* ListTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -264,6 +271,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF83EB6025115FB0000AEFB1 /* ListAlgos.swift in Sources */,
 				CF85DA2B25090CC60099EABF /* Stack.swift in Sources */,
 				CF876237250D0A7D00F4FAB0 /* ListNode.swift in Sources */,
 				CF876239250D0D0F00F4FAB0 /* List.swift in Sources */,
