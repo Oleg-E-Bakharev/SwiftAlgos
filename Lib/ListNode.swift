@@ -32,6 +32,38 @@ public extension ListNode {
         head?.next = nil
         return prev
     }
+    
+    /// On+m. On exit head in left. tail in right.
+    static func mergeSorted(_ left: inout ListNode?, _ right: inout ListNode?, compare: (Value, Value)->Bool) {
+        func mergeStep(_ left: inout ListNode?, _ right: inout ListNode?) -> ListNode? {
+            guard left != nil || right != nil else { return nil }
+            guard let someLeft = left else {
+                defer { right = right?.next }
+                return right
+            }
+            guard let someRight = right else {
+                defer { left = left?.next }
+                return left
+            }
+            
+            if compare(someLeft.value, someRight.value) {
+                defer { left = left?.next }
+                return left
+            }
+            defer { right = right?.next }
+            return right
+        }
+        
+        let head = mergeStep(&left, &right)
+        var current = head
+        while(true) {
+            guard let node = mergeStep(&left, &right) else { break }
+            current?.next = node
+            current = node
+        }
+        left = head
+        right = current
+    }
 }
 
 extension ListNode: CustomStringConvertible {

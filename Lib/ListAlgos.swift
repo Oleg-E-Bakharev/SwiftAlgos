@@ -13,42 +13,18 @@ public extension List {
     /// On-time O1-memory
     mutating func reverse() {
         setTail(head)
-        setHead(ListNode.reverse(head))
+        setHead(Node.reverse(head))
     }
     
-    /// On-time O1-memory. Destructive merge sorted lists inplace
-    static func mergeSorted(lhs: inout List, rhs: inout List, compare: (Value, Value)->Bool) -> List {
+    /// On+m time O1-memory. Destructive merge sorted lists inplace
+    static func mergeSorted(_ left: inout List, _ right: inout List, compare: (Value, Value)->Bool) -> List {
+        var head = left.head
+        var tail = right.head
+        ListNode<List.Value>.mergeSorted(&head, &tail, compare: compare)
         var list = List()
-        
-        func mergeStep(_ left: inout Node?, _ right: inout Node?) -> Node? {
-            guard left != nil && right != nil else { return nil }
-            guard let someLeft = left else {
-                defer { right = right?.next }
-                return right
-            }
-            guard let someRight = right else {
-                defer { left = left?.next }
-                return left
-            }
-            
-            if compare(someLeft.value, someRight.value) {
-                defer { left = left?.next }
-                return left
-            }
-            defer { right = right?.next }
-            return right
-        }
-
-        var right = rhs.head
-        var left = lhs.head
-        
-        list.setHead(mergeStep(&left, &right))
-        list.setTail(list.head)
-        while(true) {
-            guard let node = mergeStep(&left, &right) else { break }
-            list.tail?.next = node
-            list.setTail(node)
-        }
+        list.setHead(head)
+        list.setTail(tail)
         return list
     }
 }
+

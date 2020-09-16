@@ -34,14 +34,29 @@ class ListAlgosTests: XCTestCase {
     
     func testMergeSortedEmpty() throws {
         var list2 = List<Int>()
-        list = List.mergeSorted(lhs: &list, rhs: &list2, compare: <)
+        list = List.mergeSorted(&list, &list2, compare: <)
         XCTAssertEqual(String(describing: list), "Empty list")
     }
     
     func testMergeSorted() throws {
         list = [1, 3, 5]
         var list2: List<Int> = [2, 4, 6]
-        list = List.mergeSorted(lhs: &list, rhs: &list2, compare: <)
-        XCTAssertEqual(String(describing: list), "1 -> 2 -> 3 -> 4 -> 5")
+        list = List.mergeSorted(&list, &list2, compare: <)
+        XCTAssertEqual(String(describing: list), "1 -> 2 -> 3 -> 4 -> 5 -> 6")
     }
+    
+    func testMergeSortedLeft() throws {
+        list = [1, 3, 5]
+        var list2 = List<Int>()
+        list = List.mergeSorted(&list, &list2, compare: <)
+        XCTAssertEqual(String(describing: list), "1 -> 3 -> 5")
+    }
+    
+    func testMergeSortedRight() throws {
+        list = [1, 3, 5]
+        var list2 = List<Int>()
+        list = List.mergeSorted(&list2, &list, compare: <)
+        XCTAssertEqual(String(describing: list), "1 -> 3 -> 5")
+    }
+
 }

@@ -10,6 +10,7 @@ import Foundation
 
 public struct List<Value> {
     public typealias Node = ListNode<Value>
+    public typealias Value = Value
     
     // Marker for copy-on-write
     private class UniqueMarker {}
