@@ -12,17 +12,8 @@ public extension List {
     
     /// On-time O1-memory
     mutating func reverse() {
-        var prev = head
         setTail(head)
-        var curr = prev?.next
-        while curr != nil {
-            let next = curr?.next
-            curr?.next = prev
-            prev = curr
-            curr = next
-        }
-        setHead(prev)
-        tail?.next = nil
+        setHead(ListNode.reverse(head))
     }
     
     /// On-time O1-memory. Destructive merge sorted lists inplace
@@ -52,13 +43,12 @@ public extension List {
         var left = lhs.head
         
         list.setHead(mergeStep(&left, &right))
-        list.setTail(list.tail)
-        repeat {
-            guard let node = mergeStep(&left, &right) else {
-                return list
-            }
+        list.setTail(list.head)
+        while(true) {
+            guard let node = mergeStep(&left, &right) else { break }
             list.tail?.next = node
             list.setTail(node)
-        } while(true)
+        }
+        return list
     }
 }

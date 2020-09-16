@@ -86,6 +86,10 @@ public struct List<Value> {
         guard !isKnownUniquelyReferenced(&uniqueMarker), var oldNode = head else {
             return
         }
+        #if DEBUG
+        print("🔴copy on write🔴")
+        #endif
+        
         head = ListNode(value: oldNode.value)
         var newNode = head
         
@@ -103,7 +107,7 @@ public struct List<Value> {
     }
     
     internal mutating func setTail(_ tail: Node?) {
-        self.tail = head
+        self.tail = tail
     }
 }
 
