@@ -64,6 +64,17 @@ public extension ListNode {
         left = head
         right = current
     }
+    
+    /// On On single node list returns self.
+    func getMiddle() -> ListNode? {
+        var tail = next
+        var middle: ListNode? = self
+        while tail != nil {
+            middle = middle?.next
+            tail = tail?.next?.next
+        }
+        return middle
+    }
 }
 
 extension ListNode: CustomStringConvertible {

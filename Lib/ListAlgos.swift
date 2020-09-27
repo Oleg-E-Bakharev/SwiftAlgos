@@ -26,5 +26,9 @@ public extension List {
         list.setTail(tail)
         return list
     }
+    
+    mutating func halve() -> List? {
+        var middle = 
+    }
 }
 
