@@ -21,14 +21,17 @@ public extension List {
         var head = left.head
         var tail = right.head
         ListNode<List.Value>.mergeSorted(&head, &tail, compare: compare)
-        var list = List()
-        list.setHead(head)
-        list.setTail(tail)
-        return list
+        return List(head: head, tail: tail)
     }
     
-    mutating func halve() -> List? {
-        var middle = 
+    /// On
+    mutating func halve() -> List {
+        let middle = head?.getMiddle()
+        defer {
+            middle?.next = nil
+            setTail(middle)
+        }
+        return List(head: middle?.next, tail: tail)
     }
 }
 

@@ -67,7 +67,7 @@ public extension ListNode {
     
     /// On On single node list returns self.
     func getMiddle() -> ListNode? {
-        var tail = next
+        var tail = next?.next
         var middle: ListNode? = self
         while tail != nil {
             middle = middle?.next

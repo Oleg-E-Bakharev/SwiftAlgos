@@ -23,7 +23,7 @@ class ListAlgosTests: XCTestCase {
     
     func testReverseEmpty() throws {
         list.reverse()
-        XCTAssertEqual(String(describing: list), "Empty list")
+        XCTAssertTrue(list.isEmpty)
     }
 
     func testReverse() throws {
@@ -35,7 +35,7 @@ class ListAlgosTests: XCTestCase {
     func testMergeSortedEmpty() throws {
         var list2 = List<Int>()
         list = List.mergeSorted(&list, &list2, compare: <)
-        XCTAssertEqual(String(describing: list), "Empty list")
+        XCTAssertTrue(list.isEmpty)
     }
     
     func testMergeSorted() throws {
@@ -57,6 +57,40 @@ class ListAlgosTests: XCTestCase {
         var list2 = List<Int>()
         list = List.mergeSorted(&list2, &list, compare: <)
         XCTAssertEqual(String(describing: list), "1 -> 3 -> 5")
+    }
+    
+    func testHalveEmptyList() {
+        let second = list.halve()
+        XCTAssertTrue(list.isEmpty)
+        XCTAssertTrue(second.isEmpty)
+    }
+    
+    func testHalveSingleNodeList() throws {
+        list = [1]
+        let second = list.halve()
+        XCTAssertEqual(String(describing: list), "1")
+        XCTAssertTrue(second.isEmpty)
+    }
+
+    func testHalveDoubleNodeList() throws {
+        list = [1, 2]
+        let second = list.halve()
+        XCTAssertEqual(String(describing: list), "1")
+        XCTAssertEqual(String(describing: second), "2")
+    }
+    
+    func testHalveTripleNodeList() throws {
+        list = [1, 2, 3]
+        let second = list.halve()
+        XCTAssertEqual(String(describing: list), "1 -> 2")
+        XCTAssertEqual(String(describing: second), "3")
+    }
+
+    func testHalveQuadNodeList() throws {
+        list = [1, 2, 3, 4]
+        let second = list.halve()
+        XCTAssertEqual(String(describing: list), "1 -> 2")
+        XCTAssertEqual(String(describing: second), "3 -> 4")
     }
 
 }

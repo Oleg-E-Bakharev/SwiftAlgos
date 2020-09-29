@@ -19,6 +19,11 @@ public struct List<Value> {
     public private(set) var head: Node?
     public private(set) var tail: Node?
     
+    public init(head: Node? = nil, tail: Node? = nil) {
+        self.head = head
+        self.tail = tail
+    }
+    
     public init() {}
     
     public var isEmpty: Bool {
