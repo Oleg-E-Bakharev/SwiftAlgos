@@ -34,31 +34,27 @@ class ListAlgosTests: XCTestCase {
     
     func testMergeSortedEmpty() throws {
         var list2 = List<Int>()
-        list = List.mergeSorted(&list, &list2, compare: <)
+        list.mergeSorted(&list2, compare: <)
         XCTAssertTrue(list.isEmpty)
+        XCTAssertTrue(list2.isEmpty)
     }
     
     func testMergeSorted() throws {
         list = [1, 3, 5]
         var list2: List<Int> = [2, 4, 6]
-        list = List.mergeSorted(&list, &list2, compare: <)
+        list.mergeSorted(&list2, compare: <)
         XCTAssertEqual(String(describing: list), "1 -> 2 -> 3 -> 4 -> 5 -> 6")
+        XCTAssertTrue(list2.isEmpty)
     }
-    
-    func testMergeSortedLeft() throws {
-        list = [1, 3, 5]
-        var list2 = List<Int>()
-        list = List.mergeSorted(&list, &list2, compare: <)
-        XCTAssertEqual(String(describing: list), "1 -> 3 -> 5")
+
+    func testMergeSorted2() throws {
+        list = [2, 4, 6]
+        var list2: List<Int> = [1, 3, 5]
+        list.mergeSorted(&list2, compare: <)
+        XCTAssertEqual(String(describing: list), "1 -> 2 -> 3 -> 4 -> 5 -> 6")
+        XCTAssertTrue(list2.isEmpty)
     }
-    
-    func testMergeSortedRight() throws {
-        list = [1, 3, 5]
-        var list2 = List<Int>()
-        list = List.mergeSorted(&list2, &list, compare: <)
-        XCTAssertEqual(String(describing: list), "1 -> 3 -> 5")
-    }
-    
+
     func testHalveEmptyList() {
         let second = list.halve()
         XCTAssertTrue(list.isEmpty)
@@ -92,5 +88,51 @@ class ListAlgosTests: XCTestCase {
         XCTAssertEqual(String(describing: list), "1 -> 2")
         XCTAssertEqual(String(describing: second), "3 -> 4")
     }
+    
+    func testSortEmptyList() throws {
+        list.sort(compare: <)
+        XCTAssertTrue(list.isEmpty)
+    }
+    
+    func testSortSingleNodeList() throws {
+        list = [1]
+        list.sort(compare: <)
+        XCTAssertEqual(String(describing: list), "1")
+    }
+    
+    func testSortDoubleNodeList() throws {
+        list = [1, 2]
+        list.sort(compare: <)
+        XCTAssertEqual(String(describing: list), "1 -> 2")
+        list = [2, 1]
+        list.sort(compare: <)
+        XCTAssertEqual(String(describing: list), "1 -> 2")
+    }
 
+    func testSortTripleNodeList() throws {
+        list = [1, 2, 3]
+        list.sort(compare: <)
+        XCTAssertEqual(String(describing: list), "1 -> 2 -> 3")
+        list = [2, 1, 3]
+        list.sort(compare: <)
+        XCTAssertEqual(String(describing: list), "1 -> 2 -> 3")
+        list = [1, 3, 2]
+        list.sort(compare: <)
+        XCTAssertEqual(String(describing: list), "1 -> 2 -> 3")
+        list = [3, 2, 1]
+        list.sort(compare: <)
+        XCTAssertEqual(String(describing: list), "1 -> 2 -> 3")
+        list = [2, 3, 1]
+        list.sort(compare: <)
+        XCTAssertEqual(String(describing: list), "1 -> 2 -> 3")
+        list = [2, 1, 1]
+        list.sort(compare: <)
+        XCTAssertEqual(String(describing: list), "1 -> 1 -> 2")
+        list = [1, 2, 1]
+        list.sort(compare: <)
+        XCTAssertEqual(String(describing: list), "1 -> 1 -> 2")
+        list = [1, 1, 1]
+        list.sort(compare: <)
+        XCTAssertEqual(String(describing: list), "1 -> 1 -> 1")
+    }
 }
