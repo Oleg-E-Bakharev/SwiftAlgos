@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class ListNode<Value> {
+public final class ListNode<Value> {
     public var value: Value
     public var next: ListNode?
     

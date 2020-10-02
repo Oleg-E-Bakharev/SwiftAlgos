@@ -17,6 +17,9 @@
 		CF876237250D0A7D00F4FAB0 /* ListNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF876236250D0A7D00F4FAB0 /* ListNode.swift */; };
 		CF876239250D0D0F00F4FAB0 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF876238250D0D0F00F4FAB0 /* List.swift */; };
 		CF87623B250E258B00F4FAB0 /* ListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF87623A250E258B00F4FAB0 /* ListTests.swift */; };
+		CF9376B22527B3540021CCBB /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9376B12527B3540021CCBB /* Queue.swift */; };
+		CF9376B62527B7590021CCBB /* Deque.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9376B52527B7590021CCBB /* Deque.swift */; };
+		CF9376B82527BF040021CCBB /* RingBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9376B72527BF040021CCBB /* RingBuffer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -45,6 +48,9 @@
 		CF876238250D0D0F00F4FAB0 /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
 		CF87623A250E258B00F4FAB0 /* ListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTests.swift; sourceTree = "<group>"; };
 		CF8E2EE725111F1900419D36 /* ListAlgos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListAlgos.swift; sourceTree = "<group>"; };
+		CF9376B12527B3540021CCBB /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
+		CF9376B52527B7590021CCBB /* Deque.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deque.swift; sourceTree = "<group>"; };
+		CF9376B72527BF040021CCBB /* RingBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingBuffer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +128,9 @@
 				CF876236250D0A7D00F4FAB0 /* ListNode.swift */,
 				CF876238250D0D0F00F4FAB0 /* List.swift */,
 				CF8E2EE725111F1900419D36 /* ListAlgos.swift */,
+				CF9376B12527B3540021CCBB /* Queue.swift */,
+				CF9376B52527B7590021CCBB /* Deque.swift */,
+				CF9376B72527BF040021CCBB /* RingBuffer.swift */,
 			);
 			path = Lib;
 			sourceTree = "<group>";
@@ -271,8 +280,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF9376B22527B3540021CCBB /* Queue.swift in Sources */,
+				CF9376B62527B7590021CCBB /* Deque.swift in Sources */,
 				CF83EB6025115FB0000AEFB1 /* ListAlgos.swift in Sources */,
 				CF85DA2B25090CC60099EABF /* Stack.swift in Sources */,
+				CF9376B82527BF040021CCBB /* RingBuffer.swift in Sources */,
 				CF876237250D0A7D00F4FAB0 /* ListNode.swift in Sources */,
 				CF876239250D0D0F00F4FAB0 /* List.swift in Sources */,
 			);
