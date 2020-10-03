@@ -28,14 +28,16 @@ public struct RingBuffer<T> {
         storage[back] = element
     }
     
-    public mutating func popFront(_ element: Element) -> Element? {
+    @discardableResult
+    public mutating func popFront() -> Element? {
         guard !isEmpty else { return nil }
         front = (storage.count + front - 1) % storage.count
         defer { storage[front] = nil }
         return storage[front]
     }
     
-    public mutating func popBack(_ element: Element) -> Element? {
+    @discardableResult
+    public mutating func popBack() -> Element? {
         guard !isEmpty else { return nil }
         defer {
             storage[back] = nil
@@ -47,15 +49,18 @@ public struct RingBuffer<T> {
     private mutating func growIfNeed() {
         guard front != back && !isEmpty else { return }
         if front != 0 {
-            // rotate buffer to back == 0
-            reverseBufferFragment(from: 0, to: front)
-            reverseBufferFragment(from: front, to: storage.count)
-            reverseBufferFragment(from: 0, to: storage.count)
+            rotateBuffer(at: front)
             back = 0
             front = storage.count
         }
         storage.reserveCapacity(storage.count * 2)
         storage.append(contentsOf: (0..<storage.count).map { _ in nil } )
+    }
+    
+    private mutating func rotateBuffer(at index: Int) {
+        reverseBufferFragment(from: 0, to: index)
+        reverseBufferFragment(from: index, to: storage.count)
+        reverseBufferFragment(from: 0, to: storage.count)
     }
     
     private mutating func reverseBufferFragment(from: Int, to: Int) {
@@ -65,7 +70,23 @@ public struct RingBuffer<T> {
     }
     
     public var isEmpty: Bool { storage[back] == nil }
+}
+
+// Sequence operations
+extension RingBuffer {
+    mutating func pushFront<S: Sequence>(sequence: S) where S.Element == Self.Element {
+        for element in sequence {
+            pushFront(element)
+        }
+    }
     
+    mutating func pushBack<S: Sequence>(sequence: S) where S.Element == Self.Element {
+        for element in sequence {
+            pushBack(element)
+        }
+    }
+}
+
 //    public var count: Int {
 //        let count = (storage.count + front - back) % storage.count
 //        // front == back can means that buffer is empty or full up to capacity.
@@ -85,4 +106,4 @@ public struct RingBuffer<T> {
 //            storage[index(item)] = newValue
 //        }
 //    }
-}
+//}
