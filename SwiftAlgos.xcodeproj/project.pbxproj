@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7C3AD6C3252866B700CA7FB7 /* RingBufferRests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3AD6C2252866B700CA7FB7 /* RingBufferRests.swift */; };
+		CF3F9D1C252CEB8600B82E60 /* MutableCollectionExTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3F9D1B252CEB8600B82E60 /* MutableCollectionExTests.swift */; };
 		CF83EB5F25115FAC000AEFB1 /* ListAlgosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF83EB5C25115B72000AEFB1 /* ListAlgosTests.swift */; };
 		CF83EB6025115FB0000AEFB1 /* ListAlgos.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8E2EE725111F1900419D36 /* ListAlgos.swift */; };
 		CF85D9EE250905810099EABF /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF85D9ED250905810099EABF /* main.swift */; };
@@ -18,6 +19,8 @@
 		CF876237250D0A7D00F4FAB0 /* ListNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF876236250D0A7D00F4FAB0 /* ListNode.swift */; };
 		CF876239250D0D0F00F4FAB0 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF876238250D0D0F00F4FAB0 /* List.swift */; };
 		CF87623B250E258B00F4FAB0 /* ListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF87623A250E258B00F4FAB0 /* ListTests.swift */; };
+		CF92106B252CE38D00B47F8D /* MutableCollectionEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF92106A252CE38D00B47F8D /* MutableCollectionEx.swift */; };
+		CF92106C252CE38D00B47F8D /* MutableCollectionEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF92106A252CE38D00B47F8D /* MutableCollectionEx.swift */; };
 		CF9376B22527B3540021CCBB /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9376B12527B3540021CCBB /* Queue.swift */; };
 		CF9376B62527B7590021CCBB /* Deque.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9376B52527B7590021CCBB /* Deque.swift */; };
 		CF9376B82527BF040021CCBB /* RingBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9376B72527BF040021CCBB /* RingBuffer.swift */; };
@@ -37,6 +40,7 @@
 
 /* Begin PBXFileReference section */
 		7C3AD6C2252866B700CA7FB7 /* RingBufferRests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingBufferRests.swift; sourceTree = "<group>"; };
+		CF3F9D1B252CEB8600B82E60 /* MutableCollectionExTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutableCollectionExTests.swift; sourceTree = "<group>"; };
 		CF83EB5C25115B72000AEFB1 /* ListAlgosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAlgosTests.swift; sourceTree = "<group>"; };
 		CF85D9EA250905810099EABF /* SwiftAlgosSandbox */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SwiftAlgosSandbox; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF85D9ED250905810099EABF /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -50,6 +54,7 @@
 		CF876238250D0D0F00F4FAB0 /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
 		CF87623A250E258B00F4FAB0 /* ListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTests.swift; sourceTree = "<group>"; };
 		CF8E2EE725111F1900419D36 /* ListAlgos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListAlgos.swift; sourceTree = "<group>"; };
+		CF92106A252CE38D00B47F8D /* MutableCollectionEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutableCollectionEx.swift; sourceTree = "<group>"; };
 		CF9376B12527B3540021CCBB /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		CF9376B52527B7590021CCBB /* Deque.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deque.swift; sourceTree = "<group>"; };
 		CF9376B72527BF040021CCBB /* RingBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingBuffer.swift; sourceTree = "<group>"; };
@@ -119,6 +124,7 @@
 				CF85DA1825090C210099EABF /* StackTests.swift */,
 				CF87623A250E258B00F4FAB0 /* ListTests.swift */,
 				CF83EB5C25115B72000AEFB1 /* ListAlgosTests.swift */,
+				CF3F9D1B252CEB8600B82E60 /* MutableCollectionExTests.swift */,
 				7C3AD6C2252866B700CA7FB7 /* RingBufferRests.swift */,
 			);
 			path = Tests;
@@ -133,6 +139,7 @@
 				CF8E2EE725111F1900419D36 /* ListAlgos.swift */,
 				CF9376B12527B3540021CCBB /* Queue.swift */,
 				CF9376B52527B7590021CCBB /* Deque.swift */,
+				CF92106A252CE38D00B47F8D /* MutableCollectionEx.swift */,
 				CF9376B72527BF040021CCBB /* RingBuffer.swift */,
 			);
 			path = Lib;
@@ -266,6 +273,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF85D9EE250905810099EABF /* main.swift in Sources */,
+				CF92106B252CE38D00B47F8D /* MutableCollectionEx.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,6 +284,7 @@
 				CF85DA1925090C210099EABF /* StackTests.swift in Sources */,
 				CF83EB5F25115FAC000AEFB1 /* ListAlgosTests.swift in Sources */,
 				CF87623B250E258B00F4FAB0 /* ListTests.swift in Sources */,
+				CF3F9D1C252CEB8600B82E60 /* MutableCollectionExTests.swift in Sources */,
 				7C3AD6C3252866B700CA7FB7 /* RingBufferRests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -289,6 +298,7 @@
 				CF83EB6025115FB0000AEFB1 /* ListAlgos.swift in Sources */,
 				CF85DA2B25090CC60099EABF /* Stack.swift in Sources */,
 				CF9376B82527BF040021CCBB /* RingBuffer.swift in Sources */,
+				CF92106C252CE38D00B47F8D /* MutableCollectionEx.swift in Sources */,
 				CF876237250D0A7D00F4FAB0 /* ListNode.swift in Sources */,
 				CF876239250D0D0F00F4FAB0 /* List.swift in Sources */,
 			);

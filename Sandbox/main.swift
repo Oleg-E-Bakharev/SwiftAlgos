@@ -68,3 +68,10 @@ do {
     list2.remove(after: list2.head!)
     print(list2)
 }
+
+do {
+    let string: String = "Hello World "
+    var characters = Array(string)
+    characters.rotate(on: characters.firstIndex(of: " ") ?? 0)
+    print(String(characters))
+}

@@ -39,19 +39,45 @@ class RingBufferRests: XCTestCase {
 
     func testPushPopFront() throws {
         sut.pushFront(1)
+        XCTAssertEqual(sut.front, 0)
+        XCTAssertEqual(sut.back, 0)
+        XCTAssertEqual(sut.popFront(), 1)
+        XCTAssertTrue(sut.isEmpty)
+        sut.pushFront(1)
+        sut.pushFront(2)
+        XCTAssertEqual(sut.front, 0)
+        XCTAssertEqual(sut.back, 0)
+        XCTAssertEqual(sut.popFront(), 2)
         XCTAssertEqual(sut.popFront(), 1)
         XCTAssertTrue(sut.isEmpty)
     }
 
     func testPushPopBack() throws {
         sut.pushBack(1)
+        XCTAssertEqual(sut.front, 0)
+        XCTAssertEqual(sut.back, 0)
         XCTAssertEqual(sut.popBack(), 1)
         XCTAssertTrue(sut.isEmpty)
+        sut.pushBack(1)
+        sut.pushBack(2)
+        XCTAssertEqual(sut.front, 1)
+        XCTAssertEqual(sut.back, 1)
+        XCTAssertEqual(sut.popBack(), 2)
+        XCTAssertEqual(sut.popBack(), 1)
+        XCTAssertTrue(sut.isEmpty)
+        sut.pushBack(1)
+        sut.pushBack(2)
+        sut.pushBack(3)
     }
     
     func testPushFrontPopBack() throws {
         sut.pushFront(1)
         XCTAssertEqual(sut.popBack(), 1)
+        XCTAssertTrue(sut.isEmpty)
+        sut.pushFront(1)
+        sut.pushFront(2)
+        XCTAssertEqual(sut.popBack(), 1)
+        XCTAssertEqual(sut.popBack(), 2)
         XCTAssertTrue(sut.isEmpty)
     }
 
@@ -59,9 +85,42 @@ class RingBufferRests: XCTestCase {
         sut.pushBack(1)
         XCTAssertEqual(sut.popFront(), 1)
         XCTAssertTrue(sut.isEmpty)
+        sut.pushBack(1)
+        sut.pushBack(2)
+        XCTAssertEqual(sut.popFront(), 1)
+        XCTAssertEqual(sut.popFront(), 2)
+        XCTAssertTrue(sut.isEmpty)
     }
     
-//    func test
+    func testPushFrontDescription() throws {
+        XCTAssertEqual(String(describing: sut), "[]")
+        sut.pushFront(1)
+        XCTAssertEqual(String(describing: sut), "[1]")
+        sut.pushFront(2)
+        XCTAssertEqual(String(describing: sut), "[1, 2]")
+        sut.pushFront(3)
+        XCTAssertEqual(String(describing: sut), "[1, 2, 3]")
+    }
+    
+    func testPushBackDescription() throws {
+        sut.pushBack(2)
+        XCTAssertEqual(String(describing: sut), "[2]")
+        sut.pushBack(1)
+        XCTAssertEqual(String(describing: sut), "[1, 2]")
+        sut.pushBack(0)
+        XCTAssertEqual(String(describing: sut), "[0, 1, 2]")
+    }
+    
+    func testSequencePushFront() throws {
+        sut.pushFront(sequence: [1, 2, 3, 4])
+        XCTAssertEqual(String(describing: sut), "[1, 2, 3, 4]")
+    }
+    
+    func testSequencePushBack() throws {
+        sut.pushBack(sequence: [1, 2, 3, 4])
+        XCTAssertEqual(String(describing: sut), "[4, 3, 2, 1]")
+    }
+
     
     func testGrow() throws {
 //        sut.pushFront(<#T##element: RingBuffer<Int>.Element##RingBuffer<Int>.Element#>)

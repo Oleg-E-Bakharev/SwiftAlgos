@@ -47,46 +47,38 @@ public struct RingBuffer<T> {
     }
     
     private mutating func growIfNeed() {
-        guard front != back && !isEmpty else { return }
+        guard front == back && !isEmpty else { return }
         if front != 0 {
-            rotateBuffer(at: front)
+            storage.rotate(on: front)
             back = 0
-            front = storage.count
         }
+        front = storage.count
+        back = 0
         storage.reserveCapacity(storage.count * 2)
         storage.append(contentsOf: (0..<storage.count).map { _ in nil } )
     }
-    
-    private mutating func rotateBuffer(at index: Int) {
-        reverseBufferFragment(from: 0, to: index)
-        reverseBufferFragment(from: index, to: storage.count)
-        reverseBufferFragment(from: 0, to: storage.count)
-    }
-    
-    private mutating func reverseBufferFragment(from: Int, to: Int) {
-        for i in from..<to/2 {
-            storage.swapAt(i, to - i)
-        }
-    }
-    
+            
     public var isEmpty: Bool { storage[back] == nil }
 }
 
 extension RingBuffer: Sequence {
     public struct Iterator: IteratorProtocol {
-        private let storage: RingBuffer
+        private let ringBuffer: RingBuffer
         private var current: Int
         
         public init(storage: RingBuffer) {
-            self.storage = storage
+            self.ringBuffer = storage
             self.current = storage.back
         }
         
         public mutating func next() -> Element? {
-            defer {
-                current = (current + 1) % storage.storage.count
+            guard current != ringBuffer.storage.count + ringBuffer.back else {
+                return nil
             }
-            return storage.storage[current]
+            defer {
+                current += 1
+            }
+            return ringBuffer.storage[current % ringBuffer.storage.count]
         }
     }
     
@@ -112,8 +104,6 @@ extension RingBuffer {
 
 extension RingBuffer: CustomStringConvertible {
     public var description: String {
-        guard !isEmpty else { return "Empty" }
-        
         var elements: [String] = []
         for element in self {
             elements.append("\(element)")
