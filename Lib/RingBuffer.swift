@@ -72,6 +72,29 @@ public struct RingBuffer<T> {
     public var isEmpty: Bool { storage[back] == nil }
 }
 
+extension RingBuffer: Sequence {
+    public struct Iterator: IteratorProtocol {
+        private let storage: RingBuffer
+        private var current: Int
+        
+        public init(storage: RingBuffer) {
+            self.storage = storage
+            self.current = storage.back
+        }
+        
+        public mutating func next() -> Element? {
+            defer {
+                current = (current + 1) % storage.storage.count
+            }
+            return storage.storage[current]
+        }
+    }
+    
+    __consuming public func makeIterator() -> Iterator {
+        return Iterator(storage: self)
+    }
+}
+
 // Sequence operations
 extension RingBuffer {
     mutating func pushFront<S: Sequence>(sequence: S) where S.Element == Self.Element {
@@ -84,6 +107,18 @@ extension RingBuffer {
         for element in sequence {
             pushBack(element)
         }
+    }
+}
+
+extension RingBuffer: CustomStringConvertible {
+    public var description: String {
+        guard !isEmpty else { return "Empty" }
+        
+        var elements: [String] = []
+        for element in self {
+            elements.append("\(element)")
+        }
+        return "[\(elements.joined(separator: ", "))]"
     }
 }
 
