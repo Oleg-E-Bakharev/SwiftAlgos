@@ -48,7 +48,7 @@ public struct RingBuffer<T> {
     
     private mutating func growIfNeed() {
         guard front == back && !isEmpty else { return }
-        if front != 0 {
+        if back != 0 {
             storage.rotate(on: front)
             back = 0
         }
@@ -59,6 +59,8 @@ public struct RingBuffer<T> {
     }
             
     public var isEmpty: Bool { storage[back] == nil }
+    
+//    public mutating func reserveCapacity(
 }
 
 extension RingBuffer: Sequence {
@@ -84,6 +86,14 @@ extension RingBuffer: Sequence {
     
     __consuming public func makeIterator() -> Iterator {
         return Iterator(storage: self)
+    }
+}
+
+extension RingBuffer: ExpressibleByArrayLiteral {
+    public init(arrayLiteral values: Element...) {
+        for value in values {
+            pushFront(value)
+        }
     }
 }
 
