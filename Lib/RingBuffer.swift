@@ -14,20 +14,24 @@ public struct RingBuffer<T> {
     var front: Int = 0
     var back: Int = 0
     
+    /// O1
     public init() {}
         
+    /// O1 average
     public mutating func pushFront(_ element: Element) {
         growIfNeed()
         storage[front] = element
         front = (front + 1) % storage.count
     }
     
+    /// O1 average
     public mutating func pushBack(_ element: Element) {
         growIfNeed()
         back = (storage.count + back - 1) % storage.count
         storage[back] = element
     }
     
+    /// O1
     @discardableResult
     public mutating func popFront() -> Element? {
         guard !isEmpty else { return nil }
@@ -46,21 +50,39 @@ public struct RingBuffer<T> {
         return storage[back]
     }
     
+    public var isEmpty: Bool { storage[back] == nil }
+
+    /// On
+    public mutating func reserveCapacity(_ amount: Int) {
+        normalize()
+        storage.reserveCapacity(amount)
+        initialize()
+    }
+    
     private mutating func growIfNeed() {
         guard front == back && !isEmpty else { return }
+        normalize()
+        front = storage.count
+        storage.reserveCapacity(storage.count * 2)
+        initialize()
+    }
+    
+    /// On
+    private mutating func normalize() {
         if back != 0 {
-            storage.rotate(on: front)
+            storage.rotate(on: back)
+            front = (storage.count + front - back) % storage.count
             back = 0
         }
-        front = storage.count
-        back = 0
-        storage.reserveCapacity(storage.count * 2)
-        storage.append(contentsOf: (0..<storage.count).map { _ in nil } )
     }
-            
-    public var isEmpty: Bool { storage[back] == nil }
     
-//    public mutating func reserveCapacity(
+    private mutating func initialize() {
+        assert(back == 0)
+        if front == back {
+            front = storage.count % storage.capacity
+        }
+        storage.append(contentsOf: (0..<storage.capacity - storage.count).map { _ in nil } )
+    }
 }
 
 extension RingBuffer: Sequence {
@@ -91,6 +113,7 @@ extension RingBuffer: Sequence {
 
 extension RingBuffer: ExpressibleByArrayLiteral {
     public init(arrayLiteral values: Element...) {
+//        reserveCapacity(storage.)
         for value in values {
             pushFront(value)
         }
@@ -118,7 +141,8 @@ extension RingBuffer: CustomStringConvertible {
         for element in self {
             elements.append("\(element)")
         }
-        return "[\(elements.joined(separator: ", "))]"
+        let string =  "[\(elements.joined(separator: ", "))]"
+        return string
     }
 }
 

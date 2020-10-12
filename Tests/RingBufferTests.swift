@@ -150,25 +150,53 @@ class RingBufferRests: XCTestCase {
         XCTAssertEqual(sut.front, 1)
     }
         
-    func testPushPopSeries1() throws {
+    func testPushPopBackSeries1() throws {
         sut = [1, 2, 3, 4]
         XCTAssertEqual(sut.popBack(), 1)
         XCTAssertEqual(sut.popFront(), 4)
         XCTAssertEqual(String(describing: sut), "[2, 3]")
-        sut.pushBack(sequence: [ 0, 1])
+        sut.pushBack(sequence: [0, 1].reversed())
         XCTAssertEqual(String(describing: sut), "[0, 1, 2, 3]")
-        sut.pushBack(sequence: [-5, -4, -3, -2, -1, 0, 1])
+    }
+
+    func testPushPopBackSeries2() throws {
+        sut = [1, 2, 3, 4]
+        XCTAssertEqual(sut.popBack(), 1)
+        XCTAssertEqual(sut.popFront(), 4)
+        XCTAssertEqual(String(describing: sut), "[2, 3]")
+        sut.pushBack(sequence: [-5, -4, -3, -2, -1, 0, 1].reversed())
         XCTAssertEqual(String(describing: sut), "[-5, -4, -3, -2, -1, 0, 1, 2, 3]")
     }
 
-    func testPushPopSeries2() throws {
+    func testPushPopFrontSeries1() throws {
         sut = [1, 2, 3, 4]
         XCTAssertEqual(sut.popBack(), 1)
         XCTAssertEqual(sut.popFront(), 4)
         XCTAssertEqual(String(describing: sut), "[2, 3]")
-        sut.pushBack(sequence: [ 0, 1])
-        XCTAssertEqual(String(describing: sut), "[0, 1, 2, 3]")
-        sut.pushBack(sequence: [-5, -4, -3, -2, -1, 0, 1])
-        XCTAssertEqual(String(describing: sut), "[-5, -4, -3, -2, -1, 0, 1, 2, 3]")
+        sut.pushFront(sequence: [4, 5])
+        XCTAssertEqual(String(describing: sut), "[2, 3, 4, 5]")
+    }
+    
+    func testPushPopFrontSeries2() throws {
+        sut = [1, 2, 3, 4]
+        XCTAssertEqual(sut.popBack(), 1)
+        XCTAssertEqual(sut.popFront(), 4)
+        XCTAssertEqual(String(describing: sut), "[2, 3]")
+        sut.pushFront(sequence: [4, 5, 6, 7, 8, 9, 10])
+        XCTAssertEqual(String(describing: sut), "[2, 3, 4, 5, 6, 7, 8, 9, 10]")
+    }
+
+    func testReserveCapacity() throws {
+        sut = [1, 2, 3, 4]
+        sut.reserveCapacity(0)
+        XCTAssertEqual(String(describing: sut), "[1, 2, 3, 4]")
+        sut.popFront()
+        sut.popBack()
+        XCTAssertEqual(String(describing: sut), "[2, 3]")
+        sut.reserveCapacity(10)
+        XCTAssertEqual(String(describing: sut), "[2, 3]")
+        sut.pushBack(1)
+        sut.pushFront(4)
+        XCTAssertEqual(String(describing: sut), "[1, 2, 3, 4]")
     }
 }
