@@ -199,4 +199,23 @@ class RingBufferRests: XCTestCase {
         sut.pushFront(4)
         XCTAssertEqual(String(describing: sut), "[1, 2, 3, 4]")
     }
+    
+    func testRandomAccess() throws {
+        XCTAssertEqual(sut.count, 0)
+        sut = [1, 2]
+        XCTAssertEqual(sut.count, 2)
+        XCTAssertEqual(sut[0], 1)
+        XCTAssertEqual(sut[1], 2)
+        sut[0] = 2
+        sut[1] = 1
+        XCTAssertEqual(sut[0], 2)
+        XCTAssertEqual(sut[1], 1)
+    }
+    
+    func testMutableCollection() throws {
+        sut = [1, 2]
+        sut.swapAt(0, 1)
+        XCTAssertEqual(sut[0], 2)
+        XCTAssertEqual(sut[1], 1)
+    }
 }

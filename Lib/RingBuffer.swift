@@ -60,6 +60,7 @@ public struct RingBuffer<T> {
     }
     
     private mutating func growIfNeed() {
+        // If buffer fulfilled at full capacity then grow
         guard front == back && !isEmpty else { return }
         normalize()
         front = storage.count
@@ -70,6 +71,7 @@ public struct RingBuffer<T> {
     /// On
     private mutating func normalize() {
         if back != 0 {
+            // Grouping content at begin of buffer
             storage.rotate(on: back)
             front = (storage.count + front - back) % storage.count
             back = 0
@@ -77,37 +79,12 @@ public struct RingBuffer<T> {
     }
     
     private mutating func initialize() {
+        // Fill free capacity with nil values
         assert(back == 0)
         if front == back {
             front = storage.count % storage.capacity
         }
         storage.append(contentsOf: (0..<storage.capacity - storage.count).map { _ in nil } )
-    }
-}
-
-extension RingBuffer: Sequence {
-    public struct Iterator: IteratorProtocol {
-        private let ringBuffer: RingBuffer
-        private var current: Int
-        
-        public init(storage: RingBuffer) {
-            self.ringBuffer = storage
-            self.current = storage.back
-        }
-        
-        public mutating func next() -> Element? {
-            guard current != ringBuffer.storage.count + ringBuffer.back else {
-                return nil
-            }
-            defer {
-                current += 1
-            }
-            return ringBuffer.storage[current % ringBuffer.storage.count]
-        }
-    }
-    
-    __consuming public func makeIterator() -> Iterator {
-        return Iterator(storage: self)
     }
 }
 
@@ -146,23 +123,30 @@ extension RingBuffer: CustomStringConvertible {
     }
 }
 
-//    public var count: Int {
-//        let count = (storage.count + front - back) % storage.count
-//        // front == back can means that buffer is empty or full up to capacity.
-//        if count != 0 { return count }
-//        return isEmpty ? 0 : storage.count
-//    }
+extension RingBuffer: RandomAccessCollection {
+    public var startIndex: Int { 0 }
     
-//    private func index(_ item: Int) -> Int {
-//        (storage.count + back + item % storage.count) % storage.count
-//    }
+    public var endIndex: Int { count }
+            
+    public var count: Int {
+        let count = (storage.count + front - back) % storage.count
+        // front == back can means that buffer is empty or full up to capacity.
+        if count != 0 { return count }
+        return isEmpty ? 0 : storage.count
+    }
     
-//    public subscript(_ item: Int) -> Element {
-//        get {
-//            storage[index(item)]!
-//        }
-//        set {
-//            storage[index(item)] = newValue
-//        }
-//    }
-//}
+    private func index(_ item: Int) -> Int {
+        (storage.count + back + item % storage.count) % storage.count
+    }
+    
+    public subscript(_ item: Int) -> Element {
+        get {
+            storage[index(item)]!
+        }
+        set {
+            storage[index(item)] = newValue
+        }
+    }
+}
+
+extension RingBuffer: MutableCollection {}
