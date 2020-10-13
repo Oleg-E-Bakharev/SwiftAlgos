@@ -82,7 +82,7 @@ public struct RingBuffer<T> {
         // Fill free capacity with nil values
         assert(back == 0)
         if front == back {
-            front = storage.count % storage.capacity
+            front = count % storage.capacity
         }
         storage.append(contentsOf: (0..<storage.capacity - storage.count).map { _ in nil } )
     }
@@ -90,7 +90,7 @@ public struct RingBuffer<T> {
 
 extension RingBuffer: ExpressibleByArrayLiteral {
     public init(arrayLiteral values: Element...) {
-//        reserveCapacity(storage.)
+        reserveCapacity(count + values.count)
         for value in values {
             pushFront(value)
         }
@@ -104,7 +104,7 @@ extension RingBuffer {
             pushFront(element)
         }
     }
-    
+
     mutating func pushBack<S: Sequence>(sequence: S) where S.Element == Self.Element {
         for element in sequence {
             pushBack(element)
@@ -150,3 +150,26 @@ extension RingBuffer: RandomAccessCollection {
 }
 
 extension RingBuffer: MutableCollection {}
+
+extension RingBuffer: RangeReplaceableCollection {
+    
+    /// O(range) if range.count == newElements.count. O(n + newElements.count) otherwise
+    mutating public func replaceSubrange<C, R>(_ subrange: R, with newElements: C) where C : Collection, R : RangeExpression, Self.Element == C.Element, Self.Index == R.Bound {
+        let range = subrange.relative(to: self)
+        if range.count == newElements.count {
+            var i = range.lowerBound
+            for element in newElements {
+                self[i] = element
+                i += 1
+            }
+            return
+        }
+        reserveCapacity(count - range.count + newElements.count)
+        let upperPart = Array(storage[range.upperBound..<count])
+        for (index, element) in newElements.enumerated() {
+            storage[index] = element
+        }
+        storage.append(contentsOf: upperPart)
+        initialize()
+    }
+}

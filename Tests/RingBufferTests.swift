@@ -151,6 +151,8 @@ class RingBufferRests: XCTestCase {
     }
         
     func testPushPopBackSeries1() throws {
+        sut.reserveCapacity(10)
+        XCTAssertEqual(sut.count, 0)
         sut = [1, 2, 3, 4]
         XCTAssertEqual(sut.popBack(), 1)
         XCTAssertEqual(sut.popFront(), 4)
@@ -215,6 +217,27 @@ class RingBufferRests: XCTestCase {
     func testMutableCollection() throws {
         sut = [1, 2]
         sut.swapAt(0, 1)
+        XCTAssertEqual(sut[0], 2)
+        XCTAssertEqual(sut[1], 1)
+    }
+    
+    func testReplaceSubrange() throws {
+        sut = [1, 2, 3, 4]
+        sut.popFront()
+        sut.popBack()
+
+        sut.replaceSubrange(0...1, with: [2, 1, 0])
+        XCTAssertEqual(sut[0], 2)
+        XCTAssertEqual(sut[1], 1)
+        XCTAssertEqual(sut[2], 0)
+    }
+    
+    func testReplaceSubrangeWhenRangeEquals() throws {
+        sut = [1, 2, 3, 4]
+        sut.popFront()
+        sut.popBack()
+
+        sut.replaceSubrange(0...1, with: [2, 1])
         XCTAssertEqual(sut[0], 2)
         XCTAssertEqual(sut[1], 1)
     }
