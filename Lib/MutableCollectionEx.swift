@@ -10,7 +10,10 @@ import Foundation
 
 public extension MutableCollection {
     /// On
-    @inlinable mutating func reverse(from: Index, to: Index) {
+    @inlinable mutating func reverseSubrange<R: RangeExpression>(_ subrange: R) where Self.Index == R.Bound {
+        let range = subrange.relative(to: self)
+        let from = range.lowerBound
+        let to = range.upperBound
         let last = index(to, offsetBy: -1)
         let count = distance(from: from, to: to) / 2
         for i in 0..<count {
@@ -18,10 +21,19 @@ public extension MutableCollection {
         }
     }
     
-    /// On
+    /// On. Element at index becomes first in collection
     @inlinable mutating func rotate(on index: Index) {
-        reverse(from: startIndex, to: index)
-        reverse(from: index, to: endIndex)
-        reverse(from: startIndex, to: endIndex)
+        rotateSubrange(startIndex..<endIndex, on: index)
     }
+    
+    /// On Element at index becomes first in subrange
+    @inlinable mutating func rotateSubrange<R: RangeExpression>(_ subrange: R, on index: Index) where Self.Index == R.Bound {
+        let range = subrange.relative(to: self)
+        let from = range.lowerBound
+        let to = range.upperBound
+        reverseSubrange(from..<index)
+        reverseSubrange(index..<to)
+        reverseSubrange(from..<to)
+    }
+
 }

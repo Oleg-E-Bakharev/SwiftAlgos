@@ -17,56 +17,58 @@ class MutableCollectionExTests: XCTestCase {
     }
 
     func testReverseEmpty() throws {
-        sut.reverse(from: 0, to: 0)
+        sut.reverseSubrange(0...0)
         XCTAssertTrue(sut.isEmpty)
     }
     
     func testReverseSingle() throws {
         sut = [1]
         
-        sut.reverse(from: 0, to: 0)
+        sut.reverseSubrange(0...0)
         XCTAssertEqual(sut, [1])
         
-        sut.reverse(from: 1, to: 1)
+        sut.reverseSubrange(1...1)
         XCTAssertEqual(sut, [1])
 
-        sut.reverse(from: 0, to: 1)
+        sut.reverseSubrange(0..<1)
         XCTAssertEqual(sut, [1])
     }
 
     func testReverseDouble() throws {
         sut = [1, 2]
-        sut.reverse(from: 0, to: 1)
+        sut.reverseSubrange(0...1)
+        XCTAssertEqual(sut, [2, 1])
+
+        sut = [1, 2]
+        sut.reverseSubrange(1..<2)
         XCTAssertEqual(sut, [1, 2])
 
-        sut.reverse(from: 1, to: 2)
-        XCTAssertEqual(sut, [1, 2])
-
-        sut.reverse(from: 0, to: 2)
+        sut = [1, 2]
+        sut.reverseSubrange(0..<2)
         XCTAssertEqual(sut, [2, 1])
     }
     
     func testReverseTriple() throws {
         sut = [1, 2, 3]
-        sut.reverse(from: 0, to: 2)
+        sut.reverseSubrange(0..<2)
         XCTAssertEqual(sut, [2, 1, 3])
 
         sut = [1, 2, 3]
-        sut.reverse(from: 1, to: 3)
+        sut.reverseSubrange(1..<3)
         XCTAssertEqual(sut, [1, 3, 2])
 
         sut = [1, 2, 3]
-        sut.reverse(from: 0, to: 3)
+        sut.reverseSubrange(0...2)
         XCTAssertEqual(sut, [3, 2, 1])
     }
     
     func testReverseQuad() throws {
         sut = [1, 2, 3, 4]
-        sut.reverse(from: 1, to: 4)
+        sut.reverseSubrange(1..<4)
         XCTAssertEqual(sut, [1, 4, 3, 2])
 
         sut = [1, 2, 3, 4]
-        sut.reverse(from: 0, to: 4)
+        sut.reverseSubrange(0...3)
         XCTAssertEqual(sut, [4, 3, 2, 1])
     }
     
