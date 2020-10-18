@@ -171,19 +171,31 @@ extension RingBuffer: RangeReplaceableCollection {
             return
         }
         
-        let finalCount = count - range.count + newElements.count
-        reserveCapacity(finalCount)
+        let prevCount = count
+        let nextCount = prevCount - range.count + newElements.count
         let lowerBound = range.lowerBound
-        let upperBound = range.upperBound
-        let upperPart = Array(storage[upperBound..<count])
+
+        if nextCount > prevCount {
+            reserveCapacity(nextCount)
+            storage.rotateSubrange(range.upperBound..<nextCount, on: prevCount)
+        } else {
+            let from = lowerBound + newElements.count
+            rotateSubrange(from..<prevCount, on: prevCount - newElements.count + 1)
+        }
         for (index, element) in newElements.enumerated() {
             storage[lowerBound + index] = element
         }
-        let remainsLowerBound = range.lowerBound + newElements.count
-        for (index, element) in upperPart.enumerated() {
-            storage[remainsLowerBound + index] = element
-        }
-        front = finalCount % storage.count
+        front = nextCount % storage.count
+        
+//        let upperPart = Array(storage[upperBound..<count])
+//        for (index, element) in newElements.enumerated() {
+//            storage[lowerBound + index] = element
+//        }
+//        let remainsLowerBound = range.lowerBound + newElements.count
+//        for (index, element) in upperPart.enumerated() {
+//            storage[remainsLowerBound + index] = element
+//        }
+//        front = nextCount % storage.count
     }
 }
 
