@@ -180,7 +180,11 @@ extension RingBuffer: RangeReplaceableCollection {
             storage.rotateSubrange(range.upperBound..<nextCount, on: prevCount)
         } else {
             let from = lowerBound + newElements.count
-            rotateSubrange(from..<prevCount, on: prevCount - newElements.count + 1)
+            let on = newElements.count > 0 ? prevCount - newElements.count + 1 : prevCount - 1
+            rotateSubrange(from..<prevCount, on: on)
+            for i in nextCount..<storage.count {
+                storage[i] = nil
+            }
         }
         for (index, element) in newElements.enumerated() {
             storage[lowerBound + index] = element
