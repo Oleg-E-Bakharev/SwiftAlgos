@@ -97,6 +97,12 @@ extension RingBuffer: ExpressibleByArrayLiteral {
     }
 }
 
+extension RingBuffer: Equatable where T: Equatable {
+    public static func == (lhs: RingBuffer<T>, rhs: RingBuffer<T>) -> Bool where T: Equatable  {
+        lhs.count == rhs.count && (lhs.startIndex..<lhs.endIndex).allSatisfy { lhs[$0] == rhs[$0] }
+    }
+}
+
 // Sequence operations
 extension RingBuffer {
     mutating func pushFront<S: Sequence>(sequence: S) where S.Element == Self.Element {
@@ -164,12 +170,26 @@ extension RingBuffer: RangeReplaceableCollection {
             }
             return
         }
-        reserveCapacity(count - range.count + newElements.count)
-        let upperPart = Array(storage[range.upperBound..<count])
+        
+        let finalCount = count - range.count + newElements.count
+        reserveCapacity(finalCount)
+        let lowerBound = range.lowerBound
+        let upperBound = range.upperBound
+        let upperPart = Array(storage[upperBound..<count])
         for (index, element) in newElements.enumerated() {
-            storage[index] = element
+            storage[lowerBound + index] = element
         }
-        storage.append(contentsOf: upperPart)
-        initialize()
+        let remainsLowerBound = range.lowerBound + newElements.count
+        for (index, element) in upperPart.enumerated() {
+            storage[remainsLowerBound + index] = element
+        }
+        front = finalCount % storage.count
     }
 }
+
+//extension RingBuffer {
+//    public static func ==<C: Collection> (lhs: RingBuffer<T>, rhs: C) -> Bool where T: Equatable, C.Element == T, C.Index == Index
+//    {
+//        lhs.count == rhs.count && (lhs.startIndex..<lhs.endIndex).allSatisfy { lhs[$0] == rhs[$0] }
+//    }
+//}

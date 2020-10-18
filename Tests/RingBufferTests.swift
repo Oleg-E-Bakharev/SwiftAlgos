@@ -241,4 +241,18 @@ class RingBufferRests: XCTestCase {
         XCTAssertEqual(sut[0], 2)
         XCTAssertEqual(sut[1], 1)
     }
+    
+    func testReplaceSubrangeWhenRangeShorterThenNew() throws {
+        sut = [1, 2, 3, 4]
+
+        sut.replaceSubrange(1...2, with: [2, 2, 3, 3])
+        XCTAssertEqual(sut, [1, 2, 2, 3, 3, 4])
+    }
+    
+    func testReplaceSubrangeWhenRangeLongerThenNew() throws {
+        sut = [1, 2, 3, 4, 5]
+
+        sut.replaceSubrange(1...3, with: [2, 2])
+        XCTAssertEqual(sut, [1, 2, 2, 5])
+    }
 }
