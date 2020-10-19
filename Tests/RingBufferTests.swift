@@ -124,7 +124,7 @@ class RingBufferRests: XCTestCase {
     
     func testSequencePushBack() throws {
         sut.pushBack(sequence: [1, 2, 3, 4])
-        XCTAssertEqual(String(describing: sut), "[4, 3, 2, 1]")
+        XCTAssertEqual(String(describing: sut), "[1, 2, 3, 4]")
     }
 
     func testArrayLiteral() throws {
@@ -157,7 +157,7 @@ class RingBufferRests: XCTestCase {
         XCTAssertEqual(sut.popBack(), 1)
         XCTAssertEqual(sut.popFront(), 4)
         XCTAssertEqual(String(describing: sut), "[2, 3]")
-        sut.pushBack(sequence: [0, 1].reversed())
+        sut.pushBack(sequence: [0, 1])
         XCTAssertEqual(String(describing: sut), "[0, 1, 2, 3]")
     }
 
@@ -166,7 +166,7 @@ class RingBufferRests: XCTestCase {
         XCTAssertEqual(sut.popBack(), 1)
         XCTAssertEqual(sut.popFront(), 4)
         XCTAssertEqual(String(describing: sut), "[2, 3]")
-        sut.pushBack(sequence: [-5, -4, -3, -2, -1, 0, 1].reversed())
+        sut.pushBack(sequence: [-5, -4, -3, -2, -1, 0, 1])
         XCTAssertEqual(String(describing: sut), "[-5, -4, -3, -2, -1, 0, 1, 2, 3]")
     }
 
@@ -186,6 +186,18 @@ class RingBufferRests: XCTestCase {
         XCTAssertEqual(String(describing: sut), "[2, 3]")
         sut.pushFront(sequence: [4, 5, 6, 7, 8, 9, 10])
         XCTAssertEqual(String(describing: sut), "[2, 3, 4, 5, 6, 7, 8, 9, 10]")
+    }
+    
+    func testPushForntCollection() throws {
+        sut = [1, 2, 3, 4]
+        sut.pushFront(collection: [5, 6, 7, 8])
+        XCTAssertEqual(sut, [1, 2, 3, 4, 5, 6 ,7 ,8])
+    }
+    
+    func testPushBackCollection() throws {
+        sut = [5, 6, 7, 8]
+        sut.pushBack(collection: [1, 2, 3, 4])
+        XCTAssertEqual(sut, [1, 2, 3, 4, 5, 6 ,7 ,8])
     }
 
     func testReserveCapacity() throws {
@@ -277,5 +289,4 @@ class RingBufferRests: XCTestCase {
     func testReplaceSubrangeWithRangeWhenEmpty() throws {
         sut.replaceSubrange(0..<0, with: [])
     }
-
 }

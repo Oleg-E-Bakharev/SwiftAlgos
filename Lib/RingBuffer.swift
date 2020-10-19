@@ -103,7 +103,7 @@ extension RingBuffer: Equatable where T: Equatable {
     }
 }
 
-// Sequence operations
+// Sequence & collection operations
 extension RingBuffer {
     mutating func pushFront<S: Sequence>(sequence: S) where S.Element == Self.Element {
         for element in sequence {
@@ -112,10 +112,20 @@ extension RingBuffer {
     }
 
     mutating func pushBack<S: Sequence>(sequence: S) where S.Element == Self.Element {
-        for element in sequence {
+        for element in sequence.reversed() {
             pushBack(element)
         }
     }
+    
+    mutating func pushFront<C: Collection>(collection: C) where C.Element == Self.Element {
+        let count = self.count
+        replaceSubrange(count..<count, with: collection)
+    }
+
+    mutating func pushBack<C: Collection>(collection: C) where C.Element == Self.Element {
+        replaceSubrange(0..<0, with: collection)
+    }
+
 }
 
 extension RingBuffer: CustomStringConvertible {
@@ -160,6 +170,7 @@ extension RingBuffer: MutableCollection {}
 extension RingBuffer: RangeReplaceableCollection {
     
     /// O(range) if range.count == newElements.count. O(n + newElements.count) otherwise
+    /// O(1) memory average
     mutating public func replaceSubrange<C, R>(_ subrange: R, with newElements: C) where C : Collection, R : RangeExpression, Self.Element == C.Element, Self.Index == R.Bound {
         let range = subrange.relative(to: self)
         if range.count == newElements.count {
