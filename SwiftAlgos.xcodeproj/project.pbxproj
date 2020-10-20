@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C00B422253D8A2000A25748 /* ListQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C00B421253D8A2000A25748 /* ListQueue.swift */; };
+		7C00B427253D8E9D00A25748 /* QueueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C00B426253D8E9D00A25748 /* QueueTests.swift */; };
+		7C00B42C253D8FAD00A25748 /* RingBufferQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C00B42B253D8FAD00A25748 /* RingBufferQueue.swift */; };
 		7C3AD6C3252866B700CA7FB7 /* RingBufferTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3AD6C2252866B700CA7FB7 /* RingBufferTests.swift */; };
 		CF3F9D1C252CEB8600B82E60 /* MutableCollectionExTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3F9D1B252CEB8600B82E60 /* MutableCollectionExTests.swift */; };
 		CF83EB5F25115FAC000AEFB1 /* ListAlgosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF83EB5C25115B72000AEFB1 /* ListAlgosTests.swift */; };
@@ -39,6 +42,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7C00B421253D8A2000A25748 /* ListQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListQueue.swift; sourceTree = "<group>"; };
+		7C00B426253D8E9D00A25748 /* QueueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueTests.swift; sourceTree = "<group>"; };
+		7C00B42B253D8FAD00A25748 /* RingBufferQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingBufferQueue.swift; sourceTree = "<group>"; };
 		7C3AD6C2252866B700CA7FB7 /* RingBufferTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingBufferTests.swift; sourceTree = "<group>"; };
 		CF3F9D1B252CEB8600B82E60 /* MutableCollectionExTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutableCollectionExTests.swift; sourceTree = "<group>"; };
 		CF83EB5C25115B72000AEFB1 /* ListAlgosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAlgosTests.swift; sourceTree = "<group>"; };
@@ -126,6 +132,7 @@
 				CF83EB5C25115B72000AEFB1 /* ListAlgosTests.swift */,
 				CF3F9D1B252CEB8600B82E60 /* MutableCollectionExTests.swift */,
 				7C3AD6C2252866B700CA7FB7 /* RingBufferTests.swift */,
+				7C00B426253D8E9D00A25748 /* QueueTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -138,9 +145,11 @@
 				CF876238250D0D0F00F4FAB0 /* List.swift */,
 				CF8E2EE725111F1900419D36 /* ListAlgos.swift */,
 				CF9376B12527B3540021CCBB /* Queue.swift */,
+				7C00B421253D8A2000A25748 /* ListQueue.swift */,
 				CF9376B52527B7590021CCBB /* Deque.swift */,
 				CF92106A252CE38D00B47F8D /* MutableCollectionEx.swift */,
 				CF9376B72527BF040021CCBB /* RingBuffer.swift */,
+				7C00B42B253D8FAD00A25748 /* RingBufferQueue.swift */,
 			);
 			path = Lib;
 			sourceTree = "<group>";
@@ -223,7 +232,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1170;
-				LastUpgradeCheck = 1170;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Oleg Bakharev";
 				TargetAttributes = {
 					CF85D9E9250905810099EABF = {
@@ -282,6 +291,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF85DA1925090C210099EABF /* StackTests.swift in Sources */,
+				7C00B427253D8E9D00A25748 /* QueueTests.swift in Sources */,
 				CF83EB5F25115FAC000AEFB1 /* ListAlgosTests.swift in Sources */,
 				CF87623B250E258B00F4FAB0 /* ListTests.swift in Sources */,
 				CF3F9D1C252CEB8600B82E60 /* MutableCollectionExTests.swift in Sources */,
@@ -300,7 +310,9 @@
 				CF9376B82527BF040021CCBB /* RingBuffer.swift in Sources */,
 				CF92106C252CE38D00B47F8D /* MutableCollectionEx.swift in Sources */,
 				CF876237250D0A7D00F4FAB0 /* ListNode.swift in Sources */,
+				7C00B42C253D8FAD00A25748 /* RingBufferQueue.swift in Sources */,
 				CF876239250D0D0F00F4FAB0 /* List.swift in Sources */,
+				7C00B422253D8A2000A25748 /* ListQueue.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,6 +345,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -393,6 +406,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -423,6 +437,7 @@
 		CF85D9F2250905810099EABF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -432,6 +447,7 @@
 		CF85D9F3250905810099EABF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -477,6 +493,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				EXECUTABLE_PREFIX = lib;
+				OTHER_SWIFT_FLAGS = "-Xfrontend -warn-long-expression-type-checking=200 -Xfrontend -warn-long-function-bodies=200";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -488,6 +505,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				EXECUTABLE_PREFIX = lib;
+				OTHER_SWIFT_FLAGS = "-Xfrontend -warn-long-expression-type-checking=200 -Xfrontend -warn-long-function-bodies=200";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;

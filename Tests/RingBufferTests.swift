@@ -26,6 +26,20 @@ class RingBufferRests: XCTestCase {
         XCTAssertNil(sut.popFront())
         XCTAssertNil(sut.popBack())
     }
+    
+    func testFirstLast() throws {
+        XCTAssertNil(sut.first)
+        XCTAssertNil(sut.last)
+        sut = [1, 2]
+        XCTAssertEqual(sut.first, 2)
+        XCTAssertEqual(sut.last, 1)
+        sut.popFront()
+        XCTAssertEqual(sut.first, 1)
+        XCTAssertEqual(sut.last, 1)
+        XCTAssertEqual(sut.popBack(), 1)
+        XCTAssertNil(sut.first)
+        XCTAssertNil(sut.last)
+    }
 
     func testNotIsEmptyAfterPushFront() throws {
         sut.pushFront(1)
@@ -40,10 +54,14 @@ class RingBufferRests: XCTestCase {
     func testPushPopFront() throws {
         sut.pushFront(1)
         XCTAssertEqual(sut.front, 0)
+        XCTAssertEqual(sut.first, 1)
+        XCTAssertEqual(sut.last, 1)
         XCTAssertFalse(sut.isEmpty)
         XCTAssertEqual(sut.back, 0)
         XCTAssertEqual(sut.popFront(), 1)
         XCTAssertTrue(sut.isEmpty)
+        XCTAssertNil(sut.first)
+        XCTAssertNil(sut.last)
         sut.pushFront(1)
         XCTAssertFalse(sut.isEmpty)
         sut.pushFront(2)
@@ -233,7 +251,7 @@ class RingBufferRests: XCTestCase {
         XCTAssertEqual(sut[1], 1)
     }
     
-    func testReplaceSubrange() throws {
+    func testReplaceSubrange() {
         sut = [1, 2, 3, 4]
         sut.popFront()
         sut.popBack()
@@ -244,7 +262,7 @@ class RingBufferRests: XCTestCase {
         XCTAssertEqual(sut[2], 0)
     }
     
-    func testReplaceSubrangeWhenRangeEquals() throws {
+    func testReplaceSubrangeWhenRangeEquals() {
         sut = [1, 2, 3, 4]
         sut.popFront()
         sut.popBack()
@@ -254,39 +272,59 @@ class RingBufferRests: XCTestCase {
         XCTAssertEqual(sut[1], 1)
     }
     
-    func testReplaceSubrangeWhenRangeShorterThenNew() throws {
+    func testReplaceSubrangeWhenRangeShorterThenNew() {
         sut = [1, 2, 3, 4]
 
         sut.replaceSubrange(1...2, with: [2, 2, 3, 3])
         XCTAssertEqual(sut, [1, 2, 2, 3, 3, 4])
     }
     
-    func testReplaceSubrangeWhenRangeLongerThenNew() throws {
-        sut = [1, 2, 3, 4, 5]
+    func testReplaceSubrangeWhenRangeLongerThenNew() {
+        sut = [0, 1, 2, 3, 4, 5, 6]
+        sut.popFront()
+        sut.popBack()
 
         sut.replaceSubrange(1...3, with: [2, 2])
         XCTAssertEqual(sut, [1, 2, 2, 5])
     }
     
-    func testReplaceSubrangeWithRangeWhenWasEmpty() throws {
+    func testReplaceSubrangeWithRangeWhenWasEmpty() {
         sut.replaceSubrange(0..<0, with: [1, 2, 3])
         XCTAssertEqual(sut, [1, 2, 3])
     }
     
-    func testReplaceSubrangeWithRangeWhenWillEmpty() throws {
+    func testReplaceSubrangeWithRangeWhenWillEmpty() {
         sut = [1, 2, 3]
         sut.replaceSubrange(0..<3, with: [])
         XCTAssertEqual(sut, [])
     }
     
-    func testReplaceSubrangeWithEmptyRangeWhenWillSingle() throws {
+    func testReplaceSubrangeWithEmptyRangeWhenWillSingle() {
         sut = [1, 2, 3]
         sut.replaceSubrange(0..<2, with: [])
         XCTAssertEqual(sut, [3])
     }
 
     
-    func testReplaceSubrangeWithRangeWhenEmpty() throws {
+    func testReplaceSubrangeWithRangeWhenEmpty() {
+        sut = []
         sut.replaceSubrange(0..<0, with: [])
     }
+    
+    func testPerformanceRingBufferReplaceSubrange() {
+        self.measure {
+             (0..<1000).forEach { _ in
+                testReplaceSubrange()
+            }
+        }
+    }
+    
+    func testPerformanceRingBufferReplaceSubrangeRangeEquals() {
+        self.measure {
+             (0..<1000).forEach { _ in
+                testReplaceSubrangeWhenRangeEquals()
+            }
+        }
+    }
+
 }

@@ -24,6 +24,14 @@ public struct RingBuffer<T> {
         front = (front + 1) % storage.count
     }
     
+    public var first: T? {
+        storage[(storage.count + front - 1) % storage.count]
+    }
+    
+    public var last: T? {
+        storage[back]
+    }
+        
     /// O1 average
     public mutating func pushBack(_ element: Element) {
         growIfNeed()
@@ -182,12 +190,14 @@ extension RingBuffer: RangeReplaceableCollection {
             return
         }
         
+        let lowerBound = range.lowerBound
         let prevCount = count
         let nextCount = prevCount - range.count + newElements.count
-        let lowerBound = range.lowerBound
 
-        if nextCount > prevCount {
-            reserveCapacity(nextCount)
+        reserveCapacity(nextCount)
+        
+        // First Alternative
+        if nextCount >= prevCount {
             storage.rotateSubrange(range.upperBound..<nextCount, on: prevCount)
         } else {
             let from = lowerBound + newElements.count
@@ -200,9 +210,9 @@ extension RingBuffer: RangeReplaceableCollection {
         for (index, element) in newElements.enumerated() {
             storage[lowerBound + index] = element
         }
-        front = nextCount % storage.count
-        
-//        let upperPart = Array(storage[upperBound..<count])
+
+//        // SECOND Alternative
+//        let upperPart = Array(storage[range.upperBound..<prevCount])
 //        for (index, element) in newElements.enumerated() {
 //            storage[lowerBound + index] = element
 //        }
@@ -210,13 +220,10 @@ extension RingBuffer: RangeReplaceableCollection {
 //        for (index, element) in upperPart.enumerated() {
 //            storage[remainsLowerBound + index] = element
 //        }
-//        front = nextCount % storage.count
+//        for i in nextCount..<storage.count {
+//            storage[i] = nil
+//        }
+
+        front = nextCount % storage.count
     }
 }
-
-//extension RingBuffer {
-//    public static func ==<C: Collection> (lhs: RingBuffer<T>, rhs: C) -> Bool where T: Equatable, C.Element == T, C.Index == Index
-//    {
-//        lhs.count == rhs.count && (lhs.startIndex..<lhs.endIndex).allSatisfy { lhs[$0] == rhs[$0] }
-//    }
-//}

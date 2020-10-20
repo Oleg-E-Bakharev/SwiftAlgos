@@ -8,11 +8,15 @@
 
 import Foundation
 
-public protocol Queue {
+public protocol Queue : ExpressibleByArrayLiteral {
     associatedtype Element
+    
     mutating func enqueue(_ element: Element)
+    
+    @discardableResult
     mutating func dequeue() -> Element?
+    
     var isEmpty: Bool { get }
-    var peek: Element { get }
+    
+    var peek: Element? { get }
 }
-
