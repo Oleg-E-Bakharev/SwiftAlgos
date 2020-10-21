@@ -27,15 +27,15 @@ class RingBufferRests: XCTestCase {
         XCTAssertNil(sut.popBack())
     }
     
-    func testFirstLast() throws {
+    func testFrontBack() throws {
         XCTAssertNil(sut.first)
         XCTAssertNil(sut.last)
         sut = [1, 2]
-        XCTAssertEqual(sut.first, 2)
-        XCTAssertEqual(sut.last, 1)
+        XCTAssertEqual(sut.front, 2)
+        XCTAssertEqual(sut.back, 1)
         sut.popFront()
-        XCTAssertEqual(sut.first, 1)
-        XCTAssertEqual(sut.last, 1)
+        XCTAssertEqual(sut.front, 1)
+        XCTAssertEqual(sut.back, 1)
         XCTAssertEqual(sut.popBack(), 1)
         XCTAssertNil(sut.first)
         XCTAssertNil(sut.last)
@@ -53,11 +53,11 @@ class RingBufferRests: XCTestCase {
 
     func testPushPopFront() throws {
         sut.pushFront(1)
-        XCTAssertEqual(sut.front, 0)
-        XCTAssertEqual(sut.first, 1)
-        XCTAssertEqual(sut.last, 1)
+        XCTAssertEqual(sut.first, 0)
+        XCTAssertEqual(sut.front, 1)
+        XCTAssertEqual(sut.back, 1)
         XCTAssertFalse(sut.isEmpty)
-        XCTAssertEqual(sut.back, 0)
+        XCTAssertEqual(sut.last, 0)
         XCTAssertEqual(sut.popFront(), 1)
         XCTAssertTrue(sut.isEmpty)
         XCTAssertNil(sut.first)
@@ -66,8 +66,8 @@ class RingBufferRests: XCTestCase {
         XCTAssertFalse(sut.isEmpty)
         sut.pushFront(2)
         XCTAssertFalse(sut.isEmpty)
-        XCTAssertEqual(sut.front, 0)
-        XCTAssertEqual(sut.back, 0)
+        XCTAssertEqual(sut.first, 0)
+        XCTAssertEqual(sut.last, 0)
         XCTAssertEqual(sut.popFront(), 2)
         XCTAssertFalse(sut.isEmpty)
         XCTAssertEqual(sut.popFront(), 1)
@@ -77,16 +77,16 @@ class RingBufferRests: XCTestCase {
     func testPushPopBack() throws {
         sut.pushBack(1)
         XCTAssertFalse(sut.isEmpty)
-        XCTAssertEqual(sut.front, 0)
-        XCTAssertEqual(sut.back, 0)
+        XCTAssertEqual(sut.first, 0)
+        XCTAssertEqual(sut.last, 0)
         XCTAssertEqual(sut.popBack(), 1)
         XCTAssertTrue(sut.isEmpty)
         sut.pushBack(1)
         XCTAssertFalse(sut.isEmpty)
         sut.pushBack(2)
         XCTAssertFalse(sut.isEmpty)
-        XCTAssertEqual(sut.front, 1)
-        XCTAssertEqual(sut.back, 1)
+        XCTAssertEqual(sut.first, 1)
+        XCTAssertEqual(sut.last, 1)
         XCTAssertEqual(sut.popBack(), 2)
         XCTAssertFalse(sut.isEmpty)
         XCTAssertEqual(sut.popBack(), 1)
@@ -152,20 +152,20 @@ class RingBufferRests: XCTestCase {
     
     func testPushFrontGrow1() throws {
         sut.pushFront(1)
-        XCTAssertEqual(sut.back, 0)
-        XCTAssertEqual(sut.front, 0)
+        XCTAssertEqual(sut.last, 0)
+        XCTAssertEqual(sut.first, 0)
         sut.pushFront(2)
-        XCTAssertEqual(sut.back, 0)
-        XCTAssertEqual(sut.front, 0)
+        XCTAssertEqual(sut.last, 0)
+        XCTAssertEqual(sut.first, 0)
     }
 
     func testPushBackGrow1() throws {
         sut.pushBack(1)
-        XCTAssertEqual(sut.back, 0)
-        XCTAssertEqual(sut.front, 0)
+        XCTAssertEqual(sut.last, 0)
+        XCTAssertEqual(sut.first, 0)
         sut.pushBack(2)
-        XCTAssertEqual(sut.back, 1)
-        XCTAssertEqual(sut.front, 1)
+        XCTAssertEqual(sut.last, 1)
+        XCTAssertEqual(sut.first, 1)
     }
         
     func testPushPopBackSeries1() throws {
@@ -313,7 +313,7 @@ class RingBufferRests: XCTestCase {
     
     func testPerformanceRingBufferReplaceSubrange() {
         self.measure {
-             (0..<1000).forEach { _ in
+             (0..<100).forEach { _ in
                 testReplaceSubrange()
             }
         }
@@ -321,7 +321,7 @@ class RingBufferRests: XCTestCase {
     
     func testPerformanceRingBufferReplaceSubrangeRangeEquals() {
         self.measure {
-             (0..<1000).forEach { _ in
+             (0..<100).forEach { _ in
                 testReplaceSubrangeWhenRangeEquals()
             }
         }
