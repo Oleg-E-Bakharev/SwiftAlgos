@@ -12,7 +12,7 @@ protocol PriorityQueue {
     associatedtype Element
     associatedtype Priority: Comparable
         
-    mutating func Push(value: Element, priority: Priority)
+    mutating func push(value: Element, priority: Priority)
     
     @discardableResult
     mutating func pop() -> Element?

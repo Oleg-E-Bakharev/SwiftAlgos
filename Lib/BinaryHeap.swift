@@ -24,7 +24,7 @@ struct BinaryHeap<T, P: Comparable> {
     }
     
     /// OlogN
-    @inlinable public mutating func Push(value: T, priority: P) {
+    @inlinable public mutating func push(value: T, priority: P) {
         push((value: value, priority: priority))
     }
 
@@ -122,7 +122,7 @@ extension BinaryHeap: RandomAccessPriorityQueue {
         let prevPriority = storage[item].priority
         guard prevPriority != newPriority else { return }
         storage[item].priority = newPriority
-        if newPriority > prevPriority {
+        if compare(newPriority, prevPriority) {
             siftUp(item)
         } else {
             siftDown(item)

@@ -23,7 +23,7 @@ class BinaryHeapTests: XCTestCase {
     }
     
     func testSingle() {
-        sut.Push(value: 0, priority: 0)
+        sut.push(value: 0, priority: 0)
         XCTAssertFalse(sut.isEmpty)
         XCTAssertEqual(sut.peek(), 0)
         sut[0] = 1
@@ -31,7 +31,7 @@ class BinaryHeapTests: XCTestCase {
         XCTAssertEqual(sut.pop(), 1)
         XCTAssertTrue(sut.isEmpty)
         
-        sut.Push(value: 0, priority: 0)
+        sut.push(value: 0, priority: 0)
         sut.changePriority(of: 0, to: 1)
         XCTAssertEqual(sut.getPriority(of: 0), 1)
         XCTAssertEqual(sut.pop(), 0)
@@ -39,44 +39,44 @@ class BinaryHeapTests: XCTestCase {
     }
     
     func testDouble() {
-        sut.Push(value: 0, priority: 0)
-        sut.Push(value: 0, priority: 0)
+        sut.push(value: 0, priority: 0)
+        sut.push(value: 0, priority: 0)
         XCTAssertEqual(sut.pop(), 0)
         XCTAssertEqual(sut.pop(), 0)
         
         XCTAssertTrue(sut.isEmpty)
-        sut.Push(value: 0, priority: 0)
-        sut.Push(value: 1, priority: 1)
+        sut.push(value: 0, priority: 0)
+        sut.push(value: 1, priority: 1)
         XCTAssertEqual(sut.pop(), 1)
         XCTAssertEqual(sut.pop(), 0)
         
         XCTAssertTrue(sut.isEmpty)
-        sut.Push(value: 1, priority: 1)
-        sut.Push(value: 0, priority: 0)
+        sut.push(value: 1, priority: 1)
+        sut.push(value: 0, priority: 0)
         XCTAssertEqual(sut.pop(), 1)
         XCTAssertEqual(sut.pop(), 0)
     }
     
     func testThree() {
-        sut.Push(value: 0, priority: 0)
-        sut.Push(value: 1, priority: 1)
-        sut.Push(value: 2, priority: 2)
+        sut.push(value: 0, priority: 0)
+        sut.push(value: 1, priority: 1)
+        sut.push(value: 2, priority: 2)
         XCTAssertEqual(sut.pop(), 2)
         XCTAssertEqual(sut.pop(), 1)
         XCTAssertEqual(sut.pop(), 0)
         XCTAssertTrue(sut.isEmpty)
         
-        sut.Push(value: 0, priority: 0)
-        sut.Push(value: 2, priority: 2)
-        sut.Push(value: 1, priority: 1)
+        sut.push(value: 0, priority: 0)
+        sut.push(value: 2, priority: 2)
+        sut.push(value: 1, priority: 1)
         XCTAssertEqual(sut.pop(), 2)
         XCTAssertEqual(sut.pop(), 1)
         XCTAssertEqual(sut.pop(), 0)
         XCTAssertTrue(sut.isEmpty)
         
-        sut.Push(value: 2, priority: 2)
-        sut.Push(value: 0, priority: 0)
-        sut.Push(value: 1, priority: 1)
+        sut.push(value: 2, priority: 2)
+        sut.push(value: 0, priority: 0)
+        sut.push(value: 1, priority: 1)
         XCTAssertEqual(sut.pop(), 2)
         XCTAssertEqual(sut.pop(), 1)
         XCTAssertEqual(sut.pop(), 0)
@@ -84,10 +84,10 @@ class BinaryHeapTests: XCTestCase {
     }
     
     func testFour() {
-        sut.Push(value: 0, priority: 0)
-        sut.Push(value: 1, priority: 1)
-        sut.Push(value: 2, priority: 2)
-        sut.Push(value: 3, priority: 3)
+        sut.push(value: 0, priority: 0)
+        sut.push(value: 1, priority: 1)
+        sut.push(value: 2, priority: 2)
+        sut.push(value: 3, priority: 3)
         XCTAssertEqual(sut.pop(), 3)
         XCTAssertEqual(sut.pop(), 2)
         XCTAssertEqual(sut.pop(), 1)
@@ -133,9 +133,9 @@ class BinaryHeapTests: XCTestCase {
     
     func testCustomCompare() {
         var bh = BinaryHeap<String, Double>(compare: <)
-        bh.Push(value: "a", priority: 0)
-        bh.Push(value: "b", priority: 1)
-        bh.Push(value: "c", priority: 2)
+        bh.push(value: "a", priority: 0)
+        bh.push(value: "b", priority: 1)
+        bh.push(value: "c", priority: 2)
 
         XCTAssertEqual(bh.pop(), "a")
         XCTAssertEqual(bh.pop(), "b")
