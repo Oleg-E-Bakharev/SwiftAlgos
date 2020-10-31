@@ -27,6 +27,51 @@ class BinaryHeapTests: XCTestCase {
         XCTAssertTrue(sut.isEmpty)
     }
     
+    func testDouble() {
+        sut.Push(value: 0, priority: 0)
+        sut.Push(value: 0, priority: 0)
+        XCTAssertEqual(sut.pop(), 0)
+        XCTAssertEqual(sut.pop(), 0)
+        
+        XCTAssertTrue(sut.isEmpty)
+        sut.Push(value: 0, priority: 0)
+        sut.Push(value: 1, priority: 1)
+        XCTAssertEqual(sut.pop(), 1)
+        XCTAssertEqual(sut.pop(), 0)
+        
+        XCTAssertTrue(sut.isEmpty)
+        sut.Push(value: 1, priority: 1)
+        sut.Push(value: 0, priority: 0)
+        XCTAssertEqual(sut.pop(), 1)
+        XCTAssertEqual(sut.pop(), 0)
+    }
+    
+    func testThree() {
+        sut.Push(value: 0, priority: 0)
+        sut.Push(value: 1, priority: 1)
+        sut.Push(value: 2, priority: 2)
+        XCTAssertEqual(sut.pop(), 2)
+        XCTAssertEqual(sut.pop(), 1)
+        XCTAssertEqual(sut.pop(), 0)
+        XCTAssertTrue(sut.isEmpty)
+        
+        sut.Push(value: 0, priority: 0)
+        sut.Push(value: 2, priority: 2)
+        sut.Push(value: 1, priority: 1)
+        XCTAssertEqual(sut.pop(), 2)
+        XCTAssertEqual(sut.pop(), 1)
+        XCTAssertEqual(sut.pop(), 0)
+        XCTAssertTrue(sut.isEmpty)
+        
+        sut.Push(value: 2, priority: 2)
+        sut.Push(value: 0, priority: 0)
+        sut.Push(value: 1, priority: 1)
+        XCTAssertEqual(sut.pop(), 2)
+        XCTAssertEqual(sut.pop(), 1)
+        XCTAssertEqual(sut.pop(), 0)
+        XCTAssertTrue(sut.isEmpty)
+    }
+    
     func testArrayLiteral() {
         sut = [(0,0), (1, 1), (2, 2)]
         XCTAssertTrue(sut.checkValid())
@@ -40,16 +85,11 @@ class BinaryHeapTests: XCTestCase {
         
     }
     
-    func testDouble() {
-        sut.Push(value: 0, priority: 0)
-        sut.Push(value: 0, priority: 0)
-    }
-
     func testPerformanceExample() throws {
         // This is an example of a performance test case.
         self.measure {
             // Put the code you want to measure the time of here.
         }
     }
-
+    
 }

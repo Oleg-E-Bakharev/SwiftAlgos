@@ -30,8 +30,8 @@ struct BinaryHeap<T, P: Comparable> {
         guard count > 0 else { return nil }
         defer {
             storage.swapAt(0, count - 1)
-            siftDown(0)
             storage.removeLast()
+            siftDown(0)
         }
         return storage.first?.value
     }
@@ -52,18 +52,19 @@ struct BinaryHeap<T, P: Comparable> {
     
     private mutating func siftDown(_ index: Int) {
         var parent = index
-        let left = getLeftChild(parent)
+        var left = getLeftChild(parent)
         while left < count {
             let right = getRightChild(parent)
             var child = left
             if right < count && storage[right].priority > storage[left].priority {
                 child = right
             }
-            if storage[child].priority > storage[child].priority {
+            if storage[parent].priority > storage[child].priority {
                 break
             }
             storage.swapAt(parent, child)
             parent = child
+            left = getLeftChild(parent)
         }
     }
     
@@ -78,19 +79,19 @@ struct BinaryHeap<T, P: Comparable> {
     }
     
     private mutating func buildHeap() {
-        for index in (0...(count / 2)).reversed() {
-            siftUp(index)
+        for index in (0...(count / 2)) {
+            siftDown(index)
         }
     }
     
-    func checkValid(index: Int = 0) -> Bool {
-        guard index > count / 2 else { return true }
+    func checkValid(from index: Int = 0) -> Bool {
+        guard index < count / 2 else { return true }
         let left = getLeftChild(index)
         let right = getRightChild(index)
         if storage[index].priority < Swift.max(storage[left].priority, storage[right].priority) {
             return false
         }
-        return true
+        return checkValid(from: left) && checkValid(from: right)
     }
 }
 
@@ -126,7 +127,7 @@ extension BinaryHeap: RandomAccessPriorityQueue {
 extension BinaryHeap: MutableCollection {}
 
 extension BinaryHeap: Equatable where T: Equatable {
-    internal static func == (lhs: BinaryHeap, rhs: BinaryHeap) -> Bool where T: Equatable {
+    internal static func == (lhs: BinaryHeap, rhs: BinaryHeap) -> Bool {
         lhs.count == rhs.count && (lhs.startIndex..<lhs.endIndex).allSatisfy { lhs[$0] == rhs[$0] }
     }
 }
