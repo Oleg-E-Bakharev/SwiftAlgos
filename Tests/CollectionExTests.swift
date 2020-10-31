@@ -11,9 +11,24 @@ import XCTest
 class MutableCollectionExTests: XCTestCase {
     
     var sut: [Int] = []
-
-    override func setUpWithError() throws {
+    
+    override func tearDownWithError() throws {
         sut = []
+    }
+        
+    func testSafeMutableSubscript() throws {
+        sut = [1, 2, 3]
+        XCTAssertNil(sut[safe:-1])
+        sut[safe: -1] = -1
+        XCTAssertNil(sut[safe:-1])
+        sut[safe: 0] = 4
+        XCTAssertEqual(sut[safe:0], 4)
+        sut[safe: 1] = 5
+        XCTAssertEqual(sut[safe:1], 5)
+        sut[safe: 2] = 6
+        XCTAssertEqual(sut[safe:2], 6)
+        sut[safe: 3] = 7
+        XCTAssertNil(sut[safe:3])
     }
 
     func testReverseEmpty() throws {

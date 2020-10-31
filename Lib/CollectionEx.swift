@@ -8,7 +8,25 @@
 
 import Foundation
 
+public extension Collection {
+    /// O1 for RandomAccessCollection. On otherwise
+    @inlinable subscript(safe index: Index) -> Element? {
+        startIndex..<endIndex ~= index ? self[index] : nil
+    }
+}
+
 public extension MutableCollection {
+    
+    /// O1 for RandomAccessCollection. On otherwise
+    @inlinable subscript(safe index: Index) -> Element? {
+        get {
+            startIndex..<endIndex ~= index ? self[index] : nil
+        }
+        set {
+            if startIndex..<endIndex ~= index, let newValue = newValue { self[index] = newValue }
+        }
+    }
+
     /// On
     @inlinable mutating func reverseSubrange<R: RangeExpression>(_ subrange: R) where Self.Index == R.Bound {
         let range = subrange.relative(to: self)
@@ -35,5 +53,4 @@ public extension MutableCollection {
         reverseSubrange(index..<to)
         reverseSubrange(from..<to)
     }
-
 }

@@ -141,13 +141,22 @@ class BinaryHeapTests: XCTestCase {
         XCTAssertEqual(bh.pop(), "b")
         XCTAssertEqual(bh.pop(), "c")
     }
-        
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    
+
+    func testSafeSubscript() {
+        // For 100% coverage of Collection safe subscript
+        sut = [(0,0)]
+        XCTAssertNil(sut[safe: -1])
+        XCTAssertEqual(sut[safe: 0], 0)
+        XCTAssertNil(sut[safe: 1])
     }
+        
+//    func testPerformanceExample() throws {
+//        // This is an example of a performance test case.
+//        self.measure {
+//            // Put the code you want to measure the time of here.
+//        }
+//    }
     
 }
 
