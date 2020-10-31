@@ -18,11 +18,22 @@ class BinaryHeapTests: XCTestCase {
     
     func testEmpty() throws {
         XCTAssertTrue(sut.isEmpty)
+        XCTAssertNil(sut.pop())
+        XCTAssertNil(sut.peek())
     }
     
     func testSingle() {
         sut.Push(value: 0, priority: 0)
         XCTAssertFalse(sut.isEmpty)
+        XCTAssertEqual(sut.peek(), 0)
+        sut[0] = 1
+        XCTAssertEqual(sut.getPriority(of: 0), 0)
+        XCTAssertEqual(sut.pop(), 1)
+        XCTAssertTrue(sut.isEmpty)
+        
+        sut.Push(value: 0, priority: 0)
+        sut.changePriority(of: 0, to: 1)
+        XCTAssertEqual(sut.getPriority(of: 0), 1)
         XCTAssertEqual(sut.pop(), 0)
         XCTAssertTrue(sut.isEmpty)
     }
@@ -72,9 +83,21 @@ class BinaryHeapTests: XCTestCase {
         XCTAssertTrue(sut.isEmpty)
     }
     
+    func testFour() {
+        sut.Push(value: 0, priority: 0)
+        sut.Push(value: 1, priority: 1)
+        sut.Push(value: 2, priority: 2)
+        sut.Push(value: 3, priority: 3)
+        XCTAssertEqual(sut.pop(), 3)
+        XCTAssertEqual(sut.pop(), 2)
+        XCTAssertEqual(sut.pop(), 1)
+        XCTAssertEqual(sut.pop(), 0)
+        XCTAssertTrue(sut.isEmpty)
+    }
+    
     func testArrayLiteral() {
-        sut = [(0,0), (1, 1), (2, 2)]
-        XCTAssertTrue(sut.checkValid())
+        sut = [(0, 0), (1, 1), (2, 2), (3, 3)]
+        XCTAssertEqual(sut.pop(), 3)
         XCTAssertEqual(sut.pop(), 2)
         XCTAssertEqual(sut.pop(), 1)
         XCTAssertEqual(sut.pop(), 0)
@@ -83,13 +106,28 @@ class BinaryHeapTests: XCTestCase {
     
     func testStringConversion() {
         sut = [(0,0), (1, 1), (2, 2)]
-        XCTAssertEqual(String(describing: sut), "[2, 1, 0]")
+        XCTAssertEqual("\(sut)", "[2, 0, 1]")
     }
     
     func testStringPriorityQueue() {
         var bh = BinaryHeap<String, Double>()
         bh = [("a", 1), ("b", 2), ("c", 3)]
-        XCTAssertEqual(String(describing: bh), "[c, b, a]")
+        XCTAssertEqual(bh.pop(), "c")
+        XCTAssertEqual(bh.pop(), "b")
+        XCTAssertEqual(bh.pop(), "a")
+    }
+    
+    func testChangePriorityQueue() {
+        sut = [(0,0), (1, 1), (2, 2), (3, 3)]
+        XCTAssertEqual(sut.peek(), 3)
+        let v2 = sut[2]
+        sut.changePriority(of: 2, to: 5)
+        XCTAssertEqual(sut.peek(), v2)
+        let v1 = sut[1]
+        sut.changePriority(of: 1, to: sut.getPriority(of: 1))
+        XCTAssertEqual(sut[1], v1)
+        sut.changePriority(of: 0, to: -1)
+        XCTAssertEqual(sut.last, 2)
     }
     
     func testPerformanceExample() throws {
@@ -100,3 +138,4 @@ class BinaryHeapTests: XCTestCase {
     }
     
 }
+

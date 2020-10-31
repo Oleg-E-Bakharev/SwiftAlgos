@@ -11,15 +11,16 @@ import Foundation
 struct BinaryHeap<T, P: Comparable> {
     typealias Item = (value: T, priority: P)
     private var storage: [Item] = []
-//    private let compare: (T, T) -> Bool
+    private let compare: (P, P) -> Bool
     @inlinable public var count: Int { storage.count }
     
     /// O1
-    public init(compare: @escaping (T, T) -> Bool) {
-//        self.compare = compare
+    public init(compare: @escaping (P, P) -> Bool) {
+        self.compare = compare
     }
+    
     public init() {
-//        self.compare = (<)
+        self.compare = (>)
     }
     
     /// OlogN
@@ -65,7 +66,7 @@ struct BinaryHeap<T, P: Comparable> {
         while left < count {
             let right = getRightChild(parent)
             var child = left
-            if right < count && storage[right].priority > storage[left].priority {
+            if right < count && !(storage[left].priority > storage[right].priority) {
                 child = right
             }
             if storage[parent].priority > storage[child].priority {
@@ -88,20 +89,20 @@ struct BinaryHeap<T, P: Comparable> {
     }
     
     private mutating func buildHeap() {
-        for index in (0...(count / 2)) {
-            siftDown(index)
+        for index in (count / 2)..<count {
+            siftUp(index)
         }
     }
     
-    func checkValid(from index: Int = 0) -> Bool {
-        guard index < count / 2 else { return true }
-        let left = getLeftChild(index)
-        let right = getRightChild(index)
-        if storage[index].priority < Swift.max(storage[left].priority, storage[right].priority) {
-            return false
-        }
-        return checkValid(from: left) && checkValid(from: right)
-    }
+//    func checkValid(from index: Int = 0) -> Bool {
+//        guard index < count / 2 else { return true }
+//        let left = getLeftChild(index)
+//        let right = getRightChild(index)
+//        if storage[index].priority < Swift.max(storage[left].priority, storage[right].priority) {
+//            return false
+//        }
+//        return checkValid(from: left) && checkValid(from: right)
+//    }
 }
 
 extension BinaryHeap: RandomAccessCollection {
@@ -126,32 +127,31 @@ extension BinaryHeap: RandomAccessPriorityQueue {
         guard prevPriority != newPriority else { return }
         storage[item].priority = newPriority
         if newPriority > prevPriority {
-            siftDown(item)
-        } else {
             siftUp(item)
+        } else {
+            siftDown(item)
         }
     }
 }
 
 extension BinaryHeap: MutableCollection {}
 
-extension BinaryHeap: Equatable where T: Equatable {
-    internal static func == (lhs: BinaryHeap, rhs: BinaryHeap) -> Bool {
-        lhs.count == rhs.count && (lhs.startIndex..<lhs.endIndex).allSatisfy { lhs[$0] == rhs[$0] }
-    }
-}
-
 extension BinaryHeap: RangeReplaceableCollection {
     
 }
 
 extension BinaryHeap: ExpressibleByArrayLiteral {
-    public init(arrayLiteral items: Item...) {
+    public init(items: [Item], compare: @escaping (P, P) -> Bool) {
+        self.compare = compare
         reserveCapacity(count + items.count)
         for item in items {
             storage.append(item)
         }
         buildHeap()
+    }
+    
+    public init(arrayLiteral items: Item...) {
+        self.init(items: items, compare: (<))
     }
 }
 
