@@ -94,9 +94,10 @@ class BinaryHeapTests: XCTestCase {
         XCTAssertEqual(sut.pop(), 0)
         XCTAssertTrue(sut.isEmpty)
     }
-    
+        
     func testArrayLiteral() {
         sut = [(0, 0), (1, 1), (2, 2), (3, 3)]
+        XCTAssertTrue(sut.checkValid())
         XCTAssertEqual(sut.pop(), 3)
         XCTAssertEqual(sut.pop(), 2)
         XCTAssertEqual(sut.pop(), 1)
@@ -106,10 +107,10 @@ class BinaryHeapTests: XCTestCase {
     
     func testStringConversion() {
         sut = [(0,0), (1, 1), (2, 2)]
-        XCTAssertEqual("\(sut)", "[2, 0, 1]")
+        XCTAssertEqual("\(sut)", "[2, 1, 0]")
     }
     
-    func testStringPriorityQueue() {
+    func testStringBinaryHeap() {
         var bh = BinaryHeap<String, Double>()
         bh = [("a", 1), ("b", 2), ("c", 3)]
         XCTAssertEqual(bh.pop(), "c")
@@ -120,16 +121,27 @@ class BinaryHeapTests: XCTestCase {
     func testChangePriorityQueue() {
         sut = [(0,0), (1, 1), (2, 2), (3, 3)]
         XCTAssertEqual(sut.peek(), 3)
+        sut.changePriority(of: 0, to: -1)
+        XCTAssertEqual(sut.first, 2)
         let v2 = sut[2]
         sut.changePriority(of: 2, to: 5)
         XCTAssertEqual(sut.peek(), v2)
         let v1 = sut[1]
         sut.changePriority(of: 1, to: sut.getPriority(of: 1))
         XCTAssertEqual(sut[1], v1)
-        sut.changePriority(of: 0, to: -1)
-        XCTAssertEqual(sut.last, 2)
     }
     
+    func testCustomCompare() {
+        var bh = BinaryHeap<String, Double>(compare: <)
+        bh.Push(value: "a", priority: 0)
+        bh.Push(value: "b", priority: 1)
+        bh.Push(value: "c", priority: 2)
+
+        XCTAssertEqual(bh.pop(), "a")
+        XCTAssertEqual(bh.pop(), "b")
+        XCTAssertEqual(bh.pop(), "c")
+    }
+        
     func testPerformanceExample() throws {
         // This is an example of a performance test case.
         self.measure {
@@ -139,3 +151,17 @@ class BinaryHeapTests: XCTestCase {
     
 }
 
+extension BinaryHeap {
+    func checkValid(from index: Int = 0) -> Bool {
+        guard index < count / 2 else { return true }
+        let left = getLeftChild(index)
+        let right = getRightChild(index)
+        if right == count {
+            return !compare(storage[left].priority, storage[index].priority)
+        }
+        if compare(Swift.max(storage[left].priority, storage[right].priority), storage[index].priority)  {
+            return false
+        }
+        return checkValid(from: left) && checkValid(from: right)
+    }
+}

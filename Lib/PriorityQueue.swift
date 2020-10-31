@@ -18,6 +18,8 @@ protocol PriorityQueue {
     mutating func pop() -> Element?
     
     mutating func peek() -> Element?
+    
+    mutating func reserveCapacity(_ minimumCapacity: Int)
 }
 
 protocol RandomAccessPriorityQueue: PriorityQueue, RandomAccessCollection {

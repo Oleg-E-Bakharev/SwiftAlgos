@@ -10,8 +10,8 @@ import Foundation
 
 struct BinaryHeap<T, P: Comparable> {
     typealias Item = (value: T, priority: P)
-    private var storage: [Item] = []
-    private let compare: (P, P) -> Bool
+    var storage: [Item] = []
+    let compare: (P, P) -> Bool
     @inlinable public var count: Int { storage.count }
     
     /// O1
@@ -54,11 +54,11 @@ struct BinaryHeap<T, P: Comparable> {
     /// O1
     public func getPriority(of item: Int) -> P { storage[item].priority }
     
-    @inline(__always) private func getLeftChild(_ i: Int) -> Int { (i << 1) + 1 }
+    @inline(__always) func getLeftChild(_ i: Int) -> Int { (i << 1) + 1 }
     
-    @inline(__always) private func getRightChild(_ i: Int) -> Int { (i << 1) + 2 }
+    @inline(__always) func getRightChild(_ i: Int) -> Int { (i << 1) + 2 }
     
-    @inline(__always) private func getParent(_ i: Int) -> Int { (i - 1) >> 2 }
+    @inline(__always) func getParent(_ i: Int) -> Int { (i - 1) >> 2 }
     
     private mutating func siftDown(_ index: Int) {
         var parent = index
@@ -66,10 +66,10 @@ struct BinaryHeap<T, P: Comparable> {
         while left < count {
             let right = getRightChild(parent)
             var child = left
-            if right < count && !(storage[left].priority > storage[right].priority) {
+            if right < count && compare(storage[right].priority, storage[left].priority) {
                 child = right
             }
-            if storage[parent].priority > storage[child].priority {
+            if self.compare(storage[parent].priority, storage[child].priority) {
                 break
             }
             storage.swapAt(parent, child)
@@ -78,31 +78,23 @@ struct BinaryHeap<T, P: Comparable> {
         }
     }
     
+    // Ologn
     private mutating func siftUp(_ index: Int) {
         var child = index
         var parent = getParent(index)
-        while parent >= 0 && storage[parent].priority < storage[child].priority {
+        while parent >= 0 && compare(storage[child].priority, storage[parent].priority) {
             storage.swapAt(parent, child)
             child = parent
             parent = getParent(parent)
         }
     }
     
+    // On
     private mutating func buildHeap() {
-        for index in (count / 2)..<count {
-            siftUp(index)
+        for index in (0...count / 2).reversed() {
+            siftDown(index)
         }
     }
-    
-//    func checkValid(from index: Int = 0) -> Bool {
-//        guard index < count / 2 else { return true }
-//        let left = getLeftChild(index)
-//        let right = getRightChild(index)
-//        if storage[index].priority < Swift.max(storage[left].priority, storage[right].priority) {
-//            return false
-//        }
-//        return checkValid(from: left) && checkValid(from: right)
-//    }
 }
 
 extension BinaryHeap: RandomAccessCollection {
@@ -117,6 +109,10 @@ extension BinaryHeap: RandomAccessCollection {
         set {
             storage[item].value = newValue
         }
+    }
+    
+    public mutating func reserveCapacity(_ capacity: Int) {
+        storage.reserveCapacity(capacity)
     }
 }
 
@@ -134,12 +130,6 @@ extension BinaryHeap: RandomAccessPriorityQueue {
     }
 }
 
-extension BinaryHeap: MutableCollection {}
-
-extension BinaryHeap: RangeReplaceableCollection {
-    
-}
-
 extension BinaryHeap: ExpressibleByArrayLiteral {
     public init(items: [Item], compare: @escaping (P, P) -> Bool) {
         self.compare = compare
@@ -151,7 +141,7 @@ extension BinaryHeap: ExpressibleByArrayLiteral {
     }
     
     public init(arrayLiteral items: Item...) {
-        self.init(items: items, compare: (<))
+        self.init(items: items, compare: >)
     }
 }
 
