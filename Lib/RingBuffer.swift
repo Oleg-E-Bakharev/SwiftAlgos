@@ -10,7 +10,7 @@ import Foundation
 
 public struct RingBuffer<T> {
     public typealias Element = T
-    var storage: [Element?] = [nil] // Initial capacity must be 1
+    var storage: [T?] = [nil] // Initial capacity must be 1
     var first: Int = 0
     var last: Int = 0
     
@@ -106,7 +106,7 @@ extension RingBuffer: ExpressibleByArrayLiteral {
 }
 
 extension RingBuffer: Equatable where T: Equatable {
-    public static func == (lhs: RingBuffer<T>, rhs: RingBuffer<T>) -> Bool where T: Equatable  {
+    public static func == (lhs: RingBuffer, rhs: RingBuffer) -> Bool  {
         lhs.count == rhs.count && (lhs.startIndex..<lhs.endIndex).allSatisfy { lhs[$0] == rhs[$0] }
     }
 }

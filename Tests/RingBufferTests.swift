@@ -13,12 +13,8 @@ class RingBufferRests: XCTestCase {
     
     private var sut = RingBuffer<Int>()
 
-    override func setUpWithError() throws {
-        sut = RingBuffer()
-    }
-
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        sut = RingBuffer()
     }
 
     func testIsEmpty() throws {
