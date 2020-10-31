@@ -82,7 +82,14 @@ class BinaryHeapTests: XCTestCase {
     }
     
     func testStringConversion() {
-        
+        sut = [(0,0), (1, 1), (2, 2)]
+        XCTAssertEqual(String(describing: sut), "[2, 1, 0]")
+    }
+    
+    func testStringPriorityQueue() {
+        var bh = BinaryHeap<String, Double>()
+        bh = [("a", 1), ("b", 2), ("c", 3)]
+        XCTAssertEqual(String(describing: bh), "[c, b, a]")
     }
     
     func testPerformanceExample() throws {

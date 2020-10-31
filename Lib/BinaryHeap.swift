@@ -11,7 +11,16 @@ import Foundation
 struct BinaryHeap<T, P: Comparable> {
     typealias Item = (value: T, priority: P)
     private var storage: [Item] = []
+//    private let compare: (T, T) -> Bool
     @inlinable public var count: Int { storage.count }
+    
+    /// O1
+    public init(compare: @escaping (T, T) -> Bool) {
+//        self.compare = compare
+    }
+    public init() {
+//        self.compare = (<)
+    }
     
     /// OlogN
     @inlinable public mutating func Push(value: T, priority: P) {
