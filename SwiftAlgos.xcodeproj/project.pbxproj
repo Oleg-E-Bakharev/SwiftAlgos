@@ -15,6 +15,8 @@
 		7C52E39125419DC4000746FA /* PriorityQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C52E39025419DC4000746FA /* PriorityQueue.swift */; };
 		7C52E3A12542D757000746FA /* BinaryHeapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C52E3A02542D757000746FA /* BinaryHeapTests.swift */; };
 		CF3F9D1C252CEB8600B82E60 /* CollectionExTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3F9D1B252CEB8600B82E60 /* CollectionExTests.swift */; };
+		CF78566F25530805003321B5 /* Clusterizator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF78566B2552F043003321B5 /* Clusterizator.swift */; };
+		CF78567025530808003321B5 /* DisjointSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF78566D2552F146003321B5 /* DisjointSet.swift */; };
 		CF83EB5F25115FAC000AEFB1 /* ListAlgosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF83EB5C25115B72000AEFB1 /* ListAlgosTests.swift */; };
 		CF83EB6025115FB0000AEFB1 /* ListAlgos.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8E2EE725111F1900419D36 /* ListAlgos.swift */; };
 		CF85D9EE250905810099EABF /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF85D9ED250905810099EABF /* main.swift */; };
@@ -53,6 +55,8 @@
 		7C52E39025419DC4000746FA /* PriorityQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriorityQueue.swift; sourceTree = "<group>"; };
 		7C52E3A02542D757000746FA /* BinaryHeapTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryHeapTests.swift; sourceTree = "<group>"; };
 		CF3F9D1B252CEB8600B82E60 /* CollectionExTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionExTests.swift; sourceTree = "<group>"; };
+		CF78566B2552F043003321B5 /* Clusterizator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clusterizator.swift; sourceTree = "<group>"; };
+		CF78566D2552F146003321B5 /* DisjointSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisjointSet.swift; sourceTree = "<group>"; };
 		CF83EB5C25115B72000AEFB1 /* ListAlgosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAlgosTests.swift; sourceTree = "<group>"; };
 		CF85D9EA250905810099EABF /* SwiftAlgosSandbox */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SwiftAlgosSandbox; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF85D9ED250905810099EABF /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -159,6 +163,8 @@
 				7C00B42B253D8FAD00A25748 /* RingBufferQueue.swift */,
 				7C52E38B25419D99000746FA /* BinaryHeap.swift */,
 				7C52E39025419DC4000746FA /* PriorityQueue.swift */,
+				CF78566B2552F043003321B5 /* Clusterizator.swift */,
+				CF78566D2552F146003321B5 /* DisjointSet.swift */,
 			);
 			path = Lib;
 			sourceTree = "<group>";
@@ -313,11 +319,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF78566F25530805003321B5 /* Clusterizator.swift in Sources */,
 				CF9376B22527B3540021CCBB /* Queue.swift in Sources */,
 				CF9376B62527B7590021CCBB /* Deque.swift in Sources */,
 				7C52E38C25419D99000746FA /* BinaryHeap.swift in Sources */,
 				CF83EB6025115FB0000AEFB1 /* ListAlgos.swift in Sources */,
 				CF85DA2B25090CC60099EABF /* Stack.swift in Sources */,
+				CF78567025530808003321B5 /* DisjointSet.swift in Sources */,
 				7C52E39125419DC4000746FA /* PriorityQueue.swift in Sources */,
 				CF9376B82527BF040021CCBB /* RingBuffer.swift in Sources */,
 				CF92106C252CE38D00B47F8D /* CollectionEx.swift in Sources */,

@@ -8,11 +8,11 @@
 
 import Foundation
 
-struct BinaryHeap<T, P: Comparable> {
-    typealias Item = (value: T, priority: P)
+public struct BinaryHeap<T, P: Comparable> {
+    public typealias Item = (value: T, priority: P)
     var storage: [Item] = []
     let compare: (P, P) -> Bool
-    @inlinable public var count: Int { storage.count }
+    public var count: Int { storage.count }
     
     /// O1
     public init(compare: @escaping (P, P) -> Bool) {
