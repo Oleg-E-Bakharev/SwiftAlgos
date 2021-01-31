@@ -9,69 +9,81 @@
 import Foundation
 import SwiftAlgosLib
 
-do {
-    var list = List<Int>()
-    list.push(3)
-    list.push(2)
-    list.push(1)
-    print(list)
-}
-
-do {
-    var list = List<Int>()
-    list.append(1)
-    list.append(2)
-    list.append(3)
-    print(list)
-}
-
-do {
-    var list: List = [1, 2, 3]
-    print("Before inserting: \(list)")
-    var middleNode = list.head!.next!
-    for _ in 1...4 {
-        middleNode = list.insert(-1, after: middleNode)
-    }
-    print("After inserting: \(list)")
-}
-
-do {
-    var list: List = [1, 2, 3]
-    print("Before removing at particular index: \(list)")
-    let node = list.head!
-    let removedValue = list.remove(after: node)!
-    print("After removing at index 1: \(list)")
-    print("Removed value: " + String(describing: removedValue))
-}
-
-do {
-    var list = List<Int>()
-    for i in 0...9 {
-        list.append(i)
-    }
+final class SplayTreeNode<Value> : BinaryTreeNode {    
+    public var value: Value
+    public var left: SplayTreeNode?
+    public var right: SplayTreeNode?
     
-    print("List: \(list)")
-    print("Array containing first 3 elements: \(Array(list.prefix(3)))")
-    print("Array containing last 3 elements: \(Array(list.suffix(3)))")
-    let sum = list.reduce(0, +)
-    print("Sum of all values: \(sum)")
+    public init(_ value: Value, left: SplayTreeNode? = nil, right: SplayTreeNode? = nil) {
+        self.value = value
+        self.left = left
+        self.right = right
+    }
 }
 
-do {
-    var list1: List<Int> = [1, 2, 3]
-    print(list1)
-    var list2 = list1
-    print(list2)
-    list1.append(4)
-    print(list1)
-    print(list2)
-    list2.remove(after: list2.head!)
-    print(list2)
+final class AWLTreeNode<Value>: BinaryTreeNode {
+    public var value: Value
+    public var left: AWLTreeNode?
+    public var right: AWLTreeNode?
+    
+    public init(_ value: Value, left: AWLTreeNode? = nil, right: AWLTreeNode? = nil) {
+        self.value = value
+        self.left = left
+        self.right = right
+    }
 }
 
-do {
-    let string: String = "Hello World "
-    var characters = Array(string)
-    characters.rotate(on: characters.firstIndex(of: " ") ?? 0)
-    print(String(characters))
+extension AWLTreeNode: CustomStringConvertible {
+    var description: String { String(describing: value) }
 }
+
+struct SplayTree<Value> {
+    var root: SplayTreeNode<Value>?
+}
+
+extension SplayTree: BinaryTreeInfo {
+}
+
+struct AWLTree<Value> {
+    var root: AWLTreeNode<Value>?
+}
+
+extension AWLTree: BinaryTreeInfo {
+}
+
+extension SplayTree: CustomStringConvertible {
+    var description: String { diagram() }
+}
+
+extension AWLTree: CustomStringConvertible {
+    var description: String { diagram() }
+}
+
+typealias Node = AWLTreeNode<Int>
+
+let zero = Node(0)
+let one = Node(1)
+let two = Node(2)
+let three = Node(3)
+let five = Node(5)
+let seven = Node(7)
+let eight = Node(8)
+let nine = Node(9)
+
+seven.left = one
+seven.right = nine
+one.left = zero
+one.right = five
+five.left = two
+five.right = three
+nine.left = eight
+
+let tree = AWLTree(root: seven)
+
+print(tree)
+
+let nodePtr = BitPtr<Node>(zero)
+nodePtr.bit = true
+print(nodePtr.target ?? "nil", nodePtr.bit)
+nodePtr.target = nil
+print(nodePtr.target ?? "nil", nodePtr.bit)

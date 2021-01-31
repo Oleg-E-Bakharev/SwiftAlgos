@@ -14,7 +14,10 @@
 		7C52E38C25419D99000746FA /* BinaryHeap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C52E38B25419D99000746FA /* BinaryHeap.swift */; };
 		7C52E39125419DC4000746FA /* PriorityQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C52E39025419DC4000746FA /* PriorityQueue.swift */; };
 		7C52E3A12542D757000746FA /* BinaryHeapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C52E3A02542D757000746FA /* BinaryHeapTests.swift */; };
+		7C75E89925A2E2F0007873F1 /* BinaryTreeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C75E89825A2E2F0007873F1 /* BinaryTreeNode.swift */; };
+		7C75E89E25A2E474007873F1 /* BinaryTreeInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C75E89D25A2E474007873F1 /* BinaryTreeInfo.swift */; };
 		CF3F9D1C252CEB8600B82E60 /* CollectionExTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3F9D1B252CEB8600B82E60 /* CollectionExTests.swift */; };
+		CF57568525A4820B006C0DBB /* BinaryTreeRotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF57568425A4820B006C0DBB /* BinaryTreeRotation.swift */; };
 		CF78566F25530805003321B5 /* Clusterizator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF78566B2552F043003321B5 /* Clusterizator.swift */; };
 		CF78567025530808003321B5 /* DisjointSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF78566D2552F146003321B5 /* DisjointSet.swift */; };
 		CF83EB5F25115FAC000AEFB1 /* ListAlgosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF83EB5C25115B72000AEFB1 /* ListAlgosTests.swift */; };
@@ -32,6 +35,10 @@
 		CF9376B22527B3540021CCBB /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9376B12527B3540021CCBB /* Queue.swift */; };
 		CF9376B62527B7590021CCBB /* Deque.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9376B52527B7590021CCBB /* Deque.swift */; };
 		CF9376B82527BF040021CCBB /* RingBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9376B72527BF040021CCBB /* RingBuffer.swift */; };
+		CFB3138925C6FE85001E5268 /* PointerEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB3138825C6FE85001E5268 /* PointerEx.swift */; };
+		CFB3138E25C7035C001E5268 /* PointerExTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB3138D25C7035C001E5268 /* PointerExTests.swift */; };
+		CFB3139925C7108C001E5268 /* BitPtrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB3139825C7108C001E5268 /* BitPtrTests.swift */; };
+		CFB99B4D25A5CEBD002E0190 /* BitPtr.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB99B4C25A5CEBD002E0190 /* BitPtr.swift */; };
 		CFE49EEC2556B668002A3774 /* DisjointSetTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE49EEB2556B668002A3774 /* DisjointSetTest.swift */; };
 /* End PBXBuildFile section */
 
@@ -55,7 +62,10 @@
 		7C52E38B25419D99000746FA /* BinaryHeap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryHeap.swift; sourceTree = "<group>"; };
 		7C52E39025419DC4000746FA /* PriorityQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriorityQueue.swift; sourceTree = "<group>"; };
 		7C52E3A02542D757000746FA /* BinaryHeapTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryHeapTests.swift; sourceTree = "<group>"; };
+		7C75E89825A2E2F0007873F1 /* BinaryTreeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTreeNode.swift; sourceTree = "<group>"; };
+		7C75E89D25A2E474007873F1 /* BinaryTreeInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTreeInfo.swift; sourceTree = "<group>"; };
 		CF3F9D1B252CEB8600B82E60 /* CollectionExTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionExTests.swift; sourceTree = "<group>"; };
+		CF57568425A4820B006C0DBB /* BinaryTreeRotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTreeRotation.swift; sourceTree = "<group>"; };
 		CF78566B2552F043003321B5 /* Clusterizator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clusterizator.swift; sourceTree = "<group>"; };
 		CF78566D2552F146003321B5 /* DisjointSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisjointSet.swift; sourceTree = "<group>"; };
 		CF83EB5C25115B72000AEFB1 /* ListAlgosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAlgosTests.swift; sourceTree = "<group>"; };
@@ -75,6 +85,10 @@
 		CF9376B12527B3540021CCBB /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		CF9376B52527B7590021CCBB /* Deque.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deque.swift; sourceTree = "<group>"; };
 		CF9376B72527BF040021CCBB /* RingBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingBuffer.swift; sourceTree = "<group>"; };
+		CFB3138825C6FE85001E5268 /* PointerEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointerEx.swift; sourceTree = "<group>"; };
+		CFB3138D25C7035C001E5268 /* PointerExTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointerExTests.swift; sourceTree = "<group>"; };
+		CFB3139825C7108C001E5268 /* BitPtrTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitPtrTests.swift; sourceTree = "<group>"; };
+		CFB99B4C25A5CEBD002E0190 /* BitPtr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitPtr.swift; sourceTree = "<group>"; };
 		CFE49EEB2556B668002A3774 /* DisjointSetTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisjointSetTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -147,6 +161,8 @@
 				7C00B426253D8E9D00A25748 /* QueueTests.swift */,
 				7C52E3A02542D757000746FA /* BinaryHeapTests.swift */,
 				CFE49EEB2556B668002A3774 /* DisjointSetTest.swift */,
+				CFB3138D25C7035C001E5268 /* PointerExTests.swift */,
+				CFB3139825C7108C001E5268 /* BitPtrTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -162,12 +178,17 @@
 				7C00B421253D8A2000A25748 /* ListQueue.swift */,
 				CF9376B52527B7590021CCBB /* Deque.swift */,
 				CF92106A252CE38D00B47F8D /* CollectionEx.swift */,
+				CFB3138825C6FE85001E5268 /* PointerEx.swift */,
 				CF9376B72527BF040021CCBB /* RingBuffer.swift */,
 				7C00B42B253D8FAD00A25748 /* RingBufferQueue.swift */,
 				7C52E38B25419D99000746FA /* BinaryHeap.swift */,
 				7C52E39025419DC4000746FA /* PriorityQueue.swift */,
 				CF78566B2552F043003321B5 /* Clusterizator.swift */,
 				CF78566D2552F146003321B5 /* DisjointSet.swift */,
+				7C75E89825A2E2F0007873F1 /* BinaryTreeNode.swift */,
+				CFB99B4C25A5CEBD002E0190 /* BitPtr.swift */,
+				7C75E89D25A2E474007873F1 /* BinaryTreeInfo.swift */,
+				CF57568425A4820B006C0DBB /* BinaryTreeRotation.swift */,
 			);
 			path = Lib;
 			sourceTree = "<group>";
@@ -314,7 +335,9 @@
 				CF83EB5F25115FAC000AEFB1 /* ListAlgosTests.swift in Sources */,
 				CF87623B250E258B00F4FAB0 /* ListTests.swift in Sources */,
 				7C52E3A12542D757000746FA /* BinaryHeapTests.swift in Sources */,
+				CFB3139925C7108C001E5268 /* BitPtrTests.swift in Sources */,
 				CF3F9D1C252CEB8600B82E60 /* CollectionExTests.swift in Sources */,
+				CFB3138E25C7035C001E5268 /* PointerExTests.swift in Sources */,
 				7C3AD6C3252866B700CA7FB7 /* RingBufferTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -323,15 +346,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C75E89E25A2E474007873F1 /* BinaryTreeInfo.swift in Sources */,
 				CF78566F25530805003321B5 /* Clusterizator.swift in Sources */,
+				CFB99B4D25A5CEBD002E0190 /* BitPtr.swift in Sources */,
 				CF9376B22527B3540021CCBB /* Queue.swift in Sources */,
 				CF9376B62527B7590021CCBB /* Deque.swift in Sources */,
 				7C52E38C25419D99000746FA /* BinaryHeap.swift in Sources */,
 				CF83EB6025115FB0000AEFB1 /* ListAlgos.swift in Sources */,
 				CF85DA2B25090CC60099EABF /* Stack.swift in Sources */,
 				CF78567025530808003321B5 /* DisjointSet.swift in Sources */,
+				CFB3138925C6FE85001E5268 /* PointerEx.swift in Sources */,
 				7C52E39125419DC4000746FA /* PriorityQueue.swift in Sources */,
+				7C75E89925A2E2F0007873F1 /* BinaryTreeNode.swift in Sources */,
 				CF9376B82527BF040021CCBB /* RingBuffer.swift in Sources */,
+				CF57568525A4820B006C0DBB /* BinaryTreeRotation.swift in Sources */,
 				CF92106C252CE38D00B47F8D /* CollectionEx.swift in Sources */,
 				CF876237250D0A7D00F4FAB0 /* ListNode.swift in Sources */,
 				7C00B42C253D8FAD00A25748 /* RingBufferQueue.swift in Sources */,
