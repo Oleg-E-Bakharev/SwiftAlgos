@@ -9,7 +9,7 @@
 import Foundation
 import SwiftAlgosLib
 
-final class SplayTreeNode<Value> : BinaryTreeNode {    
+final class SplayTreeNode<Value: Comparable> : BinaryTreeNode {
     public var value: Value
     public var left: SplayTreeNode?
     public var right: SplayTreeNode?
@@ -21,7 +21,7 @@ final class SplayTreeNode<Value> : BinaryTreeNode {
     }
 }
 
-final class AWLTreeNode<Value>: BinaryTreeNode {
+final class AWLTreeNode<Value: Comparable>: BinaryTreeNode {
     public var value: Value
     public var left: AWLTreeNode?
     public var right: AWLTreeNode?
@@ -37,14 +37,14 @@ extension AWLTreeNode: CustomStringConvertible {
     var description: String { String(describing: value) }
 }
 
-struct SplayTree<Value> {
+struct SplayTree<Value: Comparable> {
     var root: SplayTreeNode<Value>?
 }
 
 extension SplayTree: BinaryTreeInfo {
 }
 
-struct AWLTree<Value> {
+struct AWLTree<Value: Comparable> {
     var root: AWLTreeNode<Value>?
 }
 

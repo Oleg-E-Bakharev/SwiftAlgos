@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol BinaryTreeRotation {
+public protocol BinaryTreeRotation {
     associatedtype Node
     
     // right becomes top
@@ -18,7 +18,7 @@ protocol BinaryTreeRotation {
     mutating func rotateRight(_ node: inout Node?)
 }
 
-extension BinaryTreeRotation where Node: BinaryTreeNode {
+public extension BinaryTreeRotation where Node: BinaryTreeNode {
     
     mutating func rotateLeft(_ node: inout Node?) {
         var right = node?.right

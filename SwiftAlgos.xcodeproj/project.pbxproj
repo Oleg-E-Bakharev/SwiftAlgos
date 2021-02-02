@@ -16,6 +16,7 @@
 		7C52E3A12542D757000746FA /* BinaryHeapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C52E3A02542D757000746FA /* BinaryHeapTests.swift */; };
 		7C75E89925A2E2F0007873F1 /* BinaryTreeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C75E89825A2E2F0007873F1 /* BinaryTreeNode.swift */; };
 		7C75E89E25A2E474007873F1 /* BinaryTreeInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C75E89D25A2E474007873F1 /* BinaryTreeInfo.swift */; };
+		CF26B32625C9DDB700BF034C /* BinaryTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF26B32525C9DDB700BF034C /* BinaryTree.swift */; };
 		CF3F9D1C252CEB8600B82E60 /* CollectionExTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3F9D1B252CEB8600B82E60 /* CollectionExTests.swift */; };
 		CF57568525A4820B006C0DBB /* BinaryTreeRotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF57568425A4820B006C0DBB /* BinaryTreeRotation.swift */; };
 		CF78566F25530805003321B5 /* Clusterizator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF78566B2552F043003321B5 /* Clusterizator.swift */; };
@@ -64,6 +65,7 @@
 		7C52E3A02542D757000746FA /* BinaryHeapTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryHeapTests.swift; sourceTree = "<group>"; };
 		7C75E89825A2E2F0007873F1 /* BinaryTreeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTreeNode.swift; sourceTree = "<group>"; };
 		7C75E89D25A2E474007873F1 /* BinaryTreeInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTreeInfo.swift; sourceTree = "<group>"; };
+		CF26B32525C9DDB700BF034C /* BinaryTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTree.swift; sourceTree = "<group>"; };
 		CF3F9D1B252CEB8600B82E60 /* CollectionExTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionExTests.swift; sourceTree = "<group>"; };
 		CF57568425A4820B006C0DBB /* BinaryTreeRotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTreeRotation.swift; sourceTree = "<group>"; };
 		CF78566B2552F043003321B5 /* Clusterizator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clusterizator.swift; sourceTree = "<group>"; };
@@ -185,10 +187,11 @@
 				7C52E39025419DC4000746FA /* PriorityQueue.swift */,
 				CF78566B2552F043003321B5 /* Clusterizator.swift */,
 				CF78566D2552F146003321B5 /* DisjointSet.swift */,
-				7C75E89825A2E2F0007873F1 /* BinaryTreeNode.swift */,
 				CFB99B4C25A5CEBD002E0190 /* BitPtr.swift */,
+				7C75E89825A2E2F0007873F1 /* BinaryTreeNode.swift */,
 				7C75E89D25A2E474007873F1 /* BinaryTreeInfo.swift */,
 				CF57568425A4820B006C0DBB /* BinaryTreeRotation.swift */,
+				CF26B32525C9DDB700BF034C /* BinaryTree.swift */,
 			);
 			path = Lib;
 			sourceTree = "<group>";
@@ -354,6 +357,7 @@
 				7C52E38C25419D99000746FA /* BinaryHeap.swift in Sources */,
 				CF83EB6025115FB0000AEFB1 /* ListAlgos.swift in Sources */,
 				CF85DA2B25090CC60099EABF /* Stack.swift in Sources */,
+				CF26B32625C9DDB700BF034C /* BinaryTree.swift in Sources */,
 				CF78567025530808003321B5 /* DisjointSet.swift in Sources */,
 				CFB3138925C6FE85001E5268 /* PointerEx.swift in Sources */,
 				7C52E39125419DC4000746FA /* PriorityQueue.swift in Sources */,
