@@ -87,3 +87,21 @@ nodePtr.bit = true
 print(nodePtr.target ?? "nil", nodePtr.bit)
 nodePtr.target = nil
 print(nodePtr.target ?? "nil", nodePtr.bit)
+
+let nodeLayout = MemoryLayout<AWLTreeNode<Int>>.self
+
+extension MemoryLayout {
+    static var info: String {
+        "size: \(size), stride:\(stride), aligment:\(alignment)"
+    }
+}
+
+print("Int?: " + MemoryLayout<Int?>.info)
+
+print("BitPtr<AWLTreeNode<Int>>: " + MemoryLayout<BitPtr<AWLTreeNode<Int>>>.info)
+
+print("AWLTreeNode<Int>?: " + MemoryLayout<AWLTreeNode<Int>?>.info)
+
+print("CGPoint?: " + MemoryLayout<CGPoint?>.info)
+
+print("String?: " + MemoryLayout<CGPoint?>.info)

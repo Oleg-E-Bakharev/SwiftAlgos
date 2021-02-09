@@ -19,6 +19,7 @@ class BitPtrTests: XCTestCase {
     }
 
     override func tearDownWithError() throws {
+        ptr ~= nil
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
@@ -60,5 +61,57 @@ class BitPtrTests: XCTestCase {
         ptr.target = nil
         XCTAssertNil(ptr.target)
         XCTAssertTrue(ptr.bit)
+    }
+
+    func testBitPtrTargetAssignRelease() throws {
+        ptr ~= NSObject()
+        weak var obj = ptr.target
+        ptr ~= nil
+        XCTAssertNil(obj)
+    }
+
+    func testBitPtrAssignRelease() throws {
+        ptr ~= NSObject()
+        weak var obj = ptr.target
+        ptr ~= TestType(nil)
+        XCTAssertNil(obj)
+    }
+
+    func testPtrPerformance() throws {
+        let obj1 = NSObject()
+        var obj: NSObject? = nil
+        self.measure {
+            (0..<10000).forEach {_ in obj = obj1 }
+        }
+        let obj2 = obj
+        obj = obj2
+    }
+
+    func testBitPtr0Performance() throws {
+        var obj: NSObject? = nil
+        self.measure {
+            (0..<10000).forEach {_ in obj = ptr.target }
+        }
+        let obj1 = obj
+        obj = obj1
+    }
+
+    func testBitPtr1Performance() throws {
+        ptr.bit = true
+        var obj: NSObject? = nil
+        self.measure {
+            (0..<10000).forEach { _ in obj = ptr.target  }
+        }
+        let obj1 = obj
+        obj = obj1
+    }
+
+    func testBitPtrBitPerformance() throws {
+        var bit: Bool = false
+        self.measure {
+            (0..<10000).forEach {_ in bit = ptr.bit }
+        }
+        let bit1 = bit
+        bit = bit1
     }
 }

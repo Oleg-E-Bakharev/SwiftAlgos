@@ -8,44 +8,32 @@
 
 import Foundation
 
-/// Tagged pointer with one bit of storing information.
-public class BitPtr<Target: AnyObject> {
+/**
+ Tagged smart pointer with one bit of storing information.
+ Please DO NOT use assigment operator like bitPtr1 = bitPtr2
+ USE ~= operator instead like bitPtr1 ~= bitPtr2
+ */
+
+public struct BitPtr<Target: AnyObject> {
     var ptr: UnsafeMutableRawPointer
-
-    private func withCleanPtr<T>(closure: ()->T) -> T {
-        let bit: Int
-        if Int(bitPattern: ptr) & 1 > 0 {
-            ptr -= 1
-            bit = 1
-        } else {
-            bit = 0
-        }
-        defer { ptr += bit }
-        return closure()
-    }
-
-    private func releasePtr() {
-        if ptr != .empty {
-            Unmanaged<Target>.fromOpaque(ptr).release()
-        }
-    }
 
     public var target: Target? {
         get {
-            withCleanPtr {
-                return ptr != .empty ? bridge(ptr: ptr) : nil
-            }
+            let delta = bit ? 1 : 0
+            let cleanPtr = ptr - delta
+            return cleanPtr != .empty ? bridge(ptr: cleanPtr) : nil
         }
 
         set {
-            withCleanPtr {
-                releasePtr()
-                if let newValue = newValue {
-                    ptr = bridgeRetained(obj: newValue)
-                } else {
-                    ptr = .empty
-                }
+            let delta = bit ? 1 : 0
+            let cleanPtr = ptr - delta
+            release(ptr: cleanPtr)
+            if let newValue = newValue {
+                ptr = bridgeRetained(obj: newValue)
+            } else {
+                ptr = .empty
             }
+            ptr += delta
         }
     }
 
@@ -74,7 +62,22 @@ public class BitPtr<Target: AnyObject> {
         self.bit = bit
     }
 
-    deinit {
-        releasePtr()
+    private func release(ptr: UnsafeMutableRawPointer) {
+        if ptr != .empty {
+            Unmanaged<Target>.fromOpaque(ptr).release()
+        }
+    }
+
+    @inline(__always)
+    static func ~=(lhs: inout BitPtr, rhs: Target?) {
+        lhs.target = rhs
+    }
+
+    @inline(__always)
+    static func ~=(lhs: inout BitPtr, rhs: BitPtr) {
+        lhs.target = rhs.target
+        lhs.bit = rhs.bit
     }
 }
+
+extension BitPtr: Equatable {}
