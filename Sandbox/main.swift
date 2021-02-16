@@ -82,7 +82,7 @@ let tree = AWLTree(root: seven)
 
 print(tree)
 
-let nodePtr = BitPtr<Node>(zero)
+var nodePtr = BitPtr<Node>(zero)
 nodePtr.bit = true
 print(nodePtr.target ?? "nil", nodePtr.bit)
 nodePtr.target = nil
@@ -105,3 +105,7 @@ print("AWLTreeNode<Int>?: " + MemoryLayout<AWLTreeNode<Int>?>.info)
 print("CGPoint?: " + MemoryLayout<CGPoint?>.info)
 
 print("String?: " + MemoryLayout<CGPoint?>.info)
+
+var tree2 = BinaryTree<Int>()
+
+tree2.insert([1, 2, 3])

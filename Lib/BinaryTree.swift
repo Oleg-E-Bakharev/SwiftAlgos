@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct BinaryTree<T: Comparable> {
+public struct BinaryTree<T: Comparable> : BinaryTreeSerialOperations {
     public typealias Value = T
     public final class Node: BinaryTreeNode {
         public var value: T
@@ -22,6 +22,8 @@ public struct BinaryTree<T: Comparable> {
 
     public private(set) var root: Node?
 
+    public var isEmpty: Bool { root == nil }
+
     public func search(value: T) -> Bool {
         root?.search(value: value) != nil
     }
@@ -30,8 +32,17 @@ public struct BinaryTree<T: Comparable> {
         insert(to: &root, value: value)
     }
 
+    @discardableResult
     public mutating func remove(_ value: T) -> Bool {
         remove(from: &root, value: value)
+    }
+}
+
+extension BinaryTree: ExpressibleByArrayLiteral {
+    public init(arrayLiteral elements: Value...) {
+        for element in elements {
+            insert(element)
+        }
     }
 }
 
@@ -71,16 +82,29 @@ private extension BinaryTree {
             return
         }
 
-        if l.value < r.value {
-            merge(at: &r.left, left: l, right: r.left)
-            hook = r
-        } else {
-            merge(at: &l.right, left: l.right, right: l)
-            hook = l
-        }
+        merge(at: &r.left, left: l, right: r.left)
+        hook = r
     }
+
+//    func merge(at hook: inout Node?, left: Node?, right: Node?) {
+//        guard let l = left, let r = right else {
+//            hook = left != nil ? left : right
+//            return
+//        }
+//
+//        if l.value < r.value {
+//            merge(at: &r.left, left: l, right: r.left)
+//            hook = r
+//        } else {
+//            merge(at: &l.right, left: l.right, right: l)
+//            hook = l
+//        }
+//    }
+    
 }
 
 extension BinaryTree: BinaryTreeInfo {}
 
-
+extension BinaryTree: CustomStringConvertible {
+    public var description: String { diagram() }
+}

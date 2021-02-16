@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol BinaryTreeNode {
+public protocol BinaryTreeNode: CustomStringConvertible {
     associatedtype Value: Comparable & Equatable
     var value: Value { get set }
     var left: Self? { get set }
@@ -28,4 +28,6 @@ public extension BinaryTreeNode {
         }
         return right?.search(value: value) ?? nil
     }
+
+    var description: String { String(describing: value) }
 }
