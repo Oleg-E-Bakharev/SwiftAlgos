@@ -108,4 +108,12 @@ print("String?: " + MemoryLayout<CGPoint?>.info)
 
 var tree2 = BinaryTree<Int>()
 
+extension BinaryTree : BinaryTreeRotation {}
+
 tree2.insert([1, 2, 3])
+print(tree2)
+var root = tree2.root
+//tree2.rotateLeft(&root)
+//tree2.rotateLeft(&root)
+//tree2.root = root
+//print(tree2)
