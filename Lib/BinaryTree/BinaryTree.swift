@@ -20,7 +20,7 @@ public struct BinaryTree<T: Comparable> : BinaryTreeSerialOperations {
         }
     }
 
-    public private(set) var root: Node?
+    public internal(set) var root: Node?
 
     public var isEmpty: Bool { root == nil }
 
@@ -35,6 +35,24 @@ public struct BinaryTree<T: Comparable> : BinaryTreeSerialOperations {
     @discardableResult
     public mutating func remove(_ value: T) -> Bool {
         remove(from: &root, value: value)
+    }
+}
+
+extension BinaryTree.Node: Equatable {
+    public static func == (lhs: BinaryTree<T>.Node, rhs: BinaryTree<T>.Node) -> Bool {
+        guard lhs.value == rhs.value,
+              lhs.left == rhs.left,
+              lhs.right == rhs.right
+        else {
+            return false
+        }
+        return true
+    }
+}
+
+extension BinaryTree: Equatable {
+    public static func == (lhs: BinaryTree<T>, rhs: BinaryTree<T>) -> Bool {
+        lhs.root == rhs.root
     }
 }
 
@@ -85,7 +103,6 @@ private extension BinaryTree {
         merge(at: &r.left, left: l, right: r.left)
         hook = r
     }
-
 //    func merge(at hook: inout Node?, left: Node?, right: Node?) {
 //        guard let l = left, let r = right else {
 //            hook = left != nil ? left : right
@@ -100,10 +117,11 @@ private extension BinaryTree {
 //            hook = l
 //        }
 //    }
-    
 }
 
 extension BinaryTree: BinaryTreeInfo {}
+
+extension BinaryTree: BinaryTreeRotation {}
 
 extension BinaryTree: CustomStringConvertible {
     public var description: String { diagram() }

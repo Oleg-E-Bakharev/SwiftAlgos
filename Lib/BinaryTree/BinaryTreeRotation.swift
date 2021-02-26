@@ -30,7 +30,7 @@ public extension BinaryTreeRotation where Node: BinaryTreeNode {
     mutating func rotateRight(_ node: inout Node?) {
         var left = node?.left
         node?.left = left?.right
-        left?.left = node
+        left?.right = node
         node = left
     }
 }

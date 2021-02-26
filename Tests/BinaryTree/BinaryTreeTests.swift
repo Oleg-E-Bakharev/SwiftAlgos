@@ -101,4 +101,21 @@ class BinaryTreeTests: XCTestCase {
         XCTAssertTrue(tree.search(value: "C"))
         print(tree)
     }
+
+    func testArrayEquatable() throws {
+        var lhs, rhs: BinaryTree<String>
+        lhs = []
+        rhs = []
+        XCTAssertEqual(lhs, rhs)
+        lhs = ["A"]
+        XCTAssertNotEqual(lhs, rhs)
+        rhs = ["A"]
+        XCTAssertEqual(lhs, rhs)
+        lhs = ["B", "A"]
+        rhs = ["B", "C"]
+        XCTAssertNotEqual(lhs, rhs)
+        lhs = ["B", "A", "C"]
+        rhs = ["B", "C", "A"]
+        XCTAssertEqual(lhs, rhs)
+    }
 }
