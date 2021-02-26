@@ -15,7 +15,7 @@ public struct SplayTree<T: Comparable> : BinaryTreeSerialOperations {
         public var left: Node?
         public var right: Node?
 
-        init(_ value: T) {
+        public init(_ value: T) {
             self.value = value
         }
     }

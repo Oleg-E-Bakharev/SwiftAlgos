@@ -15,7 +15,7 @@ public struct BinaryTree<T: Comparable> : BinaryTreeSerialOperations {
         public var left: Node?
         public var right: Node?
 
-        init(_ value: T) {
+        public init(_ value: T) {
             self.value = value
         }
     }
@@ -29,19 +29,24 @@ public struct BinaryTree<T: Comparable> : BinaryTreeSerialOperations {
     }
 
     public mutating func insert(_ value: T) {
-        insert(to: &root, value: value)
+        Node.insert(to: &root, value: value)
     }
 
     public mutating func insertToRoot(_ value: T) {
         var root = self.root
-        insertToRoot(to: &root, value: value)
+        Node.insertToRoot(to: &root, value: value)
         self.root = root
     }
 
     @discardableResult
     public mutating func remove(_ value: T) -> Bool {
-        remove(from: &root, value: value)
+        Node.remove(from: &root, value: value)
     }
+
+    // Merge O(n)
+//    public static func += (lhs: inout BinaryTree<T>, rhs: inout BinaryTree<T>) -> Void {
+//        rhs.insertToRoot(leftRootValue)
+//    }
 }
 
 extension BinaryTree.Node: Equatable {
@@ -70,81 +75,7 @@ extension BinaryTree: ExpressibleByArrayLiteral {
     }
 }
 
-private extension BinaryTree {
-    func insert(to hook: inout Node?, value: T) {
-        guard let node = hook else {
-            hook = Node(value)
-            return
-        }
-
-        if value == node.value {
-            node.value = value
-        } else if value < node.value {
-            insert(to: &node.left, value: value)
-        } else {
-            insert(to: &node.right, value: value)
-        }
-    }
-
-    mutating func insertToRoot(to hook: inout Node?, value: T) {
-        guard let node = hook else {
-            hook = Node(value)
-            return
-        }
-
-        if value == node.value {
-            node.value = value
-        } else if value < node.value {
-            insertToRoot(to: &node.left, value: value)
-            rotateRight(&hook)
-        } else {
-            insertToRoot(to: &node.right, value: value)
-            rotateLeft(&hook)
-        }
-    }
-
-    func remove(from hook: inout Node?, value: T) -> Bool {
-        guard let node = hook else {
-            return false
-        }
-        if node.value == value {
-            merge(at: &hook, left: node.left, right: node.right)
-            return true
-        }
-        if value < node.value {
-            return remove(from: &node.left, value: value)
-        }
-        return remove(from: &node.right, value: value)
-    }
-
-    func merge(at hook: inout Node?, left: Node?, right: Node?) {
-        guard let l = left, let r = right else {
-            hook = left != nil ? left : right
-            return
-        }
-
-        merge(at: &r.left, left: l, right: r.left)
-        hook = r
-    }
-//    func merge(at hook: inout Node?, left: Node?, right: Node?) {
-//        guard let l = left, let r = right else {
-//            hook = left != nil ? left : right
-//            return
-//        }
-//
-//        if l.value < r.value {
-//            merge(at: &r.left, left: l, right: r.left)
-//            hook = r
-//        } else {
-//            merge(at: &l.right, left: l.right, right: l)
-//            hook = l
-//        }
-//    }
-}
-
 extension BinaryTree: BinaryTreeInfo {}
-
-extension BinaryTree: BinaryTreeRotation {}
 
 extension BinaryTree: CustomStringConvertible {
     public var description: String { diagram() }

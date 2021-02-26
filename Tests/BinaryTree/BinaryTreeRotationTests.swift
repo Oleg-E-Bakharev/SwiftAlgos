@@ -24,7 +24,7 @@ class BinaryTreeRotationTests: XCTestCase {
     func testRotateLeft() throws {
         print(tree)
         var root = tree.root
-        tree.rotateLeft(&root)
+        Tree.Node.rotateLeft(&root)
         tree.root = root
         print(tree)
         let benchmark: Tree = [3, 2, 1]
@@ -34,7 +34,7 @@ class BinaryTreeRotationTests: XCTestCase {
     func testRotateRight() throws {
         print(tree)
         var root = tree.root
-        tree.rotateRight(&root)
+        Tree.Node.rotateRight(&root)
         tree.root = root
         print(tree)
         let benchmark: Tree = [1, 2, 3]
