@@ -32,6 +32,12 @@ public struct BinaryTree<T: Comparable> : BinaryTreeSerialOperations {
         insert(to: &root, value: value)
     }
 
+    public mutating func insertToRoot(_ value: T) {
+        var root = self.root
+        insertToRoot(to: &root, value: value)
+        self.root = root
+    }
+
     @discardableResult
     public mutating func remove(_ value: T) -> Bool {
         remove(from: &root, value: value)
@@ -77,6 +83,23 @@ private extension BinaryTree {
             insert(to: &node.left, value: value)
         } else {
             insert(to: &node.right, value: value)
+        }
+    }
+
+    mutating func insertToRoot(to hook: inout Node?, value: T) {
+        guard let node = hook else {
+            hook = Node(value)
+            return
+        }
+
+        if value == node.value {
+            node.value = value
+        } else if value < node.value {
+            insertToRoot(to: &node.left, value: value)
+            rotateRight(&hook)
+        } else {
+            insertToRoot(to: &node.right, value: value)
+            rotateLeft(&hook)
         }
     }
 

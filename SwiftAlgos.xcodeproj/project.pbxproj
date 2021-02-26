@@ -38,6 +38,7 @@
 		CF9376B22527B3540021CCBB /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9376B12527B3540021CCBB /* Queue.swift */; };
 		CF9376B62527B7590021CCBB /* Deque.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9376B52527B7590021CCBB /* Deque.swift */; };
 		CF9376B82527BF040021CCBB /* RingBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9376B72527BF040021CCBB /* RingBuffer.swift */; };
+		CFAEDFD625E8F6A4003A977E /* SplayTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAEDFD525E8F6A4003A977E /* SplayTree.swift */; };
 		CFB1818225DC493B00C61E12 /* BinaryTreeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB1818125DC493B00C61E12 /* BinaryTreeTests.swift */; };
 		CFB1818A25DC4BD800C61E12 /* BinaryTreeTraits.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB1818925DC4BD800C61E12 /* BinaryTreeTraits.swift */; };
 		CFB3138925C6FE85001E5268 /* PointerEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB3138825C6FE85001E5268 /* PointerEx.swift */; };
@@ -93,6 +94,7 @@
 		CF9376B12527B3540021CCBB /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		CF9376B52527B7590021CCBB /* Deque.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deque.swift; sourceTree = "<group>"; };
 		CF9376B72527BF040021CCBB /* RingBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingBuffer.swift; sourceTree = "<group>"; };
+		CFAEDFD525E8F6A4003A977E /* SplayTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplayTree.swift; sourceTree = "<group>"; };
 		CFB1818125DC493B00C61E12 /* BinaryTreeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTreeTests.swift; sourceTree = "<group>"; };
 		CFB1818925DC4BD800C61E12 /* BinaryTreeTraits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTreeTraits.swift; sourceTree = "<group>"; };
 		CFB3138825C6FE85001E5268 /* PointerEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointerEx.swift; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 				CFB1818925DC4BD800C61E12 /* BinaryTreeTraits.swift */,
 				CF57568425A4820B006C0DBB /* BinaryTreeRotation.swift */,
 				CF26B32525C9DDB700BF034C /* BinaryTree.swift */,
+				CFAEDFD525E8F6A4003A977E /* SplayTree.swift */,
 			);
 			path = BinaryTree;
 			sourceTree = "<group>";
@@ -391,6 +394,7 @@
 				CF26B32625C9DDB700BF034C /* BinaryTree.swift in Sources */,
 				CF78567025530808003321B5 /* DisjointSet.swift in Sources */,
 				CFB3138925C6FE85001E5268 /* PointerEx.swift in Sources */,
+				CFAEDFD625E8F6A4003A977E /* SplayTree.swift in Sources */,
 				7C52E39125419DC4000746FA /* PriorityQueue.swift in Sources */,
 				7C75E89925A2E2F0007873F1 /* BinaryTreeNode.swift in Sources */,
 				CF9376B82527BF040021CCBB /* RingBuffer.swift in Sources */,

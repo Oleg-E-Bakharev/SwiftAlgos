@@ -118,4 +118,15 @@ class BinaryTreeTests: XCTestCase {
         rhs = ["B", "C", "A"]
         XCTAssertEqual(lhs, rhs)
     }
+
+    func testArrayInsertRoot() throws {
+        tree = ["B"]
+        tree.insertToRoot("A")
+        XCTAssert(tree.root?.value == "A")
+        tree.insertToRoot("C")
+        XCTAssert(tree.root?.value == "C")
+        tree.insertToRoot("A")
+        XCTAssert(tree.root?.value == "A")
+        print(tree)
+    }
 }
