@@ -131,18 +131,32 @@ class BinaryTreeTests: XCTestCase {
     }
     
     func testArrayMerge() throws {
-        tree = ["N", "H", "X", "C", "S", "P"]
-        var tree2: Tree = ["G", "E", "M", "A", "I", "R"]
-//        tree = ["C", "B"]
-//        var tree2: Tree = ["A", "D"]
-        print(tree)
+        tree = []
+        var tree2: Tree = ["A", "D"]
+        tree.merge(to: &tree2)
         print(tree2)
-        tree2 += tree
-//        tree += tree2
+        var benchmark: Tree = ["A", "D"]
+        XCTAssert(tree2 == benchmark)
+
+        tree = ["C", "B"]
+        tree2 = []
+        tree.merge(to: &tree2)
         print(tree2)
+        benchmark = ["C", "B"]
+        XCTAssert(tree2 == benchmark)
+
+        tree = ["C", "B"]
+        tree2 = ["A", "D"]
+        tree2.merge(to: &tree)
         print(tree)
-//        var benchmark: Tree = []
-//        XCTAssert(tree == Tree([]))
-        
+        benchmark = ["C", "B", "D", "A"]
+        XCTAssert(tree == benchmark)
+
+        tree = ["C", "B"]
+        tree2 = ["A", "D"]
+        tree.merge(to: &tree2)
+        print(tree2)
+        benchmark = ["A", "D", "C", "B"]
+        XCTAssert(tree2 == benchmark)
     }
 }

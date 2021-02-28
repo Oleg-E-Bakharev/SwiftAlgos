@@ -43,9 +43,10 @@ public struct BinaryTree<T: Comparable> : BinaryTreeSerialOperations {
         Node.remove(from: &root, value: value)
     }
 
-    // Merge O(n)
-    public static func += (lhs: inout BinaryTree<T>, rhs: inout BinaryTree<T>) -> Void {
-        lhs.root = Node.merge(lhs.root, to: rhs.root)
+    // Destructive to self merge O(n)
+    public mutating func merge(to target: inout BinaryTree<T>) -> Void {
+        target.root = Node.merge(target.root, to: root)
+        root = nil
     }
 }
 
