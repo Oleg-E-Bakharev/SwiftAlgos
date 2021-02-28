@@ -10,7 +10,8 @@ import XCTest
 @testable import SwiftAlgosLib
 
 class BinaryTreeTests: XCTestCase {
-    var tree = BinaryTree<String>()
+    typealias Tree = BinaryTree<String>
+    var tree = Tree()
 
     override func setUpWithError() throws {
         tree = []
@@ -102,7 +103,7 @@ class BinaryTreeTests: XCTestCase {
     }
 
     func testArrayEquatable() throws {
-        var lhs, rhs: BinaryTree<String>
+        var lhs, rhs: Tree
         lhs = []
         rhs = []
         XCTAssertEqual(lhs, rhs)
@@ -127,5 +128,21 @@ class BinaryTreeTests: XCTestCase {
         tree.insertToRoot("A")
         XCTAssert(tree.root?.value == "A")
         print(tree)
+    }
+    
+    func testArrayMerge() throws {
+        tree = ["N", "H", "X", "C", "S", "P"]
+        var tree2: Tree = ["G", "E", "M", "A", "I", "R"]
+//        tree = ["C", "B"]
+//        var tree2: Tree = ["A", "D"]
+        print(tree)
+        print(tree2)
+        tree2 += tree
+//        tree += tree2
+        print(tree2)
+        print(tree)
+//        var benchmark: Tree = []
+//        XCTAssert(tree == Tree([]))
+        
     }
 }

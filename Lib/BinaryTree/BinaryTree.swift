@@ -44,9 +44,9 @@ public struct BinaryTree<T: Comparable> : BinaryTreeSerialOperations {
     }
 
     // Merge O(n)
-//    public static func += (lhs: inout BinaryTree<T>, rhs: inout BinaryTree<T>) -> Void {
-//        rhs.insertToRoot(leftRootValue)
-//    }
+    public static func += (lhs: inout BinaryTree<T>, rhs: inout BinaryTree<T>) -> Void {
+        lhs.root = Node.merge(lhs.root, to: rhs.root)
+    }
 }
 
 extension BinaryTree.Node: Equatable {

@@ -93,6 +93,20 @@ public extension BinaryTreeNode {
             hook = l
         }
     }
+    
+    /// O(n)
+    @discardableResult
+    static func merge(_ left: Self?, to right: Self?) -> Self? {
+        guard let left = left else { return right }
+        guard right != nil else { return left }
+        var right = right
+        insertToRoot(to: &right, value: left.value)
+        let rightLeft = merge(left.left, to: right?.left)
+        right?.left = rightLeft
+        let rightRight = merge(left.right, to: right?.right)
+        right?.right = rightRight
+        return right
+    }
 
     static func rotateLeft(_ node: inout Self?) {
         var right = node?.right
