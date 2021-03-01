@@ -108,6 +108,7 @@ public extension BinaryTreeNode {
         return right
     }
 
+    // right becomes node
     static func rotateLeft(_ node: inout Self?) {
         var right = node?.right
         node?.right = right?.left
@@ -115,6 +116,7 @@ public extension BinaryTreeNode {
         node = right
     }
 
+    // left becomes node
     static func rotateRight(_ node: inout Self?) {
         var left = node?.left
         node?.left = left?.right

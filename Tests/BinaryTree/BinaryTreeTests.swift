@@ -10,7 +10,7 @@ import XCTest
 @testable import SwiftAlgosLib
 
 class BinaryTreeTests: XCTestCase {
-    typealias Tree = BinaryTree<String>
+    typealias Tree = BinaryTree<Character>
     var tree = Tree()
 
     override func setUpWithError() throws {
