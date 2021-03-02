@@ -24,7 +24,7 @@ public struct BinaryTree<T: Comparable> : BinaryTreeSerialOperations {
 
     public var isEmpty: Bool { root == nil }
 
-    public func search(value: T) -> Bool {
+    public func search(_ value: T) -> Bool {
         root?.search(value: value) != nil
     }
 

@@ -13,7 +13,7 @@ public protocol BinaryTreeTraits {
 
     var isEmpty: Bool { get }
 
-    func search(value: Value) -> Bool
+    func search(_ value: Value) -> Bool
 
     mutating func insert(_ value: Value)
 

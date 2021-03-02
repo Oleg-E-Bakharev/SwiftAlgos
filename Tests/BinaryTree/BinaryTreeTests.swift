@@ -23,82 +23,82 @@ class BinaryTreeTests: XCTestCase {
 
     func testInsertOne() throws {
         XCTAssertTrue(tree.isEmpty)
-        XCTAssertFalse(tree.search(value: "A"))
+        XCTAssertFalse(tree.search("A"))
         XCTAssertFalse(tree.remove("A"))
         tree.insert("A")
-        XCTAssertFalse(tree.search(value: "0"))
-        XCTAssertFalse(tree.search(value: "B"))
+        XCTAssertFalse(tree.search("0"))
+        XCTAssertFalse(tree.search("B"))
         XCTAssertFalse(tree.isEmpty)
-        XCTAssertTrue(tree.search(value: "A"))
+        XCTAssertTrue(tree.search("A"))
         tree.insert("A")
-        XCTAssertTrue(tree.search(value: "A"))
+        XCTAssertTrue(tree.search("A"))
         XCTAssertTrue(tree.remove("A"))
         XCTAssertTrue(tree.isEmpty)
     }
 
     func testInsertTwo() throws {
         tree.insert(["B", "A"])
-        XCTAssertTrue(tree.search(value: "A"))
-        XCTAssertTrue(tree.search(value: "B"))
+        XCTAssertTrue(tree.search("A"))
+        XCTAssertTrue(tree.search("B"))
         tree.remove(["A", "B"])
         XCTAssertTrue(tree.isEmpty)
     }
 
     func testInsertSerial() throws {
         tree.insert(["A", "B", "C"])
-        XCTAssertTrue(tree.search(value: "A"))
-        XCTAssertTrue(tree.search(value: "B"))
-        XCTAssertTrue(tree.search(value: "C"))
+        XCTAssertTrue(tree.search("A"))
+        XCTAssertTrue(tree.search("B"))
+        XCTAssertTrue(tree.search("C"))
         tree.remove(["B", "A", "C"])
         XCTAssertTrue(tree.isEmpty)
     }
 
     func testArrayLiteral() throws {
         tree = ["B", "A", "C"]
-        XCTAssertTrue(tree.search(value: "A"))
-        XCTAssertTrue(tree.search(value: "B"))
-        XCTAssertTrue(tree.search(value: "C"))
+        XCTAssertTrue(tree.search("A"))
+        XCTAssertTrue(tree.search("B"))
+        XCTAssertTrue(tree.search("C"))
     }
 
     func testArrayRemoveLeft() throws {
         // Из-за рандомизации делаем цикл.
         for _ in 0..<10 {
             tree = ["B", "A"]
-            XCTAssertTrue(tree.search(value: "A"))
-            XCTAssertTrue(tree.search(value: "B"))
+            XCTAssertTrue(tree.search("A"))
+            XCTAssertTrue(tree.search("B"))
             XCTAssertTrue(tree.remove("A"))
-            XCTAssertFalse(tree.search(value: "A"))
-            XCTAssertTrue(tree.search(value: "B"))
+            XCTAssertFalse(tree.search("A"))
+            XCTAssertTrue(tree.search("B"))
             XCTAssertTrue(tree.remove("B"))
-            XCTAssertFalse(tree.search(value: "A"))
-            XCTAssertFalse(tree.search(value: "B"))
+            XCTAssertFalse(tree.search("A"))
+            XCTAssertFalse(tree.search("B"))
         }
     }
 
     func testArrayRemoveRight() throws {
         for _ in 0..<10 {
             tree = ["A", "B"]
-            XCTAssertTrue(tree.search(value: "A"))
-            XCTAssertTrue(tree.search(value: "B"))
+            XCTAssertTrue(tree.search("A"))
+            XCTAssertTrue(tree.search("B"))
             XCTAssertTrue(tree.remove("B"))
-            XCTAssertFalse(tree.search(value: "B"))
-            XCTAssertTrue(tree.search(value: "A"))
+            XCTAssertFalse(tree.search("B"))
+            XCTAssertTrue(tree.search("A"))
             XCTAssertTrue(tree.remove("A"))
-            XCTAssertFalse(tree.search(value: "A"))
-            XCTAssertFalse(tree.search(value: "B"))
+            XCTAssertFalse(tree.search("A"))
+            XCTAssertFalse(tree.search("B"))
         }
     }
 
     func testArrayRemoveBoth() throws {
         for _ in 0..<10 {
             tree = ["B", "A", "C"]
-            XCTAssertTrue(tree.search(value: "A"))
-            XCTAssertTrue(tree.search(value: "B"))
-            XCTAssertTrue(tree.search(value: "C"))
+            XCTAssertTrue(tree.search("A"))
+            XCTAssertTrue(tree.search("B"))
+            XCTAssertTrue(tree.search("C"))
             XCTAssertTrue(tree.remove("B"))
-            XCTAssertTrue(tree.search(value: "A"))
-            XCTAssertFalse(tree.search(value: "B"))
-            XCTAssertTrue(tree.search(value: "C"))
+            XCTAssertTrue(tree.search("A"))
+            XCTAssertFalse(tree.search("B"))
+            XCTAssertTrue(tree.search("C"))
         }
     }
 
@@ -158,5 +158,12 @@ class BinaryTreeTests: XCTestCase {
         print(tree2)
         benchmark = ["A", "D", "C", "B"]
         XCTAssert(tree2 == benchmark)
+    }
+
+    func testStrangeRemove() throws {
+        tree = ["2", "0", "1", "6", "5", "8", "3"]
+        print(tree)
+        tree.remove("2")
+        print(tree)
     }
 }

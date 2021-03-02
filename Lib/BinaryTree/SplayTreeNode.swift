@@ -9,34 +9,57 @@
 import Foundation
 
 public extension BinaryTreeNode {
-    static func splaySearch(to hook: inout Self?, value: Value) -> Self? {
-        guard var node = hook else { return nil }
-        var result: Self? = nil
+    typealias SplayOperation = (inout Self?, Value)->Self?
+
+    static func splayEquivalence(_ node: inout Self?, _ value: Value)->Self? {
+        node
+    }
+
+    static func splayInsertion(_ node: inout Self?, _ value: Value)->Self? {
+        node = Self(value)
+        return node
+    }
+
+    static func splayRemoving (_ node: inout Self?, _ value: Value)->Self? {
+        Self.join(at: &node, left: node?.left, right: node?.right)
+        return node
+    }
+
+    /// Universal splay operation
+    @discardableResult
+    static func splay(_ operation: SplayOperation, to hook: inout Self?, value: Value) -> Self? {
+        guard var node = hook else { return operation(&hook, value) }
+        var result: Self?
         if value == node.value {
-            result = node
+            result = operation(&hook, value)
         } else if value < node.value {
-            guard var left = node.left else {
-                return nil }
-            if value == left.value { // zig
-                result = left
-            } else if value < left.value { // zig-zig
-                result = splaySearch(to: &left.left, value: value)
-                if result != nil { Self.rotateRight(&hook) } // hook!
-            } else { // zig-zag
-                result = splaySearch(to: &left.right, value: value)
-                if result != nil { Self.rotateLeft(&node.left) }
+            if var left = node.left {
+                if value == left.value { // zig
+                    result = operation(&node.left, value)
+                } else if value < left.value { // zig-zig
+                    result = splay(operation, to: &left.left, value: value)
+                    if result != nil { Self.rotateRight(&hook) } // hook!
+                } else { // zig-zag
+                    result = splay(operation, to: &left.right, value: value)
+                    if result != nil { Self.rotateLeft(&node.left) }
+                }
+            } else {
+                return operation(&node.left, value)
             }
             if result != nil { Self.rotateRight(&hook) }
         } else {
-            guard var right = node.right else { return nil }
-            if value == right.value { // zag
-                result = right
-            } else if value > right.value { // zag-zag
-                result = splaySearch(to: &right.right, value: value)
-                if result != nil { Self.rotateLeft(&hook) } // hook!
-            } else { // zag-zig
-                result = splaySearch(to: &right.left, value: value)
-                if result != nil { Self.rotateRight(&node.right) }
+            if var right = node.right {
+                if value == right.value { // zag
+                    result = operation(&node.right, value)
+                } else if value > right.value { // zag-zag
+                    result = splay(operation, to: &right.right, value: value)
+                    if result != nil { Self.rotateLeft(&hook) } // hook!
+                } else { // zag-zig
+                    result = splay(operation, to: &right.left, value: value)
+                    if result != nil { Self.rotateRight(&node.right) }
+                }
+            } else {
+                result = operation(&node.right, value)
             }
             if result != nil { Self.rotateLeft(&hook) }
         }

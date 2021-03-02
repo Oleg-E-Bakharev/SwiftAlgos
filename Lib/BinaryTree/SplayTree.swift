@@ -9,8 +9,17 @@
 import Foundation
 
 public extension BinaryTree {
-    mutating func splaySearch(value: T) -> Bool {
-        Node.splaySearch(to: &root, value: value) != nil
+    mutating func splaySearch(_ value: T) -> Bool {
+        Node.splay(Node.splayEquivalence, to: &root, value: value) != nil
+    }
+
+    mutating func splayInsert(_ value: T) {
+        Node.splay(Node.splayInsertion, to: &root, value: value)
+    }
+
+    @discardableResult
+    mutating func splayRemove(_ value: T) -> Bool {
+        Node.splay(Node.splayRemoving, to: &root, value: value) != nil
     }
 }
 
