@@ -31,6 +31,7 @@ class SplayTreeTests: XCTestCase {
         print(tree)
         XCTAssertFalse(tree.splaySearch("A"))
         XCTAssertFalse(tree.splaySearch("C"))
+        print(tree)
         let benchmark: Tree = ["B"]
         XCTAssert(tree == benchmark)
     }
@@ -121,8 +122,9 @@ class SplayTreeTests: XCTestCase {
     func testSplayRemove() throws {
         tree = ["A", "B", "C", "D", "E", "F"]
         XCTAssertTrue(tree.splayRemove("E"))
-        XCTAsse
         print(tree)
+        let benchmark: Tree = ["F", "B", "A", "D", "C"]
+        XCTAssertTrue(tree == benchmark)
     }
 
 }
