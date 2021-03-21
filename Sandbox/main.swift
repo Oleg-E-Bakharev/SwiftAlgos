@@ -9,111 +9,51 @@
 import Foundation
 import SwiftAlgosLib
 
-final class SplayTreeNode<Value: Comparable> : BinaryTreeNode {
-    public var value: Value
-    public var left: SplayTreeNode?
-    public var right: SplayTreeNode?
-    
-    public init(_ value: Value, left: SplayTreeNode? = nil, right: SplayTreeNode? = nil) {
-        self.value = value
-        self.left = left
-        self.right = right
-    }
-}
+typealias EnumNode = EnumListNode<Int>
 
-final class AWLTreeNode<Value: Comparable>: BinaryTreeNode {
-    public var value: Value
-    public var left: AWLTreeNode?
-    public var right: AWLTreeNode?
-    
-    public init(_ value: Value, left: AWLTreeNode? = nil, right: AWLTreeNode? = nil) {
-        self.value = value
-        self.left = left
-        self.right = right
-    }
-}
+var el: EnumNode = [1, 2, 3, 4, 5]
+print(el)
+print(el.reverse())
 
-extension AWLTreeNode: CustomStringConvertible {
-    var description: String { String(describing: value) }
-}
+typealias Node = ListNode<Int>
 
-struct SplayTree<Value: Comparable> {
-    var root: SplayTreeNode<Value>?
-}
+var li: EnumNode = [1, 2, 3, 4, 5]
+print(li)
+print(li.reverse())
 
-extension SplayTree: BinaryTreeInfo {
-}
+el = [1]
+print(el.getMiddle())
+li = [1]
+print(li.getMiddle())
 
-struct AWLTree<Value: Comparable> {
-    var root: AWLTreeNode<Value>?
-}
+el = [1, 2]
+print(el.getMiddle())
+li = [1, 2]
+print(li.getMiddle())
 
-extension AWLTree: BinaryTreeInfo {
-}
+el = [1, 2, 3]
+print(el.getMiddle())
+li = [1, 2, 3]
+print(li.getMiddle())
 
-extension SplayTree: CustomStringConvertible {
-    var description: String { diagram() }
-}
+el = [1, 2, 3, 4]
+print(el.getMiddle())
+li = [1, 2, 3, 4]
+print(li.getMiddle())
 
-extension AWLTree: CustomStringConvertible {
-    var description: String { diagram() }
-}
+el = [1, 2, 3, 4, 5]
+print(el.getMiddle())
+li = [1, 2, 3, 4, 5]
+print(li.getMiddle())
 
-typealias Node = AWLTreeNode<Int>
+el = [1, 2, 3, 4, 5, 6]
+print(el.getMiddle())
+li = [1, 2, 3, 4, 5, 6]
+print(li.getMiddle())
 
-let zero = Node(0)
-let one = Node(1)
-let two = Node(2)
-let three = Node(3)
-let five = Node(5)
-let seven = Node(7)
-let eight = Node(8)
-let nine = Node(9)
+el = [1, 2, 3, 4, 5, 6, 7]
+print(el.getMiddle())
+li = [1, 2, 3, 4, 5, 6, 7]
+print(li.getMiddle())
 
-seven.left = one
-seven.right = nine
-one.left = zero
-one.right = five
-five.left = two
-five.right = three
-nine.left = eight
 
-let tree = AWLTree(root: seven)
-
-print(tree)
-
-var nodePtr = BitPtr<Node>(zero)
-nodePtr.bit = true
-print(nodePtr.target ?? "nil", nodePtr.bit)
-nodePtr.target = nil
-print(nodePtr.target ?? "nil", nodePtr.bit)
-
-let nodeLayout = MemoryLayout<AWLTreeNode<Int>>.self
-
-extension MemoryLayout {
-    static var info: String {
-        "size: \(size), stride:\(stride), aligment:\(alignment)"
-    }
-}
-
-print("Int?: " + MemoryLayout<Int?>.info)
-
-print("BitPtr<AWLTreeNode<Int>>: " + MemoryLayout<BitPtr<AWLTreeNode<Int>>>.info)
-
-print("AWLTreeNode<Int>?: " + MemoryLayout<AWLTreeNode<Int>?>.info)
-
-print("CGPoint?: " + MemoryLayout<CGPoint?>.info)
-
-print("String?: " + MemoryLayout<CGPoint?>.info)
-
-var tree2 = BinaryTree<Int>()
-
-extension BinaryTree : BinaryTreeRotation {}
-
-tree2.insert([1, 2, 3])
-print(tree2)
-var root = tree2.root
-//tree2.rotateLeft(&root)
-//tree2.rotateLeft(&root)
-//tree2.root = root
-//print(tree2)

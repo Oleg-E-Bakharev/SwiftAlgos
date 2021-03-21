@@ -21,6 +21,7 @@
 		CF3F9D1C252CEB8600B82E60 /* CollectionExTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3F9D1B252CEB8600B82E60 /* CollectionExTests.swift */; };
 		CF5ED6F725E7C356007C0576 /* BinaryTreeInfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5ED6F625E7C356007C0576 /* BinaryTreeInfoTests.swift */; };
 		CF5ED6FC25E7E236007C0576 /* BinaryTreeRotationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5ED6FB25E7E236007C0576 /* BinaryTreeRotationTests.swift */; };
+		CF67F9D325F27B8000FA4B4E /* ListCompareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF67F9D225F27B8000FA4B4E /* ListCompareTests.swift */; };
 		CF78566F25530805003321B5 /* Clusterizator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF78566B2552F043003321B5 /* Clusterizator.swift */; };
 		CF78567025530808003321B5 /* DisjointSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF78566D2552F146003321B5 /* DisjointSet.swift */; };
 		CF83EB5F25115FAC000AEFB1 /* ListAlgosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF83EB5C25115B72000AEFB1 /* ListAlgosTests.swift */; };
@@ -46,7 +47,9 @@
 		CFB3138E25C7035C001E5268 /* PointerExTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB3138D25C7035C001E5268 /* PointerExTests.swift */; };
 		CFB3139925C7108C001E5268 /* BitPtrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB3139825C7108C001E5268 /* BitPtrTests.swift */; };
 		CFB99B4D25A5CEBD002E0190 /* BitPtr.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB99B4C25A5CEBD002E0190 /* BitPtr.swift */; };
+		CFBE2FAD2607A7E000436FCD /* EnumListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBE2FAC2607A7E000436FCD /* EnumListTests.swift */; };
 		CFE49EEC2556B668002A3774 /* DisjointSetTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE49EEB2556B668002A3774 /* DisjointSetTest.swift */; };
+		CFFC196025EEA1C7003CDA32 /* EnumListNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFC195F25EEA1C7003CDA32 /* EnumListNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -76,6 +79,7 @@
 		CF3F9D1B252CEB8600B82E60 /* CollectionExTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionExTests.swift; sourceTree = "<group>"; };
 		CF5ED6F625E7C356007C0576 /* BinaryTreeInfoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTreeInfoTests.swift; sourceTree = "<group>"; };
 		CF5ED6FB25E7E236007C0576 /* BinaryTreeRotationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTreeRotationTests.swift; sourceTree = "<group>"; };
+		CF67F9D225F27B8000FA4B4E /* ListCompareTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCompareTests.swift; sourceTree = "<group>"; };
 		CF78566B2552F043003321B5 /* Clusterizator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clusterizator.swift; sourceTree = "<group>"; };
 		CF78566D2552F146003321B5 /* DisjointSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisjointSet.swift; sourceTree = "<group>"; };
 		CF83EB5C25115B72000AEFB1 /* ListAlgosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAlgosTests.swift; sourceTree = "<group>"; };
@@ -103,7 +107,9 @@
 		CFB3138D25C7035C001E5268 /* PointerExTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointerExTests.swift; sourceTree = "<group>"; };
 		CFB3139825C7108C001E5268 /* BitPtrTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitPtrTests.swift; sourceTree = "<group>"; };
 		CFB99B4C25A5CEBD002E0190 /* BitPtr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitPtr.swift; sourceTree = "<group>"; };
+		CFBE2FAC2607A7E000436FCD /* EnumListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumListTests.swift; sourceTree = "<group>"; };
 		CFE49EEB2556B668002A3774 /* DisjointSetTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisjointSetTest.swift; sourceTree = "<group>"; };
+		CFFC195F25EEA1C7003CDA32 /* EnumListNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumListNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,12 +195,11 @@
 		CF85DA1725090C210099EABF /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				CFBE2FAB2607A7B500436FCD /* List */,
 				CF5ED70125E7E26D007C0576 /* BinaryTree */,
 				CF85DA1A25090C210099EABF /* Info.plist */,
 				CF876232250CF1F500F4FAB0 /* SwiftAlgosLib.xctestplan */,
 				CF85DA1825090C210099EABF /* StackTests.swift */,
-				CF87623A250E258B00F4FAB0 /* ListTests.swift */,
-				CF83EB5C25115B72000AEFB1 /* ListAlgosTests.swift */,
 				CF3F9D1B252CEB8600B82E60 /* CollectionExTests.swift */,
 				7C3AD6C2252866B700CA7FB7 /* RingBufferTests.swift */,
 				7C00B426253D8E9D00A25748 /* QueueTests.swift */,
@@ -209,13 +214,10 @@
 		CF85DA2325090CB30099EABF /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				CFBE2FA72607A77B00436FCD /* List */,
 				CF5ED70025E7E255007C0576 /* BinaryTree */,
 				CF85D9F42509059C0099EABF /* Stack.swift */,
-				CF876236250D0A7D00F4FAB0 /* ListNode.swift */,
-				CF876238250D0D0F00F4FAB0 /* List.swift */,
-				CF8E2EE725111F1900419D36 /* ListAlgos.swift */,
 				CF9376B12527B3540021CCBB /* Queue.swift */,
-				7C00B421253D8A2000A25748 /* ListQueue.swift */,
 				CF9376B52527B7590021CCBB /* Deque.swift */,
 				CF92106A252CE38D00B47F8D /* CollectionEx.swift */,
 				CFB3138825C6FE85001E5268 /* PointerEx.swift */,
@@ -235,6 +237,29 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CFBE2FA72607A77B00436FCD /* List */ = {
+			isa = PBXGroup;
+			children = (
+				CF876236250D0A7D00F4FAB0 /* ListNode.swift */,
+				CF876238250D0D0F00F4FAB0 /* List.swift */,
+				CFFC195F25EEA1C7003CDA32 /* EnumListNode.swift */,
+				CF8E2EE725111F1900419D36 /* ListAlgos.swift */,
+				7C00B421253D8A2000A25748 /* ListQueue.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		CFBE2FAB2607A7B500436FCD /* List */ = {
+			isa = PBXGroup;
+			children = (
+				CF87623A250E258B00F4FAB0 /* ListTests.swift */,
+				CFBE2FAC2607A7E000436FCD /* EnumListTests.swift */,
+				CF83EB5C25115B72000AEFB1 /* ListAlgosTests.swift */,
+				CF67F9D225F27B8000FA4B4E /* ListCompareTests.swift */,
+			);
+			path = List;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -368,6 +393,7 @@
 			files = (
 				CFE49EEC2556B668002A3774 /* DisjointSetTest.swift in Sources */,
 				CF85DA1925090C210099EABF /* StackTests.swift in Sources */,
+				CFBE2FAD2607A7E000436FCD /* EnumListTests.swift in Sources */,
 				7C00B427253D8E9D00A25748 /* QueueTests.swift in Sources */,
 				CF5ED6FC25E7E236007C0576 /* BinaryTreeRotationTests.swift in Sources */,
 				CF83EB5F25115FAC000AEFB1 /* ListAlgosTests.swift in Sources */,
@@ -378,6 +404,7 @@
 				CFB1818225DC493B00C61E12 /* BinaryTreeTests.swift in Sources */,
 				CF3F9D1C252CEB8600B82E60 /* CollectionExTests.swift in Sources */,
 				CFB3138E25C7035C001E5268 /* PointerExTests.swift in Sources */,
+				CF67F9D325F27B8000FA4B4E /* ListCompareTests.swift in Sources */,
 				7C3AD6C3252866B700CA7FB7 /* RingBufferTests.swift in Sources */,
 				CFB24D7B25ED7DAB00A5FBC4 /* SplayTreeTests.swift in Sources */,
 			);
@@ -397,6 +424,7 @@
 				CF85DA2B25090CC60099EABF /* Stack.swift in Sources */,
 				CF26B32625C9DDB700BF034C /* BinaryTree.swift in Sources */,
 				CF78567025530808003321B5 /* DisjointSet.swift in Sources */,
+				CFFC196025EEA1C7003CDA32 /* EnumListNode.swift in Sources */,
 				CFB3138925C6FE85001E5268 /* PointerEx.swift in Sources */,
 				CFAEDFD625E8F6A4003A977E /* SplayTree.swift in Sources */,
 				7C52E39125419DC4000746FA /* PriorityQueue.swift in Sources */,

@@ -23,7 +23,13 @@ public struct List<Value> {
         self.head = head
         self.tail = tail
     }
-    
+
+    public init(_ values: Value...) {
+        for value in values {
+            append(value)
+        }
+    }
+
     public init() {}
     
     public var isEmpty: Bool {
@@ -66,7 +72,7 @@ public struct List<Value> {
     /// O1 Remove Value in head.
     @discardableResult
     public mutating func pop() -> Value? {
-        // On push we can avoid copy on write
+        // On pop we can avoid copy on write
         defer {
             head = head?.next
             if isEmpty {
@@ -125,6 +131,29 @@ extension List: ExpressibleByArrayLiteral {
     }
 }
 
+extension List: ExpressibleByUnicodeScalarLiteral where Value == Character {
+    public typealias UnicodeScalarLiteralType = Value
+    public init(unicodeScalarLiteral value: Character) {
+        push(value)
+    }
+}
+
+extension List: ExpressibleByExtendedGraphemeClusterLiteral where Value == Character {
+    public typealias ExtendedGraphemeClusterLiteralType = Value
+    public init(extendedGraphemeClusterLiteral value: Character) {
+        push(value)
+    }
+}
+
+extension List: ExpressibleByStringLiteral where Value == Character {
+    public typealias StringLiteralType = String
+    public init(stringLiteral string: Self.StringLiteralType) {
+        for character in string {
+            append(character)
+        }
+    }
+}
+
 extension List: Sequence {
     public struct Iterator: IteratorProtocol {
         public var node: Node?
@@ -147,5 +176,11 @@ extension List: CustomStringConvertible {
             return "Empty list"
         }
         return "\(head)"
+    }
+}
+
+extension List: Equatable where Value: Equatable {
+    public static func == (lhs: List, rhs: List) -> Bool {
+        lhs.head == rhs.head
     }
 }

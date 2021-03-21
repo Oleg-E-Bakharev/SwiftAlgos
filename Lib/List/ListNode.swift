@@ -11,10 +11,14 @@ import Foundation
 public final class ListNode<Value> {
     public var value: Value
     public var next: ListNode?
-    
+
     public init(value: Value, next: ListNode? = nil) {
         self.value = value
         self.next = next
+    }
+
+    public func push(_ value: Value) -> Self {
+        .init(value: value, next: self)
     }
 }
 
@@ -23,13 +27,13 @@ public extension ListNode {
     static func reverse(_ head: ListNode?) -> ListNode? {
         var prev = head
         var curr = prev?.next
+        prev?.next = nil
         while curr != nil {
             let next = curr?.next
             curr?.next = prev
             prev = curr
             curr = next
         }
-        head?.next = nil
         return prev
     }
     
@@ -83,5 +87,31 @@ extension ListNode: CustomStringConvertible {
             return "\(value)"
         }
         return "\(value) -> \(next)"
+    }
+}
+
+extension ListNode: ExpressibleByArrayLiteral {
+    public convenience init(arrayLiteral elements: Value...) {
+        assert(elements.count > 0)
+        var current: Self!
+        elements.reversed().forEach {
+            current = .init(value: $0, next: current)
+        }
+        self.init(value: current.value, next: current.next)
+    }
+}
+
+extension ListNode: Equatable where Value: Equatable {
+    public static func == (lhs: ListNode, rhs: ListNode) -> Bool {
+        var left: ListNode? = lhs
+        var right: ListNode? = rhs
+        while let l = left {
+            guard let r = right, l.value == r.value else {
+                return false
+            }
+            left = l.next
+            right = r.next
+        }
+        return right == nil
     }
 }
