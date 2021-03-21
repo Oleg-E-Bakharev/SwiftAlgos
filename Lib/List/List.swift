@@ -57,10 +57,10 @@ public struct List<Value> {
         self.tail = tail.next
     }
     
-    /// O1 Insert Value after Node
+    /// O1 Insert Value after Node. If node not from list - result unpredictable
     @discardableResult
     public mutating func insert(_ value: Value, after node: Node) -> Node {
-        copyNodesIfNotUnique()
+        let node = copyNodesIfNotUnique(node)!
         guard tail !== node else {
             append(value)
             return tail!
@@ -82,9 +82,10 @@ public struct List<Value> {
         return head?.value
     }
     
-    /// O1 Remove Value afterNode
+    /// O1 Remove Value afterNode. If node not from list - result unpredictable
     @discardableResult
     public mutating func remove(after node: Node) -> Value? {
+        let node = copyNodesIfNotUnique(node)!
         defer {
             if node.next === tail {
                 tail = node
@@ -93,10 +94,11 @@ public struct List<Value> {
         }
         return node.next?.value
     }
-    
-    private mutating func copyNodesIfNotUnique() {
+
+    @discardableResult
+    private mutating func copyNodesIfNotUnique(_ doublingNode: Node? = nil) -> Node? {
         guard !isKnownUniquelyReferenced(&uniqueMarker), var oldNode = head else {
-            return
+            return doublingNode
         }
         #if DEBUG
         print("🔴copy on write🔴")
@@ -104,14 +106,19 @@ public struct List<Value> {
         
         head = ListNode(value: oldNode.value)
         var newNode = head
+        var resultNode = newNode
         
         while let oldNodeNext = oldNode.next {
             newNode!.next = ListNode(value: oldNodeNext.value)
             oldNode = oldNodeNext
             newNode = newNode!.next
+            if oldNode === doublingNode {
+                resultNode = newNode
+            }
         }
         
         tail = newNode
+        return resultNode
     }
     
     internal mutating func setHead(_ head: Node?) {

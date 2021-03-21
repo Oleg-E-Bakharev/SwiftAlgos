@@ -101,6 +101,7 @@ class ListTest: XCTestCase {
         list.append(2)
         list.append(3)
         XCTAssertEqual(list.remove(after: list.head!), 2)
+        XCTAssertEqual(list, List(1, 3))
     }
     
     func testInitArrayLiteral() {
@@ -134,6 +135,39 @@ class ListTest: XCTestCase {
         XCTAssertEqual(list, List(1, 2, 3))
         XCTAssertEqual(list1, List(1, 2, 3, 4))
     }
+
+    func testCopyOnWriteOnInsertAfterHead() {
+        list = [1, 3]
+        let list1 = list
+        list.insert(2, after: list.head!)
+        XCTAssertEqual(list, List(1, 2, 3))
+        XCTAssertEqual(list1, List(1, 3))
+    }
+
+    func testCopyOnWriteOnRemoveAfterHead() {
+        list = [1, 2, 3]
+        let list1 = list
+        list.remove(after: list.head!)
+        XCTAssertEqual(list, List(1, 3))
+        XCTAssertEqual(list1, List(1, 2, 3))
+    }
+
+    func testCopyOnWriteOnInsertNotAfterHead() {
+        list = [1, 2, 4]
+        let list1 = list
+        list.insert(3, after: list.head!.next!)
+        XCTAssertEqual(list, List(1, 2, 3, 4))
+        XCTAssertEqual(list1, List(1, 2, 4))
+    }
+
+    func testCopyOnWriteOnRemoveNotAfterHead() {
+        list = [1, 2, 3]
+        let list1 = list
+        list.remove(after: list.head!.next!)
+        XCTAssertEqual(list, List(1, 2))
+        XCTAssertEqual(list1, List(1, 2, 3))
+    }
+
     
     func testPushAvoidCopyOnWrite() {
         list = [1, 2, 3]
