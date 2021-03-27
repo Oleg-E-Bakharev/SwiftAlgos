@@ -21,6 +21,8 @@
 		CF395972260F48200001664B /* List+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF395971260F48200001664B /* List+Codable.swift */; };
 		CF395977260F5B0F0001664B /* ListCodableTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF395976260F5B0F0001664B /* ListCodableTest.swift */; };
 		CF395987260F69DA0001664B /* SequenceEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF395986260F69DA0001664B /* SequenceEx.swift */; };
+		CF395995260F8EE00001664B /* BinaryTree+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF395994260F8EE00001664B /* BinaryTree+Codable.swift */; };
+		CF39599A260F8F360001664B /* BinaryTreeCodableTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF395999260F8F360001664B /* BinaryTreeCodableTest.swift */; };
 		CF3F9D1C252CEB8600B82E60 /* CollectionExTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3F9D1B252CEB8600B82E60 /* CollectionExTests.swift */; };
 		CF5ED6F725E7C356007C0576 /* BinaryTreeInfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5ED6F625E7C356007C0576 /* BinaryTreeInfoTests.swift */; };
 		CF5ED6FC25E7E236007C0576 /* BinaryTreeRotationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5ED6FB25E7E236007C0576 /* BinaryTreeRotationTests.swift */; };
@@ -82,6 +84,8 @@
 		CF395971260F48200001664B /* List+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "List+Codable.swift"; sourceTree = "<group>"; };
 		CF395976260F5B0F0001664B /* ListCodableTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCodableTest.swift; sourceTree = "<group>"; };
 		CF395986260F69DA0001664B /* SequenceEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequenceEx.swift; sourceTree = "<group>"; };
+		CF395994260F8EE00001664B /* BinaryTree+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BinaryTree+Codable.swift"; sourceTree = "<group>"; };
+		CF395999260F8F360001664B /* BinaryTreeCodableTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTreeCodableTest.swift; sourceTree = "<group>"; };
 		CF3F9D1B252CEB8600B82E60 /* CollectionExTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionExTests.swift; sourceTree = "<group>"; };
 		CF5ED6F625E7C356007C0576 /* BinaryTreeInfoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTreeInfoTests.swift; sourceTree = "<group>"; };
 		CF5ED6FB25E7E236007C0576 /* BinaryTreeRotationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTreeRotationTests.swift; sourceTree = "<group>"; };
@@ -153,6 +157,7 @@
 				7C75E89D25A2E474007873F1 /* BinaryTreeInfo.swift */,
 				CFB1818925DC4BD800C61E12 /* BinaryTreeTraits.swift */,
 				CF26B32525C9DDB700BF034C /* BinaryTree.swift */,
+				CF395994260F8EE00001664B /* BinaryTree+Codable.swift */,
 				CFAEDFD525E8F6A4003A977E /* SplayTree.swift */,
 			);
 			path = BinaryTree;
@@ -165,6 +170,7 @@
 				CF5ED6F625E7C356007C0576 /* BinaryTreeInfoTests.swift */,
 				CF5ED6FB25E7E236007C0576 /* BinaryTreeRotationTests.swift */,
 				CFB24D7A25ED7DAB00A5FBC4 /* SplayTreeTests.swift */,
+				CF395999260F8F360001664B /* BinaryTreeCodableTest.swift */,
 			);
 			path = BinaryTree;
 			sourceTree = "<group>";
@@ -415,6 +421,7 @@
 				CFB3138E25C7035C001E5268 /* PointerExTests.swift in Sources */,
 				CF395977260F5B0F0001664B /* ListCodableTest.swift in Sources */,
 				CF67F9D325F27B8000FA4B4E /* ListCompareTests.swift in Sources */,
+				CF39599A260F8F360001664B /* BinaryTreeCodableTest.swift in Sources */,
 				7C3AD6C3252866B700CA7FB7 /* RingBufferTests.swift in Sources */,
 				CFB24D7B25ED7DAB00A5FBC4 /* SplayTreeTests.swift in Sources */,
 			);
@@ -435,6 +442,7 @@
 				CF85DA2B25090CC60099EABF /* Stack.swift in Sources */,
 				CF26B32625C9DDB700BF034C /* BinaryTree.swift in Sources */,
 				CF78567025530808003321B5 /* DisjointSet.swift in Sources */,
+				CF395995260F8EE00001664B /* BinaryTree+Codable.swift in Sources */,
 				CFFC196025EEA1C7003CDA32 /* EnumListNode.swift in Sources */,
 				CFB3138925C6FE85001E5268 /* PointerEx.swift in Sources */,
 				CFAEDFD625E8F6A4003A977E /* SplayTree.swift in Sources */,
