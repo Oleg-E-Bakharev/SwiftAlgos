@@ -24,24 +24,35 @@ class BinaryTreeTests: XCTestCase {
     func testInsertOne() {
         XCTAssertTrue(tree.isEmpty)
         XCTAssertFalse(tree.search("A"))
+        XCTAssertNil(tree.min())
+        XCTAssertNil(tree.max())
         XCTAssertFalse(tree.remove("A"))
         tree.insert("A")
         XCTAssertFalse(tree.search("0"))
         XCTAssertFalse(tree.search("B"))
         XCTAssertFalse(tree.isEmpty)
         XCTAssertTrue(tree.search("A"))
+        XCTAssertEqual(tree.min(), "A")
+        XCTAssertEqual(tree.max(), "A")
         tree.insert("A")
         XCTAssertTrue(tree.search("A"))
+        XCTAssertEqual(tree.min(), "A")
+        XCTAssertEqual(tree.max(), "A")
         XCTAssertTrue(tree.remove("A"))
         XCTAssertTrue(tree.isEmpty)
+        XCTAssertNil(tree.min())
+        XCTAssertNil(tree.max())
     }
 
     func testInsertTwo() {
         tree.insert(["B", "A"]) // 100% coverage
         XCTAssertTrue(tree.search("A"))
         XCTAssertTrue(tree.search("B"))
+        XCTAssertEqual(tree.min(), "A")
+        XCTAssertEqual(tree.max(), "B")
         tree.remove(["A", "B"])
         XCTAssertTrue(tree.isEmpty)
+
     }
 
     func testInsertSerial() {
@@ -49,6 +60,8 @@ class BinaryTreeTests: XCTestCase {
         XCTAssertTrue(tree.search("A"))
         XCTAssertTrue(tree.search("B"))
         XCTAssertTrue(tree.search("C"))
+        XCTAssertEqual(tree.min(), "A")
+        XCTAssertEqual(tree.max(), "C")
         tree.remove(["B", "A", "C"])
         XCTAssertTrue(tree.isEmpty)
     }
@@ -58,6 +71,8 @@ class BinaryTreeTests: XCTestCase {
         XCTAssertTrue(tree.search("A"))
         XCTAssertTrue(tree.search("B"))
         XCTAssertTrue(tree.search("C"))
+        XCTAssertEqual(tree.min(), "A")
+        XCTAssertEqual(tree.max(), "C")
     }
 
     func testArrayRemoveLeft() {

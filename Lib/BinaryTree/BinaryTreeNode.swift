@@ -32,6 +32,14 @@ public extension BinaryTreeNode {
         return right?.search(value: value) ?? nil
     }
 
+    func min() -> Self? {
+        left != nil ? left?.min() : self
+    }
+
+    func max() -> Self? {
+        right != nil ? right?.max() : self
+    }
+
     static func insert(to hook: inout Self?, value: Value) {
         guard var node = hook else {
             hook = Self(value)

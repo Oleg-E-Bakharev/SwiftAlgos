@@ -28,6 +28,14 @@ public struct BinaryTree<T: Comparable> : BinaryTreeSerialOperations {
         root?.search(value: value) != nil
     }
 
+    public func min() -> T? {
+        root?.min()?.value
+    }
+
+    public func max() -> T? {
+        root?.max()?.value
+    }
+
     public mutating func insert(_ value: T) {
         copyNodesIfNotUnique()
         Node.insert(to: &root, value: value)

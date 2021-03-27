@@ -15,6 +15,10 @@ public protocol BinaryTreeTraits {
 
     func search(_ value: Value) -> Bool
 
+    func min() -> Value?
+
+    func max() -> Value?
+
     mutating func insert(_ value: Value)
 
     @discardableResult
