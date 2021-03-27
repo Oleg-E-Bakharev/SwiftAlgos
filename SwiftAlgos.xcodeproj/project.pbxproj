@@ -20,6 +20,7 @@
 		CF26B32625C9DDB700BF034C /* BinaryTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF26B32525C9DDB700BF034C /* BinaryTree.swift */; };
 		CF395972260F48200001664B /* List+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF395971260F48200001664B /* List+Codable.swift */; };
 		CF395977260F5B0F0001664B /* ListCodableTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF395976260F5B0F0001664B /* ListCodableTest.swift */; };
+		CF395987260F69DA0001664B /* SequenceEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF395986260F69DA0001664B /* SequenceEx.swift */; };
 		CF3F9D1C252CEB8600B82E60 /* CollectionExTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3F9D1B252CEB8600B82E60 /* CollectionExTests.swift */; };
 		CF5ED6F725E7C356007C0576 /* BinaryTreeInfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5ED6F625E7C356007C0576 /* BinaryTreeInfoTests.swift */; };
 		CF5ED6FC25E7E236007C0576 /* BinaryTreeRotationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5ED6FB25E7E236007C0576 /* BinaryTreeRotationTests.swift */; };
@@ -80,6 +81,7 @@
 		CF26B32525C9DDB700BF034C /* BinaryTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTree.swift; sourceTree = "<group>"; };
 		CF395971260F48200001664B /* List+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "List+Codable.swift"; sourceTree = "<group>"; };
 		CF395976260F5B0F0001664B /* ListCodableTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCodableTest.swift; sourceTree = "<group>"; };
+		CF395986260F69DA0001664B /* SequenceEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequenceEx.swift; sourceTree = "<group>"; };
 		CF3F9D1B252CEB8600B82E60 /* CollectionExTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionExTests.swift; sourceTree = "<group>"; };
 		CF5ED6F625E7C356007C0576 /* BinaryTreeInfoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTreeInfoTests.swift; sourceTree = "<group>"; };
 		CF5ED6FB25E7E236007C0576 /* BinaryTreeRotationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTreeRotationTests.swift; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 				CF85D9F42509059C0099EABF /* Stack.swift */,
 				CF9376B12527B3540021CCBB /* Queue.swift */,
 				CF9376B52527B7590021CCBB /* Deque.swift */,
+				CF395986260F69DA0001664B /* SequenceEx.swift */,
 				CF92106A252CE38D00B47F8D /* CollectionEx.swift */,
 				CFB3138825C6FE85001E5268 /* PointerEx.swift */,
 				CF9376B72527BF040021CCBB /* RingBuffer.swift */,
@@ -436,6 +439,7 @@
 				CFB3138925C6FE85001E5268 /* PointerEx.swift in Sources */,
 				CFAEDFD625E8F6A4003A977E /* SplayTree.swift in Sources */,
 				7C52E39125419DC4000746FA /* PriorityQueue.swift in Sources */,
+				CF395987260F69DA0001664B /* SequenceEx.swift in Sources */,
 				7C75E89925A2E2F0007873F1 /* BinaryTreeNode.swift in Sources */,
 				CF1B1EA125ECF27E0098E9B6 /* SplayTreeNode.swift in Sources */,
 				CF9376B82527BF040021CCBB /* RingBuffer.swift in Sources */,

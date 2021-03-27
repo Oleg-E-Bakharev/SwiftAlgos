@@ -18,9 +18,4 @@ extension List: Decodable where Value: Decodable {
     }
 }
 
-extension List: Encodable where Value: Encodable {
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.unkeyedContainer()
-        try container.encode(contentsOf: self)
-    }
-}
+extension List: Encodable where Value: Encodable { /* SquenceEx implemented */ }
