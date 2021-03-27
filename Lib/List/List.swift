@@ -101,7 +101,7 @@ public struct List<Value> {
             return doublingNode
         }
         #if DEBUG
-        print("🔴copy on write🔴")
+        print("*** \(#file) copy on write ***")
         #endif
         
         head = ListNode(value: oldNode.value)

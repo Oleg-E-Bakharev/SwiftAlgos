@@ -185,6 +185,15 @@ class ListTest: XCTestCase {
         XCTAssertEqual(list1, List(2, 3, 4))
     }
 
+    func testInoutAvoidCopyOnWrite()  {
+        func fulfil(_ list: inout List<Int>) {
+            list.append(2)
+        }
+        list = [1]
+        fulfil(&list)
+        XCTAssertEqual(list, List(1, 2))
+    }
+
     func testListEquateble() {
         list = []
         var list1: List<Int> = []

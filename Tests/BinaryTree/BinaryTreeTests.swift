@@ -13,15 +13,15 @@ class BinaryTreeTests: XCTestCase {
     typealias Tree = BinaryTree<Character>
     var tree = Tree()
 
-    override func setUpWithError() throws {
-        tree = []
+    override func setUp() {
+        tree = ""
     }
 
-    override func tearDownWithError() throws {
-        tree = []
+    override func tearDown() {
+        tree = ""
     }
 
-    func testInsertOne() throws {
+    func testInsertOne() {
         XCTAssertTrue(tree.isEmpty)
         XCTAssertFalse(tree.search("A"))
         XCTAssertFalse(tree.remove("A"))
@@ -36,16 +36,16 @@ class BinaryTreeTests: XCTestCase {
         XCTAssertTrue(tree.isEmpty)
     }
 
-    func testInsertTwo() throws {
-        tree.insert(["B", "A"])
+    func testInsertTwo() {
+        tree.insert(["B", "A"]) // 100% coverage
         XCTAssertTrue(tree.search("A"))
         XCTAssertTrue(tree.search("B"))
         tree.remove(["A", "B"])
         XCTAssertTrue(tree.isEmpty)
     }
 
-    func testInsertSerial() throws {
-        tree.insert(["A", "B", "C"])
+    func testInsertSerial() {
+        tree = "ABC"
         XCTAssertTrue(tree.search("A"))
         XCTAssertTrue(tree.search("B"))
         XCTAssertTrue(tree.search("C"))
@@ -53,17 +53,17 @@ class BinaryTreeTests: XCTestCase {
         XCTAssertTrue(tree.isEmpty)
     }
 
-    func testArrayLiteral() throws {
-        tree = ["B", "A", "C"]
+    func testArrayLiteral() {
+        tree = "BAC"
         XCTAssertTrue(tree.search("A"))
         XCTAssertTrue(tree.search("B"))
         XCTAssertTrue(tree.search("C"))
     }
 
-    func testArrayRemoveLeft() throws {
+    func testArrayRemoveLeft() {
         // Из-за рандомизации делаем цикл.
         for _ in 0..<10 {
-            tree = ["B", "A"]
+            tree = "BA"
             XCTAssertTrue(tree.search("A"))
             XCTAssertTrue(tree.search("B"))
             XCTAssertTrue(tree.remove("A"))
@@ -75,9 +75,9 @@ class BinaryTreeTests: XCTestCase {
         }
     }
 
-    func testArrayRemoveRight() throws {
+    func testArrayRemoveRight() {
         for _ in 0..<10 {
-            tree = ["A", "B"]
+            tree = "AB"
             XCTAssertTrue(tree.search("A"))
             XCTAssertTrue(tree.search("B"))
             XCTAssertTrue(tree.remove("B"))
@@ -89,9 +89,9 @@ class BinaryTreeTests: XCTestCase {
         }
     }
 
-    func testArrayRemoveBoth() throws {
+    func testArrayRemoveBoth() {
         for _ in 0..<10 {
-            tree = ["B", "A", "C"]
+            tree = "BAC"
             XCTAssertTrue(tree.search("A"))
             XCTAssertTrue(tree.search("B"))
             XCTAssertTrue(tree.search("C"))
@@ -102,7 +102,7 @@ class BinaryTreeTests: XCTestCase {
         }
     }
 
-    func testArrayEquatable() throws {
+    func testArrayEquatable() {
         var lhs, rhs: Tree
         lhs = []
         rhs = []
@@ -119,7 +119,7 @@ class BinaryTreeTests: XCTestCase {
         XCTAssertEqual(lhs, rhs)
     }
 
-    func testArrayInsertRoot() throws {
+    func testArrayInsertRoot() {
         tree = ["B"]
         tree.insertToRoot("A")
         XCTAssert(tree.root?.value == "A")
@@ -130,7 +130,7 @@ class BinaryTreeTests: XCTestCase {
         print(tree)
     }
     
-    func testArrayMerge() throws {
+    func testArrayMerge() {
         tree = []
         var tree2: Tree = ["A", "D"]
         tree.merge(to: &tree2)
@@ -160,10 +160,28 @@ class BinaryTreeTests: XCTestCase {
         XCTAssert(tree2 == benchmark)
     }
 
-    func testStrangeRemove() throws {
+    func testStrangeRemove() {
         tree = ["2", "0", "1", "6", "5", "8", "3"]
         print(tree)
         tree.remove("2")
         print(tree)
+    }
+
+    func testTreeLiterals() {
+        tree = .init(unicodeScalarLiteral: "ñ")
+        XCTAssertEqual(tree, Tree("ñ"))
+
+        tree = .init(extendedGraphemeClusterLiteral: "🇷🇺")
+        XCTAssertEqual(tree, Tree("🇷🇺"))
+    }
+
+    func testCopyOnWrite() {
+        tree = "123"
+        let tree2 = tree
+        XCTAssertEqual(tree, tree2)
+        tree.insert("4")
+        XCTAssertNotEqual(tree, tree2)
+        XCTAssertEqual(tree, Tree("1234"))
+        XCTAssertEqual(tree2, Tree("123"))
     }
 }

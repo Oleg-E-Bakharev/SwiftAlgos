@@ -14,12 +14,14 @@ public extension BinaryTree {
     }
 
     mutating func splayInsert(_ value: T) {
+        copyNodesIfNotUnique()
         Node.splay(Node.splayInsertion, to: &root, value: value)
     }
 
     @discardableResult
     mutating func splayRemove(_ value: T) -> Bool {
-        Node.splay(Node.splayRemoving, to: &root, value: value) != nil
+        copyNodesIfNotUnique()
+        return Node.splay(Node.splayRemoving, to: &root, value: value) != nil
     }
 }
 
