@@ -8,8 +8,8 @@
 
 import Foundation
 
-extension Sequence where Element: Encodable {
-    public func encode(to encoder: Encoder) throws {
+public extension Sequence where Element: Encodable {
+    func encode(to encoder: Encoder) throws {
         var container = encoder.unkeyedContainer()
         try container.encode(contentsOf: self)
     }

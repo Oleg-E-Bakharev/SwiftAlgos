@@ -199,4 +199,12 @@ class BinaryTreeTests: XCTestCase {
         XCTAssertEqual(tree, Tree("1234"))
         XCTAssertEqual(tree2, Tree("123"))
     }
+
+    func testSequence() {
+        tree = "BACDE"
+        print(tree)
+        for item in tree {
+            print(item)
+        }
+    }
 }

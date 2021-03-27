@@ -201,8 +201,8 @@
 		CF85DA1725090C210099EABF /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				CFBE2FAB2607A7B500436FCD /* List */,
 				CF5ED70125E7E26D007C0576 /* BinaryTree */,
+				CFBE2FAB2607A7B500436FCD /* List */,
 				CF85DA1A25090C210099EABF /* Info.plist */,
 				CF876232250CF1F500F4FAB0 /* SwiftAlgosLib.xctestplan */,
 				CF85DA1825090C210099EABF /* StackTests.swift */,

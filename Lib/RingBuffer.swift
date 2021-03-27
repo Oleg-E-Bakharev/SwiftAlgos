@@ -230,3 +230,5 @@ extension RingBuffer: RangeReplaceableCollection {
 }
 
 extension RingBuffer: Deque { }
+
+extension RingBuffer: Codable where Element: Codable {}
