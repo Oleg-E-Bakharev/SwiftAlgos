@@ -7,37 +7,11 @@
 //
 
 public protocol RedBlackTreeNode: BinaryTreeNodeTraits where NodeRef: RedBlackTreeNode {
-//    NodeRef.Value == Value,
-//    NodeRef.NodeRef == NodeRef {
-    //    associatedtype Value: Comparable & Equatable
-
-    //    var value: Value { get set }
-    //    var left: NodeRef? { get set }
-    //    var right: NodeRef? { get set }
-
-    //    init(_ value: Value)
-
     static func isRed(_ node: NodeRef?) -> Bool
     static func setRed(_ node: inout NodeRef?, _ isRed: Bool)
 }
 
 public extension RedBlackTreeNode {
-//    func search(value: Value) -> Bool {
-//        if self.value == value { return true }
-//        if value < self.value {
-//            return left?.search(value: value) ?? false
-//        }
-//        return right?.search(value: value) ?? false
-//    }
-//
-//    func min() -> Value {
-//        left?.min() ?? value
-//    }
-//
-//    func max() -> Value {
-//        right?.max() ?? value
-//    }
-
     /// Flips color of node and its children
     static func colorFlip(node: inout NodeRef?) {
         setRed(&node, !isRed(node))
@@ -51,7 +25,7 @@ public extension RedBlackTreeNode {
     static func rotateLeft(_ node: inout NodeRef?) {
         var right = node?.right
         setRed(&right, isRed(node))
-        setRed(&node, true) // We will rotate only red nbodes
+        setRed(&node, true) // We will rotate only red nodes
         node?.right = right?.left
         right?.left = node
         node = right
@@ -61,7 +35,7 @@ public extension RedBlackTreeNode {
     static func rotateRight(_ node: inout NodeRef?) {
         var left = node?.left
         setRed(&left, isRed(node))
-        setRed(&node, true) // We will rotate only red nbodes
+        setRed(&node, true) // We will rotate only red nodes
         node?.left = left?.right
         left?.right = node
         node = left

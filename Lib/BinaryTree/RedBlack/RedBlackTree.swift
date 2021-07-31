@@ -7,7 +7,7 @@
 //
 
 
-public struct RedBlackTree<T: Comparable>: BinaryTreeTraits {
+public struct RedBlackTree<T: Comparable> {
     public typealias Value = T
     
     public final class Node: RedBlackTreeNode {
@@ -32,17 +32,6 @@ public struct RedBlackTree<T: Comparable>: BinaryTreeTraits {
 
     public internal(set) var root: Node?
 
-    public var isEmpty: Bool
-
-    public mutating func insert(_ value: T) {
-        copyNodesIfNotUnique()
-        Node.insert(to: &root, value: value)
-    }
-
-    public mutating func remove(_ value: T) -> Bool {
-        fatalError("not implemented yet")
-    }
-
     // Marker for copy-on-write
     private class UniqueMarker {}
     private var uniqueMarker = UniqueMarker()
@@ -64,6 +53,25 @@ public struct RedBlackTree<T: Comparable>: BinaryTreeTraits {
         newNode.left = deepCopy(node.left)
         newNode.right = deepCopy(node.right)
         return newNode
+    }
+}
+
+extension RedBlackTree: BinaryTreeTraits {
+    public func min() -> T? {
+        treeMin()
+    }
+
+    public func max() -> T? {
+        treeMax()
+    }
+
+    public mutating func insert(_ value: T) {
+        copyNodesIfNotUnique()
+        Node.insert(to: &root, value: value)
+    }
+
+    public mutating func remove(_ value: T) -> Bool {
+        fatalError("not implemented yet")
     }
 }
 
