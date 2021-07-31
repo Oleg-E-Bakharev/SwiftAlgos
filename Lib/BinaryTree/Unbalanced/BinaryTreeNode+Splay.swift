@@ -1,12 +1,10 @@
 //
-//  SplayTreeNode.swift
+//  BinaryTreeNode+Splay.swift
 //  SwiftAlgosLib
 //
 //  Created by Oleg Bakharev on 01.03.2021.
 //  Copyright © 2021 Oleg Bakharev. All rights reserved.
 //
-
-import Foundation
 
 public extension BinaryTreeNode {
     typealias SplayOperation = (inout Self?, Value)->Self?

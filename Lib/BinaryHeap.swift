@@ -155,5 +155,3 @@ extension BinaryHeap: CustomStringConvertible {
         return string
     }
 }
-
-

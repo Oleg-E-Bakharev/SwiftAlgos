@@ -6,13 +6,10 @@
 //  Copyright © 2021 Oleg Bakharev. All rights reserved.
 //
 
-import Foundation
-
 public protocol BinaryTreeInfo {
-    associatedtype Node
-    associatedtype Value
-    
-    var root: Node? { get }
+    associatedtype NodeRef: BinaryTreeNodeBase where NodeRef.NodeRef == NodeRef
+
+    var root: NodeRef? { get }
     
     /// On
     func count() -> Int
@@ -31,7 +28,7 @@ public protocol BinaryTreeInfo {
     func diagram() -> String
 }
 
-public extension BinaryTreeInfo where Node: BinaryTreeNode {
+public extension BinaryTreeInfo {
     func count() -> Int { count(of: root) }
     
     func height() -> Int { height(of: root) }
@@ -52,17 +49,17 @@ public extension BinaryTreeInfo where Node: BinaryTreeNode {
         diagram(of: root)
     }
     
-    private func count(of node: Node?) -> Int {
+    private func count(of node: NodeRef?) -> Int {
         guard let node = node else { return 0 }
         return count(of: node.left) + 1 + count(of: node.right)
     }
     
-    private func height(of node: Node?) -> Int {
+    private func height(of node: NodeRef?) -> Int {
         guard let node = node else { return 0 }
         return max(height(of: node.left), height(of: node.right)) + 1
     }
     
-    private func calculateWidth(of node: Node?, level: Int, levelsWidth: inout [Int], stopDepth: Int = .max) {
+    private func calculateWidth(of node: NodeRef?, level: Int, levelsWidth: inout [Int], stopDepth: Int = .max) {
         guard let node = node else { return }
         if level == levelsWidth.count {
             levelsWidth.append(0)
@@ -73,7 +70,7 @@ public extension BinaryTreeInfo where Node: BinaryTreeNode {
         calculateWidth(of: node.right, level: level + 1, levelsWidth: &levelsWidth, stopDepth: stopDepth)
     }
     
-    private func diagram(of node: Node?, top: String = "", root: String = "", bottom: String = "" ) -> String {
+    private func diagram(of node: NodeRef?, top: String = "", root: String = "", bottom: String = "" ) -> String {
         guard let node = node else { return root + "nil\n" }
         
         if node.left == nil && node.right == nil {

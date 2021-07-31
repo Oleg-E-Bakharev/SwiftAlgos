@@ -1,5 +1,5 @@
 //
-//  SplayTree.swift
+//  BinaryTree+Splay.swift
 //  SwiftAlgosLib
 //
 //  Created by Oleg Bakharev on 26.02.2021.
@@ -24,4 +24,3 @@ public extension BinaryTree {
         return Node.splay(Node.splayRemoving, to: &root, value: value) != nil
     }
 }
-

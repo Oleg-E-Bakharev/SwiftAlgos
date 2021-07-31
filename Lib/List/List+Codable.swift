@@ -18,4 +18,4 @@ extension List: Decodable where Value: Decodable {
     }
 }
 
-extension List: Encodable where Value: Encodable { /* SquenceEx implemented */ }
+extension List: Encodable where Value: Encodable { /* SequenceEx implemented */ }

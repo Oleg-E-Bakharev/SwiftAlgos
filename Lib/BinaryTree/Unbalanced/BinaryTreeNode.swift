@@ -6,40 +6,9 @@
 //  Copyright © 2021 Oleg Bakharev. All rights reserved.
 //
 
-import Foundation
-
-// CustomStringConvertible for pretty print
-public protocol BinaryTreeNode: CustomStringConvertible {
-    associatedtype Value: Comparable & Equatable
-    var value: Value { get set }
-    var left: Self? { get set }
-    var right: Self? { get set }
-
-    init(_ value: Value)
-
-    /// Returns node with searched value
-    func search(value: Value) -> Self?
-}
+public protocol BinaryTreeNode: BinaryTreeNodeTraits where NodeRef == Self {}
 
 public extension BinaryTreeNode {
-    func search(value: Value) -> Self? {
-        if self.value == value {
-            return self
-        }
-        if value < self.value {
-            return left?.search(value: value) ?? nil
-        }
-        return right?.search(value: value) ?? nil
-    }
-
-    func min() -> Self? {
-        left != nil ? left?.min() : self
-    }
-
-    func max() -> Self? {
-        right != nil ? right?.max() : self
-    }
-
     static func insert(to hook: inout Self?, value: Value) {
         guard var node = hook else {
             hook = Self(value)
