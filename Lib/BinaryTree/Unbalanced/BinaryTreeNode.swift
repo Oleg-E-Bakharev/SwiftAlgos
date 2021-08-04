@@ -9,9 +9,9 @@
 public protocol BinaryTreeNode: BinaryTreeNodeTraits where NodeRef == Self {}
 
 public extension BinaryTreeNode {
-    static func insert(to hook: inout Self?, value: Value) {
-        guard var node = hook else {
-            hook = Self(value)
+    static func insert(to link: inout Self?, value: Value) {
+        guard var node = link else {
+            link = Self(value)
             return
         }
 
@@ -24,9 +24,9 @@ public extension BinaryTreeNode {
         }
     }
 
-    static func insertToRoot(to hook: inout Self?, value: Value) {
-        guard var node = hook else {
-            hook = Self(value)
+    static func insertToRoot(to link: inout Self?, value: Value) {
+        guard var node = link else {
+            link = Self(value)
             return
         }
 
@@ -34,19 +34,19 @@ public extension BinaryTreeNode {
             node.value = value
         } else if value < node.value {
             insertToRoot(to: &node.left, value: value)
-            Self.rotateRight(&hook)
+            Self.rotateRight(&link)
         } else {
             insertToRoot(to: &node.right, value: value)
-            Self.rotateLeft(&hook)
+            Self.rotateLeft(&link)
         }
     }
 
-    static func remove(from hook: inout Self?, value: Value) -> Bool {
-        guard var node = hook else {
+    static func remove(from link: inout Self?, value: Value) -> Bool {
+        guard var node = link else {
             return false
         }
         if node.value == value {
-            Self.join(at: &hook, left: node.left, right: node.right)
+            Self.join(at: &link, left: node.left, right: node.right)
             return true
         }
         if value < node.value {
@@ -56,18 +56,18 @@ public extension BinaryTreeNode {
     }
 
     // all left < all right
-    static func join(at hook: inout Self?, left: Self?, right: Self?) {
+    static func join(at link: inout Self?, left: Self?, right: Self?) {
         guard var l = left, var r = right else {
-            hook = left != nil ? left : right
+            link = left != nil ? left : right
             return
         }
 
         if Bool.random() {
             join(at: &r.left, left: l, right: r.left)
-            hook = r
+            link = r
         } else {
             join(at: &l.right, left: l.right, right: r)
-            hook = l
+            link = l
         }
     }
     

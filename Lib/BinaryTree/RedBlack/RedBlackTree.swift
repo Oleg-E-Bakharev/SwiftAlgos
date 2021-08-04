@@ -10,7 +10,7 @@
 public struct RedBlackTree<T: Comparable> {
     public typealias Value = T
     
-    public final class Node: RedBlackTreeNode {
+    public final class Node: RedBlackTreeNode, BinaryTreeNodeDeepCopy, BinaryTreeNodeTraits {
         public var value: T
         public var left: Node?
         public var right: Node?
@@ -33,27 +33,12 @@ public struct RedBlackTree<T: Comparable> {
     public internal(set) var root: Node?
 
     // Marker for copy-on-write
-    private class UniqueMarker {}
-    private var uniqueMarker = UniqueMarker()
+    class UniqueMarker {}
+    var uniqueMarker = UniqueMarker()
+}
 
-    mutating func copyNodesIfNotUnique() {
-        guard !isKnownUniquelyReferenced(&uniqueMarker) else {
-            return
-        }
-        #if DEBUG
-        print("*** \(#file) copy on write ***")
-        #endif
-
-        root = deepCopy(root)
-    }
-
-    private func deepCopy(_ node:Node?) -> Node? {
-        guard let node = node else { return nil }
-        let newNode = Node(node.value)
-        newNode.left = deepCopy(node.left)
-        newNode.right = deepCopy(node.right)
-        return newNode
-    }
+extension RedBlackTree: BinaryTreeCopyOnWrite {
+    public typealias NodeRef = Node
 }
 
 extension RedBlackTree: BinaryTreeTraits {

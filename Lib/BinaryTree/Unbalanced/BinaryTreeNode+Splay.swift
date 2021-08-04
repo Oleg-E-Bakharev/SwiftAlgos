@@ -25,18 +25,18 @@ public extension BinaryTreeNode {
 
     /// Universal splay operation
     @discardableResult
-    static func splay(_ operation: SplayOperation, to hook: inout Self?, value: Value) -> Self? {
-        guard var node = hook else { return operation(&hook, value) }
+    static func splay(_ operation: SplayOperation, to link: inout Self?, value: Value) -> Self? {
+        guard var node = link else { return operation(&link, value) }
         var result: Self?
         if value == node.value {
-            result = operation(&hook, value)
+            result = operation(&link, value)
         } else if value < node.value {
             if var left = node.left {
                 if value == left.value { // zig
                     result = operation(&node.left, value)
                 } else if value < left.value { // zig-zig
                     result = splay(operation, to: &left.left, value: value)
-                    if result != nil { Self.rotateRight(&hook) } // hook!
+                    if result != nil { Self.rotateRight(&link) } // link!
                 } else { // zig-zag
                     result = splay(operation, to: &left.right, value: value)
                     if result != nil { Self.rotateLeft(&node.left) }
@@ -44,14 +44,14 @@ public extension BinaryTreeNode {
             } else {
                 return operation(&node.left, value)
             }
-            if result != nil { Self.rotateRight(&hook) }
+            if result != nil { Self.rotateRight(&link) }
         } else {
             if var right = node.right {
                 if value == right.value { // zag
                     result = operation(&node.right, value)
                 } else if value > right.value { // zag-zag
                     result = splay(operation, to: &right.right, value: value)
-                    if result != nil { Self.rotateLeft(&hook) } // hook!
+                    if result != nil { Self.rotateLeft(&link) } // link!
                 } else { // zag-zig
                     result = splay(operation, to: &right.left, value: value)
                     if result != nil { Self.rotateRight(&node.right) }
@@ -59,7 +59,7 @@ public extension BinaryTreeNode {
             } else {
                 result = operation(&node.right, value)
             }
-            if result != nil { Self.rotateLeft(&hook) }
+            if result != nil { Self.rotateLeft(&link) }
         }
         return result
     }

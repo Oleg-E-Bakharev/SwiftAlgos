@@ -60,6 +60,8 @@
 		CFB3138925C6FE85001E5268 /* PointerEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB3138825C6FE85001E5268 /* PointerEx.swift */; };
 		CFB3138E25C7035C001E5268 /* PointerExTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB3138D25C7035C001E5268 /* PointerExTests.swift */; };
 		CFB3139925C7108C001E5268 /* BitPtrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB3139825C7108C001E5268 /* BitPtrTests.swift */; };
+		CFB32F1326B9C41A004FB08E /* BinaryTreeCopyOnWrite.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB32F1226B9C41A004FB08E /* BinaryTreeCopyOnWrite.swift */; };
+		CFB32F1526B9C576004FB08E /* BinaryTreeNodeDeepCopy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB32F1426B9C576004FB08E /* BinaryTreeNodeDeepCopy.swift */; };
 		CFB556C626AD98200047CC84 /* RedBlackTreeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB556C426AD981B0047CC84 /* RedBlackTreeNode.swift */; };
 		CFB99B4D25A5CEBD002E0190 /* BitPtr.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB99B4C25A5CEBD002E0190 /* BitPtr.swift */; };
 		CFBE2FAD2607A7E000436FCD /* EnumListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBE2FAC2607A7E000436FCD /* EnumListTests.swift */; };
@@ -135,6 +137,8 @@
 		CFB3138825C6FE85001E5268 /* PointerEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointerEx.swift; sourceTree = "<group>"; };
 		CFB3138D25C7035C001E5268 /* PointerExTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointerExTests.swift; sourceTree = "<group>"; };
 		CFB3139825C7108C001E5268 /* BitPtrTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitPtrTests.swift; sourceTree = "<group>"; };
+		CFB32F1226B9C41A004FB08E /* BinaryTreeCopyOnWrite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTreeCopyOnWrite.swift; sourceTree = "<group>"; };
+		CFB32F1426B9C576004FB08E /* BinaryTreeNodeDeepCopy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTreeNodeDeepCopy.swift; sourceTree = "<group>"; };
 		CFB556C426AD981B0047CC84 /* RedBlackTreeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedBlackTreeNode.swift; sourceTree = "<group>"; };
 		CFB99B4C25A5CEBD002E0190 /* BitPtr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitPtr.swift; sourceTree = "<group>"; };
 		CFBE2FAC2607A7E000436FCD /* EnumListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumListTests.swift; sourceTree = "<group>"; };
@@ -174,8 +178,10 @@
 			children = (
 				CF3509BB26B56888004320D0 /* BinaryTreeNodeBase.swift */,
 				CF3509BF26B57409004320D0 /* BinaryTreeNodeTraits.swift */,
+				CFB32F1426B9C576004FB08E /* BinaryTreeNodeDeepCopy.swift */,
 				7C75E89D25A2E474007873F1 /* BinaryTreeInfo.swift */,
 				CFB1818925DC4BD800C61E12 /* BinaryTreeTraits.swift */,
+				CFB32F1226B9C41A004FB08E /* BinaryTreeCopyOnWrite.swift */,
 				CF3509BD26B571DE004320D0 /* BinaryTreeSerialOperations.swift */,
 			);
 			path = Common;
@@ -511,6 +517,7 @@
 				CFB99B4D25A5CEBD002E0190 /* BitPtr.swift in Sources */,
 				CF3509C426B5D40F004320D0 /* BinaryTree+Extensions.swift in Sources */,
 				CF9376B22527B3540021CCBB /* Queue.swift in Sources */,
+				CFB32F1326B9C41A004FB08E /* BinaryTreeCopyOnWrite.swift in Sources */,
 				CF9376B62527B7590021CCBB /* Deque.swift in Sources */,
 				CF3509CA26B5D7D0004320D0 /* RedBlackTree+Extensions.swift in Sources */,
 				7C52E38C25419D99000746FA /* BinaryHeap.swift in Sources */,
@@ -530,6 +537,7 @@
 				CF395987260F69DA0001664B /* SequenceEx.swift in Sources */,
 				7C75E89925A2E2F0007873F1 /* BinaryTreeNode.swift in Sources */,
 				CF1B1EA125ECF27E0098E9B6 /* BinaryTreeNode+Splay.swift in Sources */,
+				CFB32F1526B9C576004FB08E /* BinaryTreeNodeDeepCopy.swift in Sources */,
 				CF9376B82527BF040021CCBB /* RingBuffer.swift in Sources */,
 				CF92106C252CE38D00B47F8D /* CollectionEx.swift in Sources */,
 				CF876237250D0A7D00F4FAB0 /* ListNode.swift in Sources */,
