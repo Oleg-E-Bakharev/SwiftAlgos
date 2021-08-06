@@ -6,211 +6,199 @@
 //  Copyright © 2021 Oleg Bakharev. All rights reserved.
 //
 
+/// Left Leaning Red Black Tree
+/// https://www.cs.princeton.edu/~rs/talks/LLRB/RedBlack.pdf
 public protocol RedBlackTreeNode: BinaryTreeNodeTraits where NodeRef: RedBlackTreeNode {
     static func isRed(_ node: NodeRef?) -> Bool
     static func setRed(_ node: inout NodeRef?, _ isRed: Bool)
 }
 
 public extension RedBlackTreeNode {
-    /// Flips color of node and its children
-    static func colorFlip(_ node: inout NodeRef?) {
-        setRed(&node, !isRed(node))
-        if var node = node {
+    /// Split temporary 4-node to two 2-node and promoute red link up.
+    /// Or perform reverse operation.
+    private static func colorFlip(_ link: inout NodeRef?) {
+        setRed(&link, !isRed(link))
+        if var node = link {
             setRed(&node.left, !isRed(node.left))
             setRed(&node.right, !isRed(node.right))
         }
     }
 
     // right becomes node
-    static func rotateLeft(_ node: inout NodeRef?) {
-        var right = node?.right
-        setRed(&right, isRed(node))
-        setRed(&node, true) // We will rotate only red nodes
-        node?.right = right?.left
-        right?.left = node
-        node = right
+    private static func rotateLeft(_ link: inout NodeRef?) {
+        var right = link?.right
+        setRed(&right, isRed(link))
+        setRed(&link, true) // We will rotate only red nodes
+        link?.right = right?.left
+        right?.left = link
+        link = right
     }
 
     // left becomes node
-    static func rotateRight(_ node: inout NodeRef?) {
-        var left = node?.left
-        setRed(&left, isRed(node))
-        setRed(&node, true) // We will rotate only red nodes
-        node?.left = left?.right
-        left?.right = node
-        node = left
+    private static func rotateRight(_ link: inout NodeRef?) {
+        var left = link?.left
+        setRed(&left, isRed(link))
+        setRed(&link, true) // We will rotate only red nodes
+        link?.left = left?.right
+        left?.right = link
+        link = left
     }
 
-    static func insert(to node: inout NodeRef?, value: Value) {
-        if node == nil {
-            node = .init(value)
-            setRed(&node, true)
+    static func insert(_ value: Value, to link: inout NodeRef?) {
+        if link == nil {
+            link = .init(value)
+            setRed(&link, true)
             return
         }
 
-        if var node = node {
+        if var node = link {
             if value < node.value {
-                insert(to: &node.left, value: value)
+                insert(value, to: &node.left)
+            } else if value == node.value {
+                link?.value = value
             } else {
-                insert(to: &node.right, value: value)
+                insert(value, to: &node.right)
             }
         }
 
-        fix(&node)
+        fix(&link)
     }
 
-    static func fix(_ node: inout NodeRef?) {
-        if isRed(node?.right) && !isRed(node?.left) {
-            rotateLeft(&node)
+    private static func fix(_ link: inout NodeRef?) {
+        // Split temporary 4-nodes to 2-nodes and balance.
+        if isRed(link?.right) && !isRed(link?.left) {
+            // Make red link on left
+            rotateLeft(&link)
         }
-        if isRed(node?.left) && isRed(node?.left?.left) {
-            rotateRight(&node)
+        if isRed(link?.left) && isRed(link?.left?.left) {
+            rotateRight(&link)
         }
-        if isRed(node?.left) && isRed(node?.right) {
-            colorFlip(&node)
-        }
-    }
-
-    static func advanceRedToLeft(at node: inout NodeRef?) {
-        var right = node?.right
-        colorFlip(&node)
-        if isRed(right?.left) {
-            rotateRight(&right)
-            rotateLeft(&node)
-            colorFlip(&node)
+        if isRed(link?.left) && isRed(link?.right) {
+            colorFlip(&link)
         }
     }
 
-    static func advanceRedToRight(at node: inout NodeRef?) {
-        if isRed(node?.left?.left) {
-            rotateRight(&node)
-            colorFlip(&node)
+    private static func advanceRedToLeft(at link: inout NodeRef?) {
+        // Make 2-3 node on left
+        // Invariant: have 2-node at link.
+        colorFlip(&link)
+        guard var node = link else { return }
+        if isRed(node.right?.left) {
+            rotateRight(&node.right)
+            rotateLeft(&link)
+            colorFlip(&link)
         }
+        
+        // Invariant: either link or link.left is Red
+        assert(isRed(link) || isRed(link?.left))
     }
 
-    static func delMax(at node: inout NodeRef?) {
+    private static func advanceRedToRight(at link: inout NodeRef?) {
+        // Make 2- or 3-node on right
+        // Invariant: have 2-node at link.
+        colorFlip(&link)
+        if isRed(link?.left?.left) {
+            rotateRight(&link)
+            colorFlip(&link)
+        }
+        
+        // Invaiant: either link or link.right is Red
+        assert(isRed(link) || isRed(link?.right))
+    }
+
+    static func removeMax(at link: inout NodeRef?) {
         // Stretch tree to right an remove rightmost node
-        if isRed(node?.left) {
-            rotateRight(&node)
+        if isRed(link?.left) {
+            rotateRight(&link)
         }
-        guard node?.right != nil else {
-            node = nil
+        guard link?.right != nil else {
+            link = nil
             return
         }
-        if !isRed(node?.right) && !isRed(node?.right?.left) {
-            advanceRedToRight(at: &node)
+        if !isRed(link?.right) && !isRed(link?.right?.left) {
+            advanceRedToRight(at: &link)
         }
-        var right = node?.right
-        delMax(at: &right)
-        fix(&node)
+        if var node = link {
+            removeMax(at: &node.right)
+        }
+        fix(&link)
     }
 
-    static func delMin(at node: inout NodeRef?) {
+    static func removeMin(at link: inout NodeRef?) {
         // Stretch tree to left an remove leftmost node
-        guard node?.left != nil else {
-            node = nil
+        guard link?.left != nil else {
+            link = nil
             return
         }
-        if !isRed(node?.left) && !isRed(node?.left?.left) {
-            advanceRedToLeft(at: &node)
+        if !isRed(link?.left) && !isRed(link?.left?.left) {
+            advanceRedToLeft(at: &link)
         }
-        var left = node?.left
-        delMin(at: &left)
-        fix(&node)
+        if var node = link {
+            removeMin(at: &node.left)
+        }
+        fix(&link)
     }
 
-    static func remove(from link: inout NodeRef?, value: Value) -> Bool {
+    static func remove(_ value: Value, from link: inout NodeRef?) -> Bool {
         guard let node = link else {
             return false
         }
+        
         let result: Bool
         if value < node.value {
-            // Go to left
-            if !isRed(link?.left) && !isRed(link?.left?.left) {
-                advanceRedToLeft(at: &link)
-            }
-            var left = link?.left
-            result = remove(from: &left, value: value)
-        } else {
-            // Go to right
-            if isRed(node.left) {
-                rotateRight(&link)
-            }
-
-            // Check leaf equal
-            if link?.right == nil && link?.value == value {
-                link = nil
-                return true
-            }
-
-            if !isRed(link?.right) && !isRed(link?.right?.left) {
-                advanceRedToRight(at: &link)
-            }
-
-            if link?.value == value {
-                // Equal and not leaf. Set value to min and del min.
-                guard let minValue = link?.right?.min()?.value else {
-                    fatalError("impossible behavior")
-                }
-                link?.value = minValue
-                var right = link?.right
-                delMin(at: &right)
-
-                link = nil
-                return true
-            }
-            var right = link?.right
-            result = remove(from: &right, value: value)
+            result = removeOnLeft(value, from: &link)
+        } else { // right or equal
+            result = removeSelfOfRight(value, from: &link)
         }
         if result {
             fix(&link)
         }
         return result
     }
+    
+    private static func removeOnLeft(_ value: Value, from link: inout NodeRef?) -> Bool {
+        // We should remove node from 3- or temporary 4-node
+        if !isRed(link?.left) && !isRed(link?.left?.left) {
+            // We have 2-node on left. Make 3-node.
+            advanceRedToLeft(at: &link)
+        }
+        if var node = link {
+            return remove(value, from: &node.left)
+        }
+        return false
+    }
+    
+    private static func removeSelfOfRight(_ value: Value, from link: inout NodeRef?) -> Bool {
+        if isRed(link?.left) {
+            rotateRight(&link)
+        }
 
-//    bool del_(Link& h, K key) {
-//        // Обходим склеивая 2-узлы.
-//        bool result = false;
-//
-//        if (h == nullptr){
-//            return false;
-//        }
-//
-//        if (key < h->item) {
-//            // Проход влево.
-//            if (!isRed_(h->l) && !isRed_(h->l->l)) {
-//                moveRedLeft_(h);
-//            }
-//            result = del_(h->l, key); // Идем влево.
-//        } else {
-//            if (isRed_(h->l)){
-//                rotR_(h);
-//            }
-//
-//            if (key == h->item && !h->r) { // Если равно и внизу просто удаляем.
-//                delete h.ptr();
-//                h.setBit(false);
-//                h = nullptr;
-//                return true;
-//            }
-//
-//            if (!isRed_(h->r) && !isRed_(h->r->l)) {
-//                moveRedRight_(h); // Продвигаем красноту вниз вправо.
-//            }
-//
-//            if (key == h->item) { // Равно и не внизу меняем значение на минимальное и удаляем минимальный узел.
-//                h->item = std::move(min_(h->r));
-//                delMin_(h->r);
-//                result = true;
-//            } else {
-//                result = del_(h->r, key); // Идем вправо.
-//            }
-//        }
-//        if (result) {
-//            fix_(h);
-//        }
-//        return result;
-//    }
+        // Check leaf equal
+        if link?.right == nil && link?.value == value {
+            link = nil
+            return true
+        }
+
+        if !isRed(link?.right) && !isRed(link?.right?.left) {
+            advanceRedToRight(at: &link)
+        }
+
+        if link?.value == value {
+            // Equal and not leaf. Set value to min and del min.
+            if let minValue = link?.right?.min()?.value {
+                link?.value = minValue
+            }
+            if var node = link {
+                removeMin(at: &node.right)
+            }
+            return true
+        }
+        
+        if var node = link {
+            return remove(value, from: &node.right)
+        }
+        return false
+    }
 
     var description: String { String(describing: value) }
 }

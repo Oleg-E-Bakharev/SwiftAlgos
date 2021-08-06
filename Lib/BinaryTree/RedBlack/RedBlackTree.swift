@@ -52,11 +52,13 @@ extension RedBlackTree: BinaryTreeTraits {
 
     public mutating func insert(_ value: T) {
         copyNodesIfNotUnique()
-        Node.insert(to: &root, value: value)
+        Node.insert(value, to: &root)
     }
 
+    @discardableResult
     public mutating func remove(_ value: T) -> Bool {
-        fatalError("not implemented yet")
+        copyNodesIfNotUnique()
+        return Node.remove(value, from: &root)
     }
 }
 

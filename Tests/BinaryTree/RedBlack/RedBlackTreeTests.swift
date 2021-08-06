@@ -84,7 +84,7 @@ class RedBlackTreeTests: XCTestCase {
         XCTAssertFalse(tree.search("A"))
         XCTAssertNil(tree.min())
         XCTAssertNil(tree.max())
-//        XCTAssertFalse(tree.remove("A"))
+        XCTAssertFalse(tree.remove("A"))
         tree.insert("A")
         XCTAssertFalse(tree.search("0"))
         XCTAssertFalse(tree.search("B"))
@@ -96,10 +96,10 @@ class RedBlackTreeTests: XCTestCase {
         XCTAssertTrue(tree.search("A"))
         XCTAssertEqual(tree.min(), "A")
         XCTAssertEqual(tree.max(), "A")
-//        XCTAssertTrue(tree.remove("A"))
-//        XCTAssertTrue(tree.isEmpty)
-//        XCTAssertNil(tree.min())
-//        XCTAssertNil(tree.max())
+        XCTAssertTrue(tree.remove("A"))
+        XCTAssertTrue(tree.isEmpty)
+        XCTAssertNil(tree.min())
+        XCTAssertNil(tree.max())
     }
 
     func testInsertTwo() {
@@ -108,8 +108,8 @@ class RedBlackTreeTests: XCTestCase {
         XCTAssertTrue(tree.search("B"))
         XCTAssertEqual(tree.min(), "A")
         XCTAssertEqual(tree.max(), "B")
-//        tree.remove(["A", "B"])
-//        XCTAssertTrue(tree.isEmpty)
+        tree.remove(["A", "B"])
+        XCTAssertTrue(tree.isEmpty)
     }
 
     func testInsertSerial() {
@@ -120,8 +120,20 @@ class RedBlackTreeTests: XCTestCase {
         XCTAssertEqual(tree.min(), "A")
         XCTAssertEqual(tree.max(), "F")
         print(tree.diagram())
-//        tree.remove(["B", "A", "C"])
-//        XCTAssertTrue(tree.isEmpty)
+//        tree.remove(["B", "A", "C", "E", "F", "D"])
+        XCTAssertTrue(tree.remove("B"))
+        print(tree.diagram())
+        XCTAssertTrue(tree.remove("F"))
+        print(tree.diagram())
+        XCTAssertTrue(tree.remove("A"))
+        print(tree.diagram())
+        XCTAssertTrue(tree.remove("E"))
+        print(tree.diagram())
+        XCTAssertTrue(tree.remove("C"))
+        print(tree.diagram())
+        XCTAssertTrue(tree.remove("D"))
+        print(tree.diagram())
+        XCTAssertTrue(tree.isEmpty)
         tree = "FEDCBAG"
         XCTAssertTrue(tree.search("A"))
         XCTAssertTrue(tree.search("B"))

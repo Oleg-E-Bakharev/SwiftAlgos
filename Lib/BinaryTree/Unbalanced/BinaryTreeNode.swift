@@ -9,7 +9,7 @@
 public protocol BinaryTreeNode: BinaryTreeNodeTraits where NodeRef == Self {}
 
 public extension BinaryTreeNode {
-    static func insert(to link: inout Self?, value: Value) {
+    static func insert(to link: inout NodeRef?, value: Value) {
         guard var node = link else {
             link = Self(value)
             return
