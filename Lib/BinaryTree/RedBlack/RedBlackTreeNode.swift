@@ -80,30 +80,25 @@ public extension RedBlackTreeNode {
 
     private static func advanceRedToLeft(at link: inout NodeRef?) {
         // Make 2-3 node on left
-        // Invariant: have 2-node at link.
+        // Invariant: either link.left or link.left.left is Red
         colorFlip(&link)
-        guard var node = link else { return }
-        if isRed(node.right?.left) {
-            rotateRight(&node.right)
-            rotateLeft(&link)
-            colorFlip(&link)
+        if var node = link {
+            if isRed(node.right?.left) {
+                rotateRight(&node.right)
+                rotateLeft(&link)
+                colorFlip(&link)
+            }
         }
-        
-        // Invariant: either link or link.left is Red
-        assert(isRed(link) || isRed(link?.left))
     }
 
     private static func advanceRedToRight(at link: inout NodeRef?) {
         // Make 2- or 3-node on right
-        // Invariant: have 2-node at link.
+        // Invaiant: either link or link.right is Red
         colorFlip(&link)
         if isRed(link?.left?.left) {
             rotateRight(&link)
             colorFlip(&link)
         }
-        
-        // Invaiant: either link or link.right is Red
-        assert(isRed(link) || isRed(link?.right))
     }
 
     static func removeMax(at link: inout NodeRef?) {
@@ -148,7 +143,7 @@ public extension RedBlackTreeNode {
         if value < node.value {
             result = removeOnLeft(value, from: &link)
         } else { // right or equal
-            result = removeSelfOfRight(value, from: &link)
+            result = removeSelfOrRight(value, from: &link)
         }
         if result {
             fix(&link)
@@ -168,7 +163,7 @@ public extension RedBlackTreeNode {
         return false
     }
     
-    private static func removeSelfOfRight(_ value: Value, from link: inout NodeRef?) -> Bool {
+    private static func removeSelfOrRight(_ value: Value, from link: inout NodeRef?) -> Bool {
         if isRed(link?.left) {
             rotateRight(&link)
         }

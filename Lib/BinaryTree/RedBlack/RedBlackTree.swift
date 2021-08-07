@@ -60,6 +60,35 @@ extension RedBlackTree: BinaryTreeTraits {
         copyNodesIfNotUnique()
         return Node.remove(value, from: &root)
     }
+
+    public mutating func removeMax() {
+        copyNodesIfNotUnique()
+        return Node.removeMax(at: &root)
+    }
+
+    public mutating func removeMin() {
+        copyNodesIfNotUnique()
+        return Node.removeMin(at: &root)
+    }
 }
 
 extension RedBlackTree: BinaryTreeSerialOperations {}
+
+extension RedBlackTree.Node: Equatable {
+    public static func == (lhs: RedBlackTree<T>.Node, rhs: RedBlackTree<T>.Node) -> Bool {
+        guard lhs.value == rhs.value,
+              lhs.left == rhs.left,
+              lhs.right == rhs.right,
+              lhs.isRed == rhs.isRed
+        else {
+            return false
+        }
+        return true
+    }
+}
+
+extension RedBlackTree: Equatable {
+    public static func == (lhs: RedBlackTree<T>, rhs: RedBlackTree<T>) -> Bool {
+        lhs.root == rhs.root
+    }
+}

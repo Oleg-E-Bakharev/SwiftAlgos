@@ -39,6 +39,20 @@ class RedBlackTreeInfoTests: XCTestCase {
         XCTAssertEqual(diagram, benchmark)
     }
 
+    func testDisplay() {
+        let characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".unicodeScalars
+        for char in characters.shuffled() {
+            print("inserting: \(char)")
+            tree.insert(Character(char))
+            print(tree.diagram())
+        }
+        for char in characters.shuffled() {
+            print("deleting: \(char)")
+            tree.remove(Character(char))
+            print(tree.diagram())
+        }
+    }
+
     func testCount() throws {
         XCTAssert(tree.count() == 8)
         tree = []

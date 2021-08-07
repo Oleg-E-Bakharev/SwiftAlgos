@@ -19,8 +19,8 @@ extension RedBlackTree: BinaryTreeInfo {
         }
 
 //        assert(!NodeRef.isRed(node.right))
-        let leftColor = (NodeRef.isRed(node.left) ? "r" : "b")
-        let rightColor = (NodeRef.isRed(node.right) ? "r" : "b")
+        let leftColor = node.left == nil ? "" : (NodeRef.isRed(node.left) ? "🔴" : "⬤")
+        let rightColor = node.right == nil ? "" : (NodeRef.isRed(node.right) ? "!!!!🔴!!!!" : "⬤")
         return diagram(of: node.right, top: top + "  ", root: top + "┌" + rightColor, bottom: top + "│ ")
         + root + "\(node)\n"
         + diagram(of: node.left, top: bottom + "│ ", root: bottom + "└" + leftColor, bottom: bottom + "  ")
