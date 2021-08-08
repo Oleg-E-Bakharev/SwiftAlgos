@@ -53,6 +53,8 @@
 		CF9376B22527B3540021CCBB /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9376B12527B3540021CCBB /* Queue.swift */; };
 		CF9376B62527B7590021CCBB /* Deque.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9376B52527B7590021CCBB /* Deque.swift */; };
 		CF9376B82527BF040021CCBB /* RingBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9376B72527BF040021CCBB /* RingBuffer.swift */; };
+		CFA90E5926BFECAA00D34314 /* RedBlackTreeCodableTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA90E5826BFECAA00D34314 /* RedBlackTreeCodableTest.swift */; };
+		CFA90E5C26BFEDA800D34314 /* RedBlackTree+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA90E5A26BFED5500D34314 /* RedBlackTree+Codable.swift */; };
 		CFAEDFD625E8F6A4003A977E /* BinaryTree+Splay.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAEDFD525E8F6A4003A977E /* BinaryTree+Splay.swift */; };
 		CFB1818225DC493B00C61E12 /* BinaryTreeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB1818125DC493B00C61E12 /* BinaryTreeTests.swift */; };
 		CFB1818A25DC4BD800C61E12 /* BinaryTreeTraits.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB1818925DC4BD800C61E12 /* BinaryTreeTraits.swift */; };
@@ -130,6 +132,8 @@
 		CF9376B12527B3540021CCBB /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		CF9376B52527B7590021CCBB /* Deque.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deque.swift; sourceTree = "<group>"; };
 		CF9376B72527BF040021CCBB /* RingBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingBuffer.swift; sourceTree = "<group>"; };
+		CFA90E5826BFECAA00D34314 /* RedBlackTreeCodableTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedBlackTreeCodableTest.swift; sourceTree = "<group>"; };
+		CFA90E5A26BFED5500D34314 /* RedBlackTree+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RedBlackTree+Codable.swift"; sourceTree = "<group>"; };
 		CFAEDFD525E8F6A4003A977E /* BinaryTree+Splay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BinaryTree+Splay.swift"; sourceTree = "<group>"; };
 		CFB1818125DC493B00C61E12 /* BinaryTreeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTreeTests.swift; sourceTree = "<group>"; };
 		CFB1818925DC4BD800C61E12 /* BinaryTreeTraits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTreeTraits.swift; sourceTree = "<group>"; };
@@ -205,6 +209,7 @@
 			children = (
 				CF3509C726B5D686004320D0 /* RedBlackTreeTests.swift */,
 				CF3509CB26B5DA0E004320D0 /* RedBlackTreeInfoTests.swift */,
+				CFA90E5826BFECAA00D34314 /* RedBlackTreeCodableTest.swift */,
 			);
 			path = RedBlack;
 			sourceTree = "<group>";
@@ -324,6 +329,7 @@
 				CF3509B926B562B2004320D0 /* RedBlackTree.swift */,
 				CF3509CF26B5E081004320D0 /* RedBlackTree+BinaryTreeInfo.swift */,
 				CF3509C926B5D7D0004320D0 /* RedBlackTree+Extensions.swift */,
+				CFA90E5A26BFED5500D34314 /* RedBlackTree+Codable.swift */,
 			);
 			path = RedBlack;
 			sourceTree = "<group>";
@@ -493,6 +499,7 @@
 				7C52E3A12542D757000746FA /* BinaryHeapTests.swift in Sources */,
 				CFB3139925C7108C001E5268 /* BitPtrTests.swift in Sources */,
 				CF3509C826B5D686004320D0 /* RedBlackTreeTests.swift in Sources */,
+				CFA90E5926BFECAA00D34314 /* RedBlackTreeCodableTest.swift in Sources */,
 				CFB1818225DC493B00C61E12 /* BinaryTreeTests.swift in Sources */,
 				CF3F9D1C252CEB8600B82E60 /* CollectionExTests.swift in Sources */,
 				CFB3138E25C7035C001E5268 /* PointerExTests.swift in Sources */,
@@ -525,6 +532,7 @@
 				CF83EB6025115FB0000AEFB1 /* ListAlgos.swift in Sources */,
 				CF3509D026B5E081004320D0 /* RedBlackTree+BinaryTreeInfo.swift in Sources */,
 				CF3509BC26B56888004320D0 /* BinaryTreeNodeBase.swift in Sources */,
+				CFA90E5C26BFEDA800D34314 /* RedBlackTree+Codable.swift in Sources */,
 				CF85DA2B25090CC60099EABF /* Stack.swift in Sources */,
 				CF26B32625C9DDB700BF034C /* BinaryTree.swift in Sources */,
 				CF78567025530808003321B5 /* DisjointSet.swift in Sources */,

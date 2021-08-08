@@ -25,17 +25,30 @@ class RedBlackTreeInfoTests: XCTestCase {
         let diagram = tree.diagram()
         print(diagram)
         let benchmark = """
-            ┌bnil
-          ┌bH
-          │ └rG
-        ┌bF
-        │ └bE
+            ┌nil
+          ┌⬤H
+          │ └🔴G
+        ┌⬤F
+        │ └⬤E
         D
-        │ ┌bC
-        └bB
-          └bA
+        │ ┌⬤C
+        └⬤B
+          └⬤A
 
         """
+
+//        let benchmark = """
+//            ┌nil
+//          ┌bH
+//          │ └rG
+//        ┌bF
+//        │ └bE
+//        D
+//        │ ┌bC
+//        └bB
+//          └bA
+//
+//        """
         XCTAssertEqual(diagram, benchmark)
     }
 
