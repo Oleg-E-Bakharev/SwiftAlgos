@@ -1,13 +1,13 @@
 //
-//  BinaryTreeInfo.swift
+//  BinarySetInfo.swift
 //  SwiftAlgosLib
 //
 //  Created by Oleg Bakharev on 04.01.2021.
 //  Copyright © 2021 Oleg Bakharev. All rights reserved.
 //
 
-public protocol BinaryTreeInfo {
-    associatedtype NodeRef: BinaryTreeNodeBase where NodeRef.NodeRef == NodeRef
+public protocol BinarySetInfo {
+    associatedtype NodeRef: BinarySetNodeBase where NodeRef.NodeRef == NodeRef
 
     var root: NodeRef? { get }
     
@@ -28,7 +28,7 @@ public protocol BinaryTreeInfo {
     func diagram() -> String
 }
 
-public extension BinaryTreeInfo {
+public extension BinarySetInfo {
     func count() -> Int { count(of: root) }
     
     func height() -> Int { height(of: root) }

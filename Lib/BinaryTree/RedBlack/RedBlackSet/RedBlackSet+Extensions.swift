@@ -1,34 +1,34 @@
 //
-//  BinaryTree+Extensions.swift
+//  RedBlackSet+Extensions.swift
 //  SwiftAlgosLib
 //
 //  Created by Oleg Bakharev on 31.07.2021.
 //  Copyright © 2021 Oleg Bakharev. All rights reserved.
 //
 
-extension BinaryTree: ExpressibleByArrayLiteral {
-    public init(arrayLiteral elements: Value...) {
+extension RedBlackSet: ExpressibleByArrayLiteral {
+    public init(arrayLiteral elements: T...) {
         for element in elements {
             insert(element)
         }
     }
 }
 
-extension BinaryTree: ExpressibleByUnicodeScalarLiteral where Value == Character {
-    public typealias UnicodeScalarLiteralType = Value
+extension RedBlackSet: ExpressibleByUnicodeScalarLiteral where T == Character {
+    public typealias UnicodeScalarLiteralType = T
     public init(unicodeScalarLiteral value: Character) {
         insert(value)
     }
 }
 
-extension BinaryTree: ExpressibleByExtendedGraphemeClusterLiteral where Value == Character {
-    public typealias ExtendedGraphemeClusterLiteralType = Value
+extension RedBlackSet: ExpressibleByExtendedGraphemeClusterLiteral where T == Character {
+    public typealias ExtendedGraphemeClusterLiteralType = T
     public init(extendedGraphemeClusterLiteral value: Character) {
         insert(value)
     }
 }
 
-extension BinaryTree: ExpressibleByStringLiteral where Value == Character {
+extension RedBlackSet: ExpressibleByStringLiteral where T == Character {
     public typealias StringLiteralType = String
     public init(stringLiteral string: Self.StringLiteralType) {
         for character in string {
@@ -37,13 +37,13 @@ extension BinaryTree: ExpressibleByStringLiteral where Value == Character {
     }
 }
 
-extension BinaryTree: Sequence {
+extension RedBlackSet: Sequence {
     // Implements in-order traverse. This allow to identical encode / decode.
     public struct Iterator: IteratorProtocol {
         public var ancestors: [Node] = []
         public var node: Node?
 
-        public mutating func next() -> Value? {
+        public mutating func next() -> T? {
             var result: Value?
             guard let current = node else { return nil }
             result = current.value
@@ -58,7 +58,7 @@ extension BinaryTree: Sequence {
                     node = ancestors.popLast()?.right
                 }
             }
-            return result
+            return result 
         }
     }
 

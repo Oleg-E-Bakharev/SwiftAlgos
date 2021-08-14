@@ -1,5 +1,5 @@
 //
-//  BinaryTreeCodableTest.swift
+//  BinarySetCodableTest.swift
 //  SwiftAlgosTests
 //
 //  Created by Oleg Bakharev on 27.03.2021.
@@ -9,9 +9,9 @@
 import XCTest
 @testable import SwiftAlgosLib
 
-class BinaryTreeCodableTest: XCTestCase {
+class BinarySetCodableTest: XCTestCase {
 
-    typealias StringTree = BinaryTree<String>
+    typealias StringTree = BinarySet<String>
     var sut: StringTree!
 
     override func setUp() {

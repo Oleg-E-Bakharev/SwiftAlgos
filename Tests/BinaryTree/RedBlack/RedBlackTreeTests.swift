@@ -1,5 +1,5 @@
 //
-//  RedBlackTreeTests.swift
+//  RedBlackSetTests.swift
 //  SwiftAlgosTests
 //
 //  Created by Oleg Bakharev on 31.07.2021.
@@ -9,8 +9,8 @@
 import XCTest
 @testable import SwiftAlgosLib
 
-class RedBlackTreeTests: XCTestCase {
-    typealias Tree = RedBlackTree<Character>
+class RedBlackSetTests: XCTestCase {
+    typealias Tree = RedBlackSet<Character>
 
     var tree = Tree()
 
@@ -24,19 +24,19 @@ class RedBlackTreeTests: XCTestCase {
 
     func testInsertOne() {
         XCTAssertTrue(tree.isEmpty)
-        XCTAssertFalse(tree.search("A"))
+        XCTAssertFalse(tree.has("A"))
         XCTAssertNil(tree.min())
         XCTAssertNil(tree.max())
         XCTAssertFalse(tree.remove("A"))
         tree.insert("A")
-        XCTAssertFalse(tree.search("0"))
-        XCTAssertFalse(tree.search("B"))
+        XCTAssertFalse(tree.has("0"))
+        XCTAssertFalse(tree.has("B"))
         XCTAssertFalse(tree.isEmpty)
-        XCTAssertTrue(tree.search("A"))
+        XCTAssertTrue(tree.has("A"))
         XCTAssertEqual(tree.min(), "A")
         XCTAssertEqual(tree.max(), "A")
         tree.insert("A")
-        XCTAssertTrue(tree.search("A"))
+        XCTAssertTrue(tree.has("A"))
         XCTAssertEqual(tree.min(), "A")
         XCTAssertEqual(tree.max(), "A")
         XCTAssertTrue(tree.remove("A"))
@@ -45,10 +45,20 @@ class RedBlackTreeTests: XCTestCase {
         XCTAssertNil(tree.max())
     }
 
+    func testColorNotChangedAfterDoubleInsert() {
+        tree = "ABC"
+        print(tree.diagram())
+        XCTAssertTrue(!Tree.Node.isRed(tree.root!.left))
+        tree.insert("A")
+        print(tree.diagram())
+        XCTAssertTrue(tree.has("A"))
+        XCTAssertTrue(!Tree.Node.isRed(tree.root!.left))
+    }
+
     func testInsertTwo() {
         tree.insert(["B", "A"]) // 100% coverage
-        XCTAssertTrue(tree.search("A"))
-        XCTAssertTrue(tree.search("B"))
+        XCTAssertTrue(tree.has("A"))
+        XCTAssertTrue(tree.has("B"))
         XCTAssertFalse(tree.remove("0"))
         XCTAssertFalse(tree.remove("C"))
         XCTAssertEqual(tree.min(), "A")
@@ -59,18 +69,18 @@ class RedBlackTreeTests: XCTestCase {
 
     func testInsertSerial() {
         tree = ["A", "B", "C", "D", "E", "F"]
-        XCTAssertTrue(tree.search("A"))
-        XCTAssertTrue(tree.search("B"))
-        XCTAssertTrue(tree.search("C"))
+        XCTAssertTrue(tree.has("A"))
+        XCTAssertTrue(tree.has("B"))
+        XCTAssertTrue(tree.has("C"))
         XCTAssertEqual(tree.min(), "A")
         XCTAssertEqual(tree.max(), "F")
         print(tree.diagram())
         tree.remove(["B", "A", "C", "E", "F", "D"])
         XCTAssertTrue(tree.isEmpty)
         tree = "FEDCBAG"
-        XCTAssertTrue(tree.search("A"))
-        XCTAssertTrue(tree.search("B"))
-        XCTAssertTrue(tree.search("C"))
+        XCTAssertTrue(tree.has("A"))
+        XCTAssertTrue(tree.has("B"))
+        XCTAssertTrue(tree.has("C"))
         XCTAssertEqual(tree.min(), "A")
         XCTAssertEqual(tree.max(), "G")
         print(tree.diagram())

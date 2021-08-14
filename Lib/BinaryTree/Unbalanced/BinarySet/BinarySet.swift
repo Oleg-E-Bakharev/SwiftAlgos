@@ -1,5 +1,5 @@
 //
-//  BinaryTree.swift
+//  BinarySet.swift
 //  SwiftAlgosLib
 //
 //  Created by Oleg Bakharev on 02.02.2021.
@@ -8,12 +8,19 @@
 
 import Foundation
 
-public struct BinaryTree<T: Comparable> {
+public struct BinarySet<T: Comparable> {
     public typealias Value = T
-    public final class Node: BinaryTreeNode, BinaryTreeNodeDeepCopy, BinaryTreeNodeTraits {
+    public typealias Key = T
+    public final class Node: BinarySetNode, BinarySetNodeDeepCopy, BinarySetNodeTraits {
         public var value: T
+        public var key: T { value }
         public var left: Node?
         public var right: Node?
+
+        public init(key: T, value: T) {
+            assert(key == value)
+            self.value = value
+        }
 
         public init(_ value: T) {
             self.value = value
@@ -27,11 +34,11 @@ public struct BinaryTree<T: Comparable> {
     var uniqueMarker = UniqueMarker()
 }
 
-extension BinaryTree: BinaryTreeCopyOnWrite {
+extension BinarySet: BinarySetCopyOnWrite {
     public typealias NodeRef = Node
 }
 
-extension BinaryTree: BinaryTreeTraits {
+extension BinarySet: BinarySetTraits {
     public func min() -> T? {
         treeMin()
     }
@@ -40,33 +47,37 @@ extension BinaryTree: BinaryTreeTraits {
         treeMax()
     }
 
-    public mutating func insert(_ value: T) {
+    public mutating func insert(key: T, value: T) {
         copyNodesIfNotUnique()
-        Node.insert(to: &root, value: value)
+        Node.insert(to: &root, key: key, value: value)
+    }
+
+    public mutating func insert(_ key: T) {
+        insert(key: key, value: key)
     }
 
     public mutating func insertToRoot(_ value: T) {
         copyNodesIfNotUnique()
         var root = self.root
-        Node.insertToRoot(to: &root, value: value)
+        Node.insertToRoot(to: &root, key: value, value: value)
         self.root = root
     }
 
     @discardableResult
-    public mutating func remove(_ value: T) -> Bool {
+    public mutating func remove(_ key: T) -> Bool {
         copyNodesIfNotUnique()
-        return Node.remove(from: &root, value: value)
+        return (Node.remove(from: &root, key: key) != nil)
     }
 
     // Destructive to self merge O(n)
-    public mutating func merge(to target: inout BinaryTree) -> Void {
+    public mutating func merge(to target: inout BinarySet) -> Void {
         target.root = Node.merge(target.root, to: root)
         root = nil
     }
 }
 
-extension BinaryTree.Node: Equatable {
-    public static func == (lhs: BinaryTree<T>.Node, rhs: BinaryTree<T>.Node) -> Bool {
+extension BinarySet.Node: Equatable {
+    public static func == (lhs: BinarySet<T>.Node, rhs: BinarySet<T>.Node) -> Bool {
         guard lhs.value == rhs.value,
               lhs.left == rhs.left,
               lhs.right == rhs.right
@@ -77,16 +88,16 @@ extension BinaryTree.Node: Equatable {
     }
 }
 
-extension BinaryTree: Equatable {
-    public static func == (lhs: BinaryTree<T>, rhs: BinaryTree<T>) -> Bool {
+extension BinarySet: Equatable {
+    public static func == (lhs: BinarySet<T>, rhs: BinarySet<T>) -> Bool {
         lhs.root == rhs.root
     }
 }
 
-extension BinaryTree: BinaryTreeSerialOperations {}
+extension BinarySet: BinarySetSerialOperations {}
 
-extension BinaryTree: BinaryTreeInfo {}
+extension BinarySet: BinarySetInfo {}
 
-extension BinaryTree: CustomStringConvertible {
+extension BinarySet: CustomStringConvertible {
     public var description: String { diagram() }
 }

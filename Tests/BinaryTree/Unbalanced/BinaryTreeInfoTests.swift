@@ -1,5 +1,5 @@
 //
-//  BinaryTreeInfoTests.swift
+//  BinarySetInfoTests.swift
 //  SwiftAlgosTests
 //
 //  Created by Oleg Bakharev on 25.02.2021.
@@ -9,8 +9,8 @@
 import XCTest
 @testable import SwiftAlgosLib
 
-class BinaryTreeInfoTests: XCTestCase {
-    var tree = BinaryTree<Character>()
+class BinarySetInfoTests: XCTestCase {
+    var tree = BinarySet<Character>()
 
     override func setUpWithError() throws {
         tree = ["D","B", "F", "A", "C", "E", "G", "H"]

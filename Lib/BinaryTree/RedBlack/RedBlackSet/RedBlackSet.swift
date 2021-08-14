@@ -1,5 +1,5 @@
 //
-//  RedBlackTree.swift
+//  RedBlackSet.swift
 //  SwiftAlgosLib
 //
 //  Created by Oleg Bakharev on 31.07.2021.
@@ -7,25 +7,28 @@
 //
 
 
-public struct RedBlackTree<T: Comparable> {
+public struct RedBlackSet<T: Comparable> {
     public typealias Value = T
+    public typealias Key = T
     
-    public final class Node: RedBlackTreeNode, BinaryTreeNodeDeepCopy, BinaryTreeNodeTraits {
+    public final class Node: RedBlackSetNode, BinarySetNodeDeepCopy, BinarySetNodeTraits {
         public var value: T
+        public var key: T { value }
         public var left: Node?
         public var right: Node?
         private var isRed: Bool
 
-        public init(_ value: T) {
+        public init(key: T, value: T) {
+            assert(key == value)
             self.value = value
             isRed = true
         }
 
-        public static func isRed(_ node: RedBlackTree<T>.Node?) -> Bool {
+        public static func isRed(_ node: RedBlackSet<T>.Node?) -> Bool {
             node?.isRed ?? false
         }
 
-        public static func setRed(_ node: inout RedBlackTree<T>.Node?, _ isRed: Bool) {
+        public static func setRed(_ node: inout RedBlackSet<T>.Node?, _ isRed: Bool) {
             node?.isRed = isRed
         }
     }
@@ -37,11 +40,11 @@ public struct RedBlackTree<T: Comparable> {
     var uniqueMarker = UniqueMarker()
 }
 
-extension RedBlackTree: BinaryTreeCopyOnWrite {
+extension RedBlackSet: BinarySetCopyOnWrite {
     public typealias NodeRef = Node
 }
 
-extension RedBlackTree: BinaryTreeTraits {
+extension RedBlackSet: BinarySetTraits {
     public func min() -> T? {
         treeMin()
     }
@@ -50,9 +53,14 @@ extension RedBlackTree: BinaryTreeTraits {
         treeMax()
     }
 
-    public mutating func insert(_ value: T) {
+    public mutating func insert(key: T, value: T) {
         copyNodesIfNotUnique()
-        Node.insert(value, to: &root)
+        assert(key == value)
+        Node.insert(key: key, value: value, to: &root)
+    }
+
+    public mutating func insert(_ key: T) {
+        insert(key: key, value: key)
     }
 
     @discardableResult
@@ -72,10 +80,10 @@ extension RedBlackTree: BinaryTreeTraits {
     }
 }
 
-extension RedBlackTree: BinaryTreeSerialOperations {}
+extension RedBlackSet: BinarySetSerialOperations {}
 
-extension RedBlackTree.Node: Equatable {
-    public static func == (lhs: RedBlackTree<T>.Node, rhs: RedBlackTree<T>.Node) -> Bool {
+extension RedBlackSet.Node: Equatable {
+    public static func == (lhs: RedBlackSet<T>.Node, rhs: RedBlackSet<T>.Node) -> Bool {
         guard lhs.value == rhs.value,
               lhs.left == rhs.left,
               lhs.right == rhs.right,
@@ -87,8 +95,8 @@ extension RedBlackTree.Node: Equatable {
     }
 }
 
-extension RedBlackTree: Equatable {
-    public static func == (lhs: RedBlackTree<T>, rhs: RedBlackTree<T>) -> Bool {
+extension RedBlackSet: Equatable {
+    public static func == (lhs: RedBlackSet<T>, rhs: RedBlackSet<T>) -> Bool {
         lhs.root == rhs.root
     }
 }

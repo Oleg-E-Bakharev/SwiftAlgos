@@ -1,62 +1,62 @@
 //
-//  BinaryTreeNode.swift
+//  BinarySetNode.swift
 //  SwiftAlgosLib
 //
 //  Created by Oleg Bakharev on 04.01.2021.
 //  Copyright © 2021 Oleg Bakharev. All rights reserved.
 //
 
-public protocol BinaryTreeNode: BinaryTreeNodeTraits where NodeRef == Self {}
+public protocol BinarySetNode: BinarySetNodeTraits where NodeRef == Self {}
 
-public extension BinaryTreeNode {
-    static func insert(to link: inout NodeRef?, value: Value) {
+public extension BinarySetNode {
+    static func insert(to link: inout NodeRef?, key: Key, value: Value) {
         guard var node = link else {
-            link = Self(value)
+            link = Self(key: key, value: value)
             return
         }
-
-        if value == node.value {
-            node.value = value
-        } else if value < node.value {
-            insert(to: &node.left, value: value)
+ 
+        if key == node.key {
+            link = Self(key: key, value: value)
+        } else if key < node.key {
+            insert(to: &node.left, key: key, value: value)
         } else {
-            insert(to: &node.right, value: value)
+            insert(to: &node.right, key: key, value: value)
         }
     }
 
-    static func insertToRoot(to link: inout Self?, value: Value) {
+    static func insertToRoot(to link: inout NodeRef?, key: Key, value: Value) {
         guard var node = link else {
-            link = Self(value)
+            link = Self(key: key, value: value)
             return
         }
 
-        if value == node.value {
-            node.value = value
-        } else if value < node.value {
-            insertToRoot(to: &node.left, value: value)
+        if key == node.key {
+            link = node
+        } else if key < node.key {
+            insertToRoot(to: &node.left, key: key, value: value)
             Self.rotateRight(&link)
         } else {
-            insertToRoot(to: &node.right, value: value)
+            insertToRoot(to: &node.right, key: key, value: value)
             Self.rotateLeft(&link)
         }
     }
 
-    static func remove(from link: inout Self?, value: Value) -> Bool {
+    static func remove(from link: inout NodeRef?, key: Key) -> Value? {
         guard var node = link else {
-            return false
+            return nil
         }
-        if node.value == value {
+        if node.key == key {
             Self.join(at: &link, left: node.left, right: node.right)
-            return true
+            return node.value
         }
-        if value < node.value {
-            return remove(from: &node.left, value: value)
+        if key < node.key {
+            return remove(from: &node.left, key: key)
         }
-        return remove(from: &node.right, value: value)
+        return remove(from: &node.right, key: key)
     }
 
     // all left < all right
-    static func join(at link: inout Self?, left: Self?, right: Self?) {
+    static func join(at link: inout NodeRef?, left: Self?, right: Self?) {
         guard var l = left, var r = right else {
             link = left != nil ? left : right
             return
@@ -73,11 +73,12 @@ public extension BinaryTreeNode {
     
     /// O(n)
     @discardableResult
-    static func merge(_ left: Self?, to right: Self?) -> Self? {
+    static func merge(_ left: NodeRef?, to right: NodeRef?) -> NodeRef? {
         guard let left = left else { return right }
         guard right != nil else { return left }
         var right = right
-        insertToRoot(to: &right, value: left.value)
+        /// Ошибка!
+        insertToRoot(to: &right, key: left.key, value: left.value)
         let rightLeft = merge(left.left, to: right?.left)
         right?.left = rightLeft
         let rightRight = merge(left.right, to: right?.right)

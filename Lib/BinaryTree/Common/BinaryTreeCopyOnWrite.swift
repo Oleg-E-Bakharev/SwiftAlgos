@@ -1,5 +1,5 @@
 //
-//  BinaryTreeCopyOnWrite.swift
+//  BinarySetCopyOnWrite.swift
 //  SwiftAlgosLib
 //
 //  Created by Oleg Bakharev on 03.08.2021.
@@ -8,8 +8,8 @@
 
 import Foundation
 
-protocol BinaryTreeCopyOnWrite {
-    associatedtype NodeRef: BinaryTreeNodeDeepCopy where NodeRef.NodeRef == NodeRef
+protocol BinarySetCopyOnWrite {
+    associatedtype NodeRef: BinarySetNodeDeepCopy where NodeRef.NodeRef == NodeRef
     associatedtype UniqueMarker: AnyObject
 
     var root: NodeRef? { get set }
@@ -18,7 +18,7 @@ protocol BinaryTreeCopyOnWrite {
     mutating func copyNodesIfNotUnique()
 }
 
-extension BinaryTreeCopyOnWrite {
+extension BinarySetCopyOnWrite {
     mutating func copyNodesIfNotUnique() {
         guard !isKnownUniquelyReferenced(&uniqueMarker) else {
             return

@@ -17,20 +17,20 @@
 		7C75E89925A2E2F0007873F1 /* BinaryTreeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C75E89825A2E2F0007873F1 /* BinaryTreeNode.swift */; };
 		7C75E89E25A2E474007873F1 /* BinaryTreeInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C75E89D25A2E474007873F1 /* BinaryTreeInfo.swift */; };
 		CF1B1EA125ECF27E0098E9B6 /* BinaryTreeNode+Splay.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1B1EA025ECF27E0098E9B6 /* BinaryTreeNode+Splay.swift */; };
-		CF26B32625C9DDB700BF034C /* BinaryTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF26B32525C9DDB700BF034C /* BinaryTree.swift */; };
-		CF3509BA26B562B2004320D0 /* RedBlackTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3509B926B562B2004320D0 /* RedBlackTree.swift */; };
+		CF26B32625C9DDB700BF034C /* BinarySet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF26B32525C9DDB700BF034C /* BinarySet.swift */; };
+		CF3509BA26B562B2004320D0 /* RedBlackSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3509B926B562B2004320D0 /* RedBlackSet.swift */; };
 		CF3509BC26B56888004320D0 /* BinaryTreeNodeBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3509BB26B56888004320D0 /* BinaryTreeNodeBase.swift */; };
 		CF3509BE26B571DE004320D0 /* BinaryTreeSerialOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3509BD26B571DE004320D0 /* BinaryTreeSerialOperations.swift */; };
 		CF3509C026B57409004320D0 /* BinaryTreeNodeTraits.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3509BF26B57409004320D0 /* BinaryTreeNodeTraits.swift */; };
-		CF3509C426B5D40F004320D0 /* BinaryTree+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3509C326B5D40F004320D0 /* BinaryTree+Extensions.swift */; };
+		CF3509C426B5D40F004320D0 /* BinarySet+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3509C326B5D40F004320D0 /* BinarySet+Extensions.swift */; };
 		CF3509C826B5D686004320D0 /* RedBlackTreeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3509C726B5D686004320D0 /* RedBlackTreeTests.swift */; };
-		CF3509CA26B5D7D0004320D0 /* RedBlackTree+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3509C926B5D7D0004320D0 /* RedBlackTree+Extensions.swift */; };
+		CF3509CA26B5D7D0004320D0 /* RedBlackSet+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3509C926B5D7D0004320D0 /* RedBlackSet+Extensions.swift */; };
 		CF3509CC26B5DA0E004320D0 /* RedBlackTreeInfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3509CB26B5DA0E004320D0 /* RedBlackTreeInfoTests.swift */; };
-		CF3509D026B5E081004320D0 /* RedBlackTree+BinaryTreeInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3509CF26B5E081004320D0 /* RedBlackTree+BinaryTreeInfo.swift */; };
+		CF3509D026B5E081004320D0 /* RedBlackSet+BinaryTreeInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3509CF26B5E081004320D0 /* RedBlackSet+BinaryTreeInfo.swift */; };
 		CF395972260F48200001664B /* List+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF395971260F48200001664B /* List+Codable.swift */; };
 		CF395977260F5B0F0001664B /* ListCodableTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF395976260F5B0F0001664B /* ListCodableTest.swift */; };
 		CF395987260F69DA0001664B /* SequenceEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF395986260F69DA0001664B /* SequenceEx.swift */; };
-		CF395995260F8EE00001664B /* BinaryTree+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF395994260F8EE00001664B /* BinaryTree+Codable.swift */; };
+		CF395995260F8EE00001664B /* BinarySet+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF395994260F8EE00001664B /* BinarySet+Codable.swift */; };
 		CF39599A260F8F360001664B /* BinaryTreeCodableTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF395999260F8F360001664B /* BinaryTreeCodableTest.swift */; };
 		CF3F9D1C252CEB8600B82E60 /* CollectionExTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3F9D1B252CEB8600B82E60 /* CollectionExTests.swift */; };
 		CF5ED6F725E7C356007C0576 /* BinaryTreeInfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5ED6F625E7C356007C0576 /* BinaryTreeInfoTests.swift */; };
@@ -54,8 +54,8 @@
 		CF9376B62527B7590021CCBB /* Deque.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9376B52527B7590021CCBB /* Deque.swift */; };
 		CF9376B82527BF040021CCBB /* RingBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9376B72527BF040021CCBB /* RingBuffer.swift */; };
 		CFA90E5926BFECAA00D34314 /* RedBlackTreeCodableTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA90E5826BFECAA00D34314 /* RedBlackTreeCodableTest.swift */; };
-		CFA90E5C26BFEDA800D34314 /* RedBlackTree+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA90E5A26BFED5500D34314 /* RedBlackTree+Codable.swift */; };
-		CFAEDFD625E8F6A4003A977E /* BinaryTree+Splay.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAEDFD525E8F6A4003A977E /* BinaryTree+Splay.swift */; };
+		CFA90E5C26BFEDA800D34314 /* RedBlackSet+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA90E5A26BFED5500D34314 /* RedBlackSet+Codable.swift */; };
+		CFAEDFD625E8F6A4003A977E /* BinarySet+Splay.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAEDFD525E8F6A4003A977E /* BinarySet+Splay.swift */; };
 		CFB1818225DC493B00C61E12 /* BinaryTreeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB1818125DC493B00C61E12 /* BinaryTreeTests.swift */; };
 		CFB1818A25DC4BD800C61E12 /* BinaryTreeTraits.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB1818925DC4BD800C61E12 /* BinaryTreeTraits.swift */; };
 		CFB24D7B25ED7DAB00A5FBC4 /* SplayTreeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB24D7A25ED7DAB00A5FBC4 /* SplayTreeTests.swift */; };
@@ -94,20 +94,20 @@
 		7C75E89825A2E2F0007873F1 /* BinaryTreeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTreeNode.swift; sourceTree = "<group>"; };
 		7C75E89D25A2E474007873F1 /* BinaryTreeInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTreeInfo.swift; sourceTree = "<group>"; };
 		CF1B1EA025ECF27E0098E9B6 /* BinaryTreeNode+Splay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BinaryTreeNode+Splay.swift"; sourceTree = "<group>"; };
-		CF26B32525C9DDB700BF034C /* BinaryTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTree.swift; sourceTree = "<group>"; };
-		CF3509B926B562B2004320D0 /* RedBlackTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedBlackTree.swift; sourceTree = "<group>"; };
+		CF26B32525C9DDB700BF034C /* BinarySet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinarySet.swift; sourceTree = "<group>"; };
+		CF3509B926B562B2004320D0 /* RedBlackSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedBlackSet.swift; sourceTree = "<group>"; };
 		CF3509BB26B56888004320D0 /* BinaryTreeNodeBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTreeNodeBase.swift; sourceTree = "<group>"; };
 		CF3509BD26B571DE004320D0 /* BinaryTreeSerialOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTreeSerialOperations.swift; sourceTree = "<group>"; };
 		CF3509BF26B57409004320D0 /* BinaryTreeNodeTraits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTreeNodeTraits.swift; sourceTree = "<group>"; };
-		CF3509C326B5D40F004320D0 /* BinaryTree+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BinaryTree+Extensions.swift"; sourceTree = "<group>"; };
+		CF3509C326B5D40F004320D0 /* BinarySet+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BinarySet+Extensions.swift"; sourceTree = "<group>"; };
 		CF3509C726B5D686004320D0 /* RedBlackTreeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedBlackTreeTests.swift; sourceTree = "<group>"; };
-		CF3509C926B5D7D0004320D0 /* RedBlackTree+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RedBlackTree+Extensions.swift"; sourceTree = "<group>"; };
+		CF3509C926B5D7D0004320D0 /* RedBlackSet+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RedBlackSet+Extensions.swift"; sourceTree = "<group>"; };
 		CF3509CB26B5DA0E004320D0 /* RedBlackTreeInfoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedBlackTreeInfoTests.swift; sourceTree = "<group>"; };
-		CF3509CF26B5E081004320D0 /* RedBlackTree+BinaryTreeInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RedBlackTree+BinaryTreeInfo.swift"; sourceTree = "<group>"; };
+		CF3509CF26B5E081004320D0 /* RedBlackSet+BinaryTreeInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RedBlackSet+BinaryTreeInfo.swift"; sourceTree = "<group>"; };
 		CF395971260F48200001664B /* List+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "List+Codable.swift"; sourceTree = "<group>"; };
 		CF395976260F5B0F0001664B /* ListCodableTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCodableTest.swift; sourceTree = "<group>"; };
 		CF395986260F69DA0001664B /* SequenceEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequenceEx.swift; sourceTree = "<group>"; };
-		CF395994260F8EE00001664B /* BinaryTree+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BinaryTree+Codable.swift"; sourceTree = "<group>"; };
+		CF395994260F8EE00001664B /* BinarySet+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BinarySet+Codable.swift"; sourceTree = "<group>"; };
 		CF395999260F8F360001664B /* BinaryTreeCodableTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTreeCodableTest.swift; sourceTree = "<group>"; };
 		CF3F9D1B252CEB8600B82E60 /* CollectionExTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionExTests.swift; sourceTree = "<group>"; };
 		CF5ED6F625E7C356007C0576 /* BinaryTreeInfoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTreeInfoTests.swift; sourceTree = "<group>"; };
@@ -133,8 +133,8 @@
 		CF9376B52527B7590021CCBB /* Deque.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deque.swift; sourceTree = "<group>"; };
 		CF9376B72527BF040021CCBB /* RingBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingBuffer.swift; sourceTree = "<group>"; };
 		CFA90E5826BFECAA00D34314 /* RedBlackTreeCodableTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedBlackTreeCodableTest.swift; sourceTree = "<group>"; };
-		CFA90E5A26BFED5500D34314 /* RedBlackTree+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RedBlackTree+Codable.swift"; sourceTree = "<group>"; };
-		CFAEDFD525E8F6A4003A977E /* BinaryTree+Splay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BinaryTree+Splay.swift"; sourceTree = "<group>"; };
+		CFA90E5A26BFED5500D34314 /* RedBlackSet+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RedBlackSet+Codable.swift"; sourceTree = "<group>"; };
+		CFAEDFD525E8F6A4003A977E /* BinarySet+Splay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BinarySet+Splay.swift"; sourceTree = "<group>"; };
 		CFB1818125DC493B00C61E12 /* BinaryTreeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTreeTests.swift; sourceTree = "<group>"; };
 		CFB1818925DC4BD800C61E12 /* BinaryTreeTraits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTreeTraits.swift; sourceTree = "<group>"; };
 		CFB24D7A25ED7DAB00A5FBC4 /* SplayTreeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplayTreeTests.swift; sourceTree = "<group>"; };
@@ -177,6 +177,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CF32744926C7D5CB00DA1BD7 /* BinarySet */ = {
+			isa = PBXGroup;
+			children = (
+				CF26B32525C9DDB700BF034C /* BinarySet.swift */,
+				CF3509C326B5D40F004320D0 /* BinarySet+Extensions.swift */,
+				CF395994260F8EE00001664B /* BinarySet+Codable.swift */,
+				CFAEDFD525E8F6A4003A977E /* BinarySet+Splay.swift */,
+			);
+			path = BinarySet;
+			sourceTree = "<group>";
+		};
+		CF32744A26C7E5D600DA1BD7 /* RedBlackSet */ = {
+			isa = PBXGroup;
+			children = (
+				CF3509B926B562B2004320D0 /* RedBlackSet.swift */,
+				CF3509CF26B5E081004320D0 /* RedBlackSet+BinaryTreeInfo.swift */,
+				CF3509C926B5D7D0004320D0 /* RedBlackSet+Extensions.swift */,
+				CFA90E5A26BFED5500D34314 /* RedBlackSet+Codable.swift */,
+			);
+			path = RedBlackSet;
+			sourceTree = "<group>";
+		};
 		CF3509C126B57E54004320D0 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -194,12 +216,9 @@
 		CF3509C226B57EA6004320D0 /* Unbalanced */ = {
 			isa = PBXGroup;
 			children = (
+				CF32744926C7D5CB00DA1BD7 /* BinarySet */,
 				7C75E89825A2E2F0007873F1 /* BinaryTreeNode.swift */,
 				CF1B1EA025ECF27E0098E9B6 /* BinaryTreeNode+Splay.swift */,
-				CF26B32525C9DDB700BF034C /* BinaryTree.swift */,
-				CF3509C326B5D40F004320D0 /* BinaryTree+Extensions.swift */,
-				CF395994260F8EE00001664B /* BinaryTree+Codable.swift */,
-				CFAEDFD525E8F6A4003A977E /* BinaryTree+Splay.swift */,
 			);
 			path = Unbalanced;
 			sourceTree = "<group>";
@@ -325,11 +344,8 @@
 		CFB556C326AD97BC0047CC84 /* RedBlack */ = {
 			isa = PBXGroup;
 			children = (
+				CF32744A26C7E5D600DA1BD7 /* RedBlackSet */,
 				CFB556C426AD981B0047CC84 /* RedBlackTreeNode.swift */,
-				CF3509B926B562B2004320D0 /* RedBlackTree.swift */,
-				CF3509CF26B5E081004320D0 /* RedBlackTree+BinaryTreeInfo.swift */,
-				CF3509C926B5D7D0004320D0 /* RedBlackTree+Extensions.swift */,
-				CFA90E5A26BFED5500D34314 /* RedBlackTree+Codable.swift */,
 			);
 			path = RedBlack;
 			sourceTree = "<group>";
@@ -517,30 +533,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C75E89E25A2E474007873F1 /* BinaryTreeInfo.swift in Sources */,
-				CF3509BA26B562B2004320D0 /* RedBlackTree.swift in Sources */,
+				CF3509BA26B562B2004320D0 /* RedBlackSet.swift in Sources */,
 				CF3509BE26B571DE004320D0 /* BinaryTreeSerialOperations.swift in Sources */,
 				CF78566F25530805003321B5 /* Clusterizator.swift in Sources */,
 				CF3509C026B57409004320D0 /* BinaryTreeNodeTraits.swift in Sources */,
 				CFB99B4D25A5CEBD002E0190 /* BitPtr.swift in Sources */,
-				CF3509C426B5D40F004320D0 /* BinaryTree+Extensions.swift in Sources */,
+				CF3509C426B5D40F004320D0 /* BinarySet+Extensions.swift in Sources */,
 				CF9376B22527B3540021CCBB /* Queue.swift in Sources */,
 				CFB32F1326B9C41A004FB08E /* BinaryTreeCopyOnWrite.swift in Sources */,
 				CF9376B62527B7590021CCBB /* Deque.swift in Sources */,
-				CF3509CA26B5D7D0004320D0 /* RedBlackTree+Extensions.swift in Sources */,
+				CF3509CA26B5D7D0004320D0 /* RedBlackSet+Extensions.swift in Sources */,
 				7C52E38C25419D99000746FA /* BinaryHeap.swift in Sources */,
 				CF395972260F48200001664B /* List+Codable.swift in Sources */,
 				CF83EB6025115FB0000AEFB1 /* ListAlgos.swift in Sources */,
-				CF3509D026B5E081004320D0 /* RedBlackTree+BinaryTreeInfo.swift in Sources */,
+				CF3509D026B5E081004320D0 /* RedBlackSet+BinaryTreeInfo.swift in Sources */,
 				CF3509BC26B56888004320D0 /* BinaryTreeNodeBase.swift in Sources */,
-				CFA90E5C26BFEDA800D34314 /* RedBlackTree+Codable.swift in Sources */,
+				CFA90E5C26BFEDA800D34314 /* RedBlackSet+Codable.swift in Sources */,
 				CF85DA2B25090CC60099EABF /* Stack.swift in Sources */,
-				CF26B32625C9DDB700BF034C /* BinaryTree.swift in Sources */,
+				CF26B32625C9DDB700BF034C /* BinarySet.swift in Sources */,
 				CF78567025530808003321B5 /* DisjointSet.swift in Sources */,
-				CF395995260F8EE00001664B /* BinaryTree+Codable.swift in Sources */,
+				CF395995260F8EE00001664B /* BinarySet+Codable.swift in Sources */,
 				CFFC196025EEA1C7003CDA32 /* EnumListNode.swift in Sources */,
 				CFB3138925C6FE85001E5268 /* PointerEx.swift in Sources */,
 				CFB556C626AD98200047CC84 /* RedBlackTreeNode.swift in Sources */,
-				CFAEDFD625E8F6A4003A977E /* BinaryTree+Splay.swift in Sources */,
+				CFAEDFD625E8F6A4003A977E /* BinarySet+Splay.swift in Sources */,
 				7C52E39125419DC4000746FA /* PriorityQueue.swift in Sources */,
 				CF395987260F69DA0001664B /* SequenceEx.swift in Sources */,
 				7C75E89925A2E2F0007873F1 /* BinaryTreeNode.swift in Sources */,

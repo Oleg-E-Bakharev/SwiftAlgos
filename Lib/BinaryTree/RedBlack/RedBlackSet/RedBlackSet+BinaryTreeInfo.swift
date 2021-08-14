@@ -1,12 +1,12 @@
 //
-//  RedBlackTree+BinaryTreeInfo.swift
+//  RedBlackSet+BinarySetInfo.swift
 //  SwiftAlgosLib
 //
 //  Created by Oleg Bakharev on 31.07.2021.
 //  Copyright © 2021 Oleg Bakharev. All rights reserved.
 //
 
-extension RedBlackTree: BinaryTreeInfo {
+extension RedBlackSet: BinarySetInfo {
     public func diagram() -> String {
         diagram(of: root)
     }

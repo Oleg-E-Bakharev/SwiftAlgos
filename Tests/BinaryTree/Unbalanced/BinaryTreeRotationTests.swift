@@ -1,5 +1,5 @@
 //
-//  BinaryTreeRotationTests.swift
+//  BinarySetRotationTests.swift
 //  SwiftAlgosTests
 //
 //  Created by Oleg Bakharev on 25.02.2021.
@@ -9,8 +9,8 @@
 import XCTest
 @testable import SwiftAlgosLib
 
-class BinaryTreeRotationTests: XCTestCase {
-    typealias Tree = BinaryTree<Int>
+class BinarySetRotationTests: XCTestCase {
+    typealias Tree = BinarySet<Int>
     var tree = Tree()
 
     override func setUpWithError() throws {

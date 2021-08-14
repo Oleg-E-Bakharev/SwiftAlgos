@@ -1,5 +1,5 @@
 //
-//  RedBlackTreeInfoTests.swift
+//  RedBlackSetInfoTests.swift
 //  SwiftAlgosTests
 //
 //  Created by Oleg Bakharev on 31.07.2021.
@@ -9,8 +9,8 @@
 import XCTest
 @testable import SwiftAlgosLib
 
-class RedBlackTreeInfoTests: XCTestCase {
-    var tree = RedBlackTree<Character>()
+class RedBlackSetInfoTests: XCTestCase {
+    var tree = RedBlackSet<Character>()
 
     override func setUpWithError() throws {
 //        tree = ["A","B", "C", "D", "E", "F", "G", "H"]
@@ -56,13 +56,17 @@ class RedBlackTreeInfoTests: XCTestCase {
         let characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".unicodeScalars
         for char in characters.shuffled() {
             print("inserting: \(char)")
+            print(tree.diagram())
             tree.insert(Character(char))
             print(tree.diagram())
+            assert(tree.has(Character(char)))
         }
         for char in characters.shuffled() {
             print("deleting: \(char)")
+            assert(tree.has(Character(char)))
             tree.remove(Character(char))
             print(tree.diagram())
+            assert(!tree.has(Character(char)))
         }
     }
 

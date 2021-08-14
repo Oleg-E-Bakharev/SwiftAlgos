@@ -1,5 +1,5 @@
 //
-//  RedBlackTreeCodableTest.swift
+//  RedBlackSetCodableTest.swift
 //  SwiftAlgosTests
 //
 //  Created by Oleg Bakharev on 08.08.2021.
@@ -9,9 +9,9 @@
 import XCTest
 @testable import SwiftAlgosLib
 
-class RedBlackTreeCodableTest: XCTestCase {
+class RedBlackSetCodableTest: XCTestCase {
 
-    typealias StringTree = RedBlackTree<String>
+    typealias StringTree = RedBlackSet<String>
     var sut: StringTree!
 
     override func setUp() {

@@ -1,5 +1,5 @@
 //
-//  RedBlackTreeNode.swift
+//  RedBlackSetNode.swift
 //  SwiftAlgosSandbox
 //
 //  Created by Oleg Bakharev on 25.07.2021.
@@ -8,12 +8,12 @@
 
 /// Left Leaning Red Black Tree
 /// https://www.cs.princeton.edu/~rs/talks/LLRB/RedBlack.pdf
-public protocol RedBlackTreeNode: BinaryTreeNodeTraits where NodeRef: RedBlackTreeNode {
+public protocol RedBlackSetNode: BinarySetNodeTraits where NodeRef == Self {
     static func isRed(_ node: NodeRef?) -> Bool
     static func setRed(_ node: inout NodeRef?, _ isRed: Bool)
 }
 
-public extension RedBlackTreeNode {
+public extension RedBlackSetNode {
     /// Split temporary 4-node to two 2-node and promoute red link up.
     /// Or perform reverse operation.
     private static func colorFlip(_ link: inout NodeRef?) {
@@ -44,20 +44,20 @@ public extension RedBlackTreeNode {
         link = left
     }
 
-    static func insert(_ value: Value, to link: inout NodeRef?) {
+    static func insert(key: Key, value: Value, to link: inout NodeRef?) {
         if link == nil {
-            link = .init(value)
+            link = Self(key: key, value: value)
             setRed(&link, true)
             return
         }
 
         if var node = link {
-            if value < node.value {
-                insert(value, to: &node.left)
-            } else if value == node.value {
+            if key < node.key {
+                insert(key: key, value: value, to: &node.left)
+            } else if key == node.key {
                 link?.value = value
             } else {
-                insert(value, to: &node.right)
+                insert(key: key, value: value, to: &node.right)
             }
         }
 
@@ -134,16 +134,16 @@ public extension RedBlackTreeNode {
         fix(&link)
     }
 
-    static func remove(_ value: Value, from link: inout NodeRef?) -> Bool {
+    static func remove(_ key: Key, from link: inout NodeRef?) -> Bool {
         guard let node = link else {
             return false
         }
         
         let result: Bool
-        if value < node.value {
-            result = removeOnLeft(value, from: &link)
+        if key < node.key {
+            result = removeOnLeft(key, from: &link)
         } else { // right or equal
-            result = removeSelfOrRight(value, from: &link)
+            result = removeSelfOrRight(key, from: &link)
         }
         if result {
             fix(&link)
@@ -151,25 +151,25 @@ public extension RedBlackTreeNode {
         return result
     }
     
-    private static func removeOnLeft(_ value: Value, from link: inout NodeRef?) -> Bool {
+    private static func removeOnLeft(_ key: Key, from link: inout NodeRef?) -> Bool {
         // We should remove node from 3- or temporary 4-node
         if !isRed(link?.left) && !isRed(link?.left?.left) {
             // We have 2-node on left. Make 3-node.
             advanceRedToLeft(at: &link)
         }
         if var node = link {
-            return remove(value, from: &node.left)
+            return remove(key, from: &node.left)
         }
         return false
     }
     
-    private static func removeSelfOrRight(_ value: Value, from link: inout NodeRef?) -> Bool {
+    private static func removeSelfOrRight(_ key: Key, from link: inout NodeRef?) -> Bool {
         if isRed(link?.left) {
             rotateRight(&link)
         }
 
         // Check leaf equal
-        if link?.right == nil && link?.value == value {
+        if link?.right == nil && link?.key == key {
             link = nil
             return true
         }
@@ -178,7 +178,7 @@ public extension RedBlackTreeNode {
             advanceRedToRight(at: &link)
         }
 
-        if link?.value == value {
+        if link?.key == key {
             // Equal and not leaf. Set value to min and del min.
             if let minValue = link?.right?.min()?.value {
                 link?.value = minValue
@@ -190,7 +190,7 @@ public extension RedBlackTreeNode {
         }
         
         if var node = link {
-            return remove(value, from: &node.right)
+            return remove(key, from: &node.right)
         }
         return false
     }
