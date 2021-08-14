@@ -9,8 +9,8 @@
 import Foundation
 
 public extension BinaryMap {
-    mutating func splaySearch(_ key: Key) -> Bool {
-        Node.splay(Node.splayEquivalence, to: &root, key: key) != nil
+    mutating func splaySearch(_ key: Key) -> Value? {
+        Node.splay(Node.splayEquivalence, to: &root, key: key)?.value
     }
 
     mutating func splayInsert(key: Key, value: Value) {
@@ -22,5 +22,13 @@ public extension BinaryMap {
     mutating func splayRemove(_ key: Key) -> Bool {
         copyNodesIfNotUnique()
         return Node.splay(Node.splayRemoving, to: &root, key: key) != nil
+    }
+
+    subscript(splay key: Key) -> Value? {
+        mutating get { splaySearch(key) }
+        set {
+            if let value = newValue { splayInsert(key: key, value: value) }
+            else { splayRemove(key) }
+        }
     }
 }

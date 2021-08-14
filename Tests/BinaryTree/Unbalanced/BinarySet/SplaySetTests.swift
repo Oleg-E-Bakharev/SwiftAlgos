@@ -1,5 +1,5 @@
 //
-//  SplayTreeTests.swift
+//  SplaySetTests.swift
 //  SwiftAlgosTests
 //
 //  Created by Oleg Bakharev on 01.03.2021.
@@ -9,7 +9,7 @@
 import XCTest
 @testable import SwiftAlgosLib
 
-class SplayTreeTests: XCTestCase {
+class SplaySetTests: XCTestCase {
     typealias Tree = BinarySet<Character>
     var tree = Tree()
 
@@ -126,5 +126,4 @@ class SplayTreeTests: XCTestCase {
         let benchmark: Tree = ["F", "B", "A", "D", "C"]
         XCTAssertTrue(tree == benchmark)
     }
-
 }
