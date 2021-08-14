@@ -11,7 +11,7 @@ import Foundation
 public struct BinarySet<T: Comparable> {
     public typealias Value = T
     public typealias Key = T
-    public final class Node: BinarySetNode, BinarySetNodeDeepCopy, BinarySetNodeTraits {
+    public final class Node: BinaryTreeNode, BinaryTreeNodeDeepCopy, BinaryTreeNodeTraits {
         public var value: T
         public var key: T { value }
         public var left: Node?
@@ -34,11 +34,11 @@ public struct BinarySet<T: Comparable> {
     var uniqueMarker = UniqueMarker()
 }
 
-extension BinarySet: BinarySetCopyOnWrite {
+extension BinarySet: BinaryTreeCopyOnWrite {
     public typealias NodeRef = Node
 }
 
-extension BinarySet: BinarySetTraits {
+extension BinarySet: BinaryTreeTraits {
     public func min() -> T? {
         treeMin()
     }
@@ -94,9 +94,9 @@ extension BinarySet: Equatable {
     }
 }
 
-extension BinarySet: BinarySetSerialOperations {}
+extension BinarySet: BinaryTreeSerialOperations {}
 
-extension BinarySet: BinarySetInfo {}
+extension BinarySet: BinaryTreeInfo {}
 
 extension BinarySet: CustomStringConvertible {
     public var description: String { diagram() }

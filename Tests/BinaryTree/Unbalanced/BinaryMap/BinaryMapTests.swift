@@ -1,5 +1,5 @@
 //
-//  BinarySetTest.swift
+//  BinaryMapTest.swift
 //  SwiftAlgosTests
 //
 //  Created by Oleg Bakharev on 16.02.2021.
@@ -9,16 +9,16 @@
 import XCTest
 @testable import SwiftAlgosLib
 
-class BinarySetTests: XCTestCase {
-    typealias Tree = BinarySet<Character>
+class BinaryMapTests: XCTestCase {
+    typealias Tree = BinaryMap<Character, Int>
     var tree = Tree()
 
     override func setUp() {
-        tree = ""
+        tree = [:]
     }
 
     override func tearDown() {
-        tree = ""
+        tree = [:]
     }
 
     func testInsertOne() {
@@ -27,17 +27,18 @@ class BinarySetTests: XCTestCase {
         XCTAssertNil(tree.min())
         XCTAssertNil(tree.max())
         XCTAssertFalse(tree.remove("A"))
-        tree.insert("A")
+        tree.insert(key: "A", value: 1)
         XCTAssertFalse(tree.has("0"))
         XCTAssertFalse(tree.has("B"))
         XCTAssertFalse(tree.isEmpty)
         XCTAssertTrue(tree.has("A"))
-        XCTAssertEqual(tree.min(), "A")
-        XCTAssertEqual(tree.max(), "A")
-        tree.insert("A")
+        XCTAssertEqual(tree.search("A"), 1)
+        XCTAssertEqual(tree.min(), 1)
+        XCTAssertEqual(tree.max(), 1)
+        tree.insert(key: "A", value: 1)
         XCTAssertTrue(tree.has("A"))
-        XCTAssertEqual(tree.min(), "A")
-        XCTAssertEqual(tree.max(), "A")
+        XCTAssertEqual(tree.min(), 1)
+        XCTAssertEqual(tree.max(), 1)
         XCTAssertTrue(tree.remove("A"))
         XCTAssertTrue(tree.isEmpty)
         XCTAssertNil(tree.min())
@@ -45,40 +46,31 @@ class BinarySetTests: XCTestCase {
     }
 
     func testInsertTwo() {
-        tree.insert(["B", "A"]) // 100% coverage
+        tree.insert([("B", 2), ("A", 1)]) // 100% coverage
         XCTAssertTrue(tree.has("A"))
         XCTAssertTrue(tree.has("B"))
-        XCTAssertEqual(tree.min(), "A")
-        XCTAssertEqual(tree.max(), "B")
+        XCTAssertEqual(tree.min(), 1)
+        XCTAssertEqual(tree.max(), 2)
         tree.remove(["A", "B"])
         XCTAssertTrue(tree.isEmpty)
 
     }
 
     func testInsertSerial() {
-        tree = "ABC"
+        tree = ["A": 1, "B": 2, "C": 3]
         XCTAssertTrue(tree.has("A"))
         XCTAssertTrue(tree.has("B"))
         XCTAssertTrue(tree.has("C"))
-        XCTAssertEqual(tree.min(), "A")
-        XCTAssertEqual(tree.max(), "C")
+        XCTAssertEqual(tree.min(), 1)
+        XCTAssertEqual(tree.max(), 3)
         tree.remove(["B", "A", "C"])
         XCTAssertTrue(tree.isEmpty)
-    }
-
-    func testArrayLiteral() {
-        tree = "BAC"
-        XCTAssertTrue(tree.has("A"))
-        XCTAssertTrue(tree.has("B"))
-        XCTAssertTrue(tree.has("C"))
-        XCTAssertEqual(tree.min(), "A")
-        XCTAssertEqual(tree.max(), "C")
     }
 
     func testArrayRemoveLeft() {
         // Из-за рандомизации делаем цикл.
         for _ in 0..<10 {
-            tree = "BA"
+            tree = ["B":  2, "A": 1]
             XCTAssertTrue(tree.has("A"))
             XCTAssertTrue(tree.has("B"))
             XCTAssertTrue(tree.remove("A"))
@@ -92,7 +84,7 @@ class BinarySetTests: XCTestCase {
 
     func testArrayRemoveRight() {
         for _ in 0..<10 {
-            tree = "AB"
+            tree = ["A": 1, "B": 2]
             XCTAssertTrue(tree.has("A"))
             XCTAssertTrue(tree.has("B"))
             XCTAssertTrue(tree.remove("B"))
@@ -106,7 +98,7 @@ class BinarySetTests: XCTestCase {
 
     func testArrayRemoveBoth() {
         for _ in 0..<10 {
-            tree = "BAC"
+            tree = ["B": 2, "A": 1, "C": 3]
             XCTAssertTrue(tree.has("A"))
             XCTAssertTrue(tree.has("B"))
             XCTAssertTrue(tree.has("C"))
@@ -119,100 +111,99 @@ class BinarySetTests: XCTestCase {
 
     func testArrayEquatable() {
         var lhs, rhs: Tree
-        lhs = []
-        rhs = []
+        lhs = [:]
+        rhs = [:]
         XCTAssertEqual(lhs, rhs)
-        lhs = ["A"]
+        lhs = ["A": 1]
         XCTAssertNotEqual(lhs, rhs)
-        rhs = ["A"]
+        rhs = ["A": 1]
         XCTAssertEqual(lhs, rhs)
-        lhs = ["B", "A"]
-        rhs = ["B", "C"]
+        lhs = ["B": 2, "A": 1]
+        rhs = ["B": 2, "C": 3]
         XCTAssertNotEqual(lhs, rhs)
-        lhs = ["B", "A", "C"]
-        rhs = ["B", "C", "A"]
+        lhs = ["B": 2, "A": 1, "C": 3]
+        print(lhs)
+        rhs = ["B": 2, "C": 3, "A": 1]
+        print(rhs)
         XCTAssertEqual(lhs, rhs)
     }
 
     func testArrayInsertRoot() {
-        tree = ["B"]
-        tree.insertToRoot("A")
-        XCTAssert(tree.root?.value == "A")
-        tree.insertToRoot("C")
-        XCTAssert(tree.root?.value == "C")
-        tree.insertToRoot("A")
-        XCTAssert(tree.root?.value == "A")
+        tree = ["B": 2]
+        tree.insertToRoot(key: "A", value: 1)
+        XCTAssert(tree.root?.value == 1)
+        tree.insertToRoot(key: "C", value: 3)
+        XCTAssert(tree.root?.value == 3)
+        tree.insertToRoot(key: "A", value: 1)
+        XCTAssert(tree.root?.value == 1)
         print(tree)
     }
     
     func testArrayMerge() {
-        tree = []
-        var tree2: Tree = ["A", "D"]
+        tree = [:]
+        var tree2: Tree = ["A": 1, "D": 4]
         tree.merge(to: &tree2)
         print(tree2)
-        var benchmark: Tree = ["A", "D"]
+        var benchmark: Tree = ["A": 1, "D": 4]
         XCTAssert(tree2 == benchmark)
 
-        tree = ["C", "B"]
-        tree2 = []
+        tree = ["C": 3, "B": 2]
+        tree2 = [:]
         tree.merge(to: &tree2)
         print(tree2)
-        benchmark = ["C", "B"]
+        benchmark = ["C": 3, "B": 2]
         XCTAssert(tree2 == benchmark)
 
-        tree = ["C", "B"]
-        tree2 = ["A", "D"]
+        tree = ["C": 3, "B": 2]
+        tree2 = ["A": 1, "D": 4]
         tree2.merge(to: &tree)
         print(tree)
-        benchmark = ["C", "B", "D", "A"]
+        benchmark = ["C": 3, "B": 2, "D": 4, "A": 1]
         print(benchmark)
         XCTAssert(tree == benchmark)
 
-        tree = ["C", "B"]
-        tree2 = ["A", "D"]
+        tree = ["C": 3, "B": 2]
+        tree2 = ["A": 1, "D": 4]
         tree.merge(to: &tree2)
         print(tree2)
-        benchmark = ["A", "D", "C", "B"]
+        benchmark = ["A": 1, "D": 4, "C": 3, "B": 2]
         print(benchmark)
         XCTAssert(tree2 == benchmark)
     }
 
     func testStrangeRemove() {
-        tree = ["2", "0", "1", "6", "5", "8", "3"]
+        tree = ["2": 2, "0": 0, "1": 1, "6": 6, "5": 5, "8": 8, "3": 3]
         print(tree)
         tree.remove("2")
         print(tree)
     }
 
-    func testTreeLiterals() {
-        tree = .init(unicodeScalarLiteral: "ñ")
-        XCTAssertEqual(tree, Tree("ñ"))
-
-        tree = .init(extendedGraphemeClusterLiteral: "🇷🇺")
-        XCTAssertEqual(tree, Tree("🇷🇺"))
-    }
-
     func testCopyOnWrite() {
-        tree = "123"
+        tree = ["1": 1, "2": 2, "3": 3]
         let tree2 = tree
         XCTAssertEqual(tree, tree2)
-        tree.insert("4")
+        tree.insert(key: "4", value: 4)
         XCTAssertNotEqual(tree, tree2)
-        XCTAssertEqual(tree, Tree("1234"))
-        XCTAssertEqual(tree2, Tree("123"))
+        let benchmark1: Tree = ["1": 1, "2": 2, "3": 3, "4": 4]
+        XCTAssertEqual(tree, benchmark1)
+        let benchmark2: Tree = ["1": 1, "2": 2, "3": 3]
+        XCTAssertEqual(tree2, benchmark2)
     }
 
     func testSequence() {
-        tree = "BACDE"
+        tree = ["B": 2, "A": 1, "C": 3, "D": 4, "E": 5]
         print(tree)
-        for item in tree {
-            print(item)
+        var tree2 = Tree()
+        for (key, value) in tree {
+            print(key, value)
+            tree2.insert(key: key, value: value)
         }
+        XCTAssertEqual(tree, tree2)
     }
 
     func testSubscript() {
-        tree["A"] = "A"
-        XCTAssertTrue(tree["A"] == "A")
+        tree["A"] = 1
+        XCTAssertTrue(tree["A"] == 1)
         tree["A"] = nil
         XCTAssertTrue(tree["A"] == nil)
     }

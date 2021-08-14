@@ -1,5 +1,5 @@
 //
-//  BinarySetNodeBase.swift
+//  BinaryTreeNodeBase.swift
 //  SwiftAlgosLib
 //
 //  Created by Oleg Bakharev on 31.07.2021.
@@ -7,10 +7,10 @@
 //
 
 // CustomStringConvertible for pretty print
-public protocol BinarySetNodeBase: CustomStringConvertible {
+public protocol BinaryTreeNodeBase: CustomStringConvertible {
     associatedtype Key: Comparable & Equatable
     associatedtype Value
-    associatedtype NodeRef: BinarySetNodeBase where NodeRef.Key == Key, NodeRef.NodeRef == NodeRef
+    associatedtype NodeRef: BinaryTreeNodeBase where NodeRef.Key == Key, NodeRef.NodeRef == NodeRef
 
     var key: Key { get }
     var value: Value { get set }

@@ -1,14 +1,14 @@
 //
-//  BinarySetNode.swift
+//  BinaryTreeNode.swift
 //  SwiftAlgosLib
 //
 //  Created by Oleg Bakharev on 04.01.2021.
 //  Copyright © 2021 Oleg Bakharev. All rights reserved.
 //
 
-public protocol BinarySetNode: BinarySetNodeTraits where NodeRef == Self {}
+public protocol BinaryTreeNode: BinaryTreeNodeTraits where NodeRef == Self {}
 
-public extension BinarySetNode {
+public extension BinaryTreeNode {
     static func insert(to link: inout NodeRef?, key: Key, value: Value) {
         guard var node = link else {
             link = Self(key: key, value: value)
@@ -101,6 +101,5 @@ public extension BinarySetNode {
         left?.right = node
         node = left
     }
-
-    var description: String { String(describing: value) }
 }
+

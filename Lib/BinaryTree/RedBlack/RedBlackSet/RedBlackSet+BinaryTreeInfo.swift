@@ -6,7 +6,7 @@
 //  Copyright © 2021 Oleg Bakharev. All rights reserved.
 //
 
-extension RedBlackSet: BinarySetInfo {
+extension RedBlackSet: BinaryTreeInfo {
     public func diagram() -> String {
         diagram(of: root)
     }

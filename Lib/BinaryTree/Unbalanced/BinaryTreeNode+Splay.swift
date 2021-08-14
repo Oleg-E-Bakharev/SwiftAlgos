@@ -1,12 +1,12 @@
 //
-//  BinarySetNode+Splay.swift
+//  BinaryTreeNode+Splay.swift
 //  SwiftAlgosLib
 //
 //  Created by Oleg Bakharev on 01.03.2021.
 //  Copyright © 2021 Oleg Bakharev. All rights reserved.
 //
 
-public extension BinarySetNode {
+public extension BinaryTreeNode {
     typealias SplayOperation = (inout Self?, Key, NodeRef?) -> Self?
 
     static func splayEquivalence(at link: inout Self?, key: Key, newNode: NodeRef?) -> Self? {
@@ -25,7 +25,7 @@ public extension BinarySetNode {
 
     /// Universal splay operation
     @discardableResult
-    static func splay(_ operation: SplayOperation, to link: inout Self?, key: Key, newNode: NodeRef?) -> Self? {
+    static func splay(_ operation: SplayOperation, to link: inout Self?, key: Key, newNode: NodeRef? = nil) -> Self? {
         guard var node = link else { return operation(&link, key, newNode) }
         var result: Self?
         if key == node.key {

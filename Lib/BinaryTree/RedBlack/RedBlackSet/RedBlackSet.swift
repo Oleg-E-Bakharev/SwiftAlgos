@@ -11,7 +11,7 @@ public struct RedBlackSet<T: Comparable> {
     public typealias Value = T
     public typealias Key = T
     
-    public final class Node: RedBlackSetNode, BinarySetNodeDeepCopy, BinarySetNodeTraits {
+    public final class Node: RedBlackTreeNode, BinaryTreeNodeDeepCopy, BinaryTreeNodeTraits {
         public var value: T
         public var key: T { value }
         public var left: Node?
@@ -40,11 +40,11 @@ public struct RedBlackSet<T: Comparable> {
     var uniqueMarker = UniqueMarker()
 }
 
-extension RedBlackSet: BinarySetCopyOnWrite {
+extension RedBlackSet: BinaryTreeCopyOnWrite {
     public typealias NodeRef = Node
 }
 
-extension RedBlackSet: BinarySetTraits {
+extension RedBlackSet: BinaryTreeTraits {
     public func min() -> T? {
         treeMin()
     }
@@ -80,7 +80,7 @@ extension RedBlackSet: BinarySetTraits {
     }
 }
 
-extension RedBlackSet: BinarySetSerialOperations {}
+extension RedBlackSet: BinaryTreeSerialOperations {}
 
 extension RedBlackSet.Node: Equatable {
     public static func == (lhs: RedBlackSet<T>.Node, rhs: RedBlackSet<T>.Node) -> Bool {

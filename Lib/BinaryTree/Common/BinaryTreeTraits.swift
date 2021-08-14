@@ -1,15 +1,15 @@
 //
-//  BinarySetTraits.swift
+//  BinaryTreeTraits.swift
 //  SwiftAlgosLib
 //
 //  Created by Oleg Bakharev on 16.02.2021.
 //  Copyright © 2021 Oleg Bakharev. All rights reserved.
 //
 
-public protocol BinarySetTraits {
+public protocol BinaryTreeTraits {
     associatedtype Key
     associatedtype Value
-    associatedtype NodeRef: BinarySetNodeTraits where
+    associatedtype NodeRef: BinaryTreeNodeTraits where
         Key == NodeRef.Key,
         Value == NodeRef.Value,
         NodeRef.NodeRef == NodeRef
@@ -34,7 +34,7 @@ public protocol BinarySetTraits {
     subscript(key: Key) -> Value? { get set }
 }
 
-extension BinarySetTraits {
+extension BinaryTreeTraits {
     public var isEmpty: Bool { root == nil }
 
     public func search(_ key: Key) -> Value? {

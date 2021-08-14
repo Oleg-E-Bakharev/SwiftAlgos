@@ -8,8 +8,8 @@
 
 import Foundation
 
-protocol BinarySetCopyOnWrite {
-    associatedtype NodeRef: BinarySetNodeDeepCopy where NodeRef.NodeRef == NodeRef
+protocol BinaryTreeCopyOnWrite {
+    associatedtype NodeRef: BinaryTreeNodeDeepCopy where NodeRef.NodeRef == NodeRef
     associatedtype UniqueMarker: AnyObject
 
     var root: NodeRef? { get set }
@@ -18,7 +18,7 @@ protocol BinarySetCopyOnWrite {
     mutating func copyNodesIfNotUnique()
 }
 
-extension BinarySetCopyOnWrite {
+extension BinaryTreeCopyOnWrite {
     mutating func copyNodesIfNotUnique() {
         guard !isKnownUniquelyReferenced(&uniqueMarker) else {
             return

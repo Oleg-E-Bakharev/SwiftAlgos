@@ -1,18 +1,18 @@
 //
-//  BinarySetNodeTraits.swift
+//  BinaryTreeNodeTraits.swift
 //  SwiftAlgosLib
 //
 //  Created by Oleg Bakharev on 31.07.2021.
 //  Copyright © 2021 Oleg Bakharev. All rights reserved.
 //
 
-public protocol BinarySetNodeTraits: BinarySetNodeBase {
+public protocol BinaryTreeNodeTraits: BinaryTreeNodeBase {
     func search(_ key: Key) -> NodeRef?
     func min() -> NodeRef?
     func max() -> NodeRef?
 }
 
-public extension BinarySetNodeTraits where NodeRef == Self {
+public extension BinaryTreeNodeTraits where NodeRef == Self {
     func search(_ key: Key) -> NodeRef? {
         if self.key == key {
             return self

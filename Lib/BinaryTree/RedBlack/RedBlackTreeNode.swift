@@ -1,5 +1,5 @@
 //
-//  RedBlackSetNode.swift
+//  RedBlackTreeNode.swift
 //  SwiftAlgosSandbox
 //
 //  Created by Oleg Bakharev on 25.07.2021.
@@ -8,12 +8,12 @@
 
 /// Left Leaning Red Black Tree
 /// https://www.cs.princeton.edu/~rs/talks/LLRB/RedBlack.pdf
-public protocol RedBlackSetNode: BinarySetNodeTraits where NodeRef == Self {
+public protocol RedBlackTreeNode: BinaryTreeNodeTraits where NodeRef == Self {
     static func isRed(_ node: NodeRef?) -> Bool
     static func setRed(_ node: inout NodeRef?, _ isRed: Bool)
 }
 
-public extension RedBlackSetNode {
+public extension RedBlackTreeNode {
     /// Split temporary 4-node to two 2-node and promoute red link up.
     /// Or perform reverse operation.
     private static func colorFlip(_ link: inout NodeRef?) {
@@ -157,10 +157,11 @@ public extension RedBlackSetNode {
             // We have 2-node on left. Make 3-node.
             advanceRedToLeft(at: &link)
         }
+        var result = false
         if var node = link {
-            return remove(key, from: &node.left)
+            result = remove(key, from: &node.left)
         }
-        return false
+        return result
     }
     
     private static func removeSelfOrRight(_ key: Key, from link: inout NodeRef?) -> Bool {
@@ -188,11 +189,12 @@ public extension RedBlackSetNode {
             }
             return true
         }
-        
+
+        var result = false
         if var node = link {
-            return remove(key, from: &node.right)
+            result = remove(key, from: &node.right)
         }
-        return false
+        return result
     }
 
     var description: String { String(describing: value) }
