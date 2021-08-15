@@ -23,6 +23,7 @@ public struct RedBlackSet<T: Comparable> {
             isRed = true
         }
 
+        @inline(__always)
         public static func isRed(_ node: RedBlackSet<T>.Node?) -> Bool {
             node?.isRed ?? false
         }

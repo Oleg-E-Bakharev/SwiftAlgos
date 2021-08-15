@@ -55,18 +55,18 @@ class RedBlackSetInfoTests: XCTestCase {
     func testDisplay() {
         let characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".unicodeScalars
         for char in characters.shuffled() {
-            print("inserting: \(char)")
-            print(tree.diagram())
+//            print("inserting: \(char)")
+//            print(tree)
             tree.insert(Character(char))
-            print(tree.diagram())
-            assert(tree.has(Character(char)))
+//            print(tree)
+            XCTAssertTrue(tree.has(Character(char)))
         }
         for char in characters.shuffled() {
-            print("deleting: \(char)")
-            assert(tree.has(Character(char)))
+//            print("deleting: \(char)")
+            XCTAssertTrue(tree.has(Character(char)))
             tree.remove(Character(char))
-            print(tree.diagram())
-            assert(!tree.has(Character(char)))
+//            print(tree)
+            XCTAssertTrue(!tree.has(Character(char)))
         }
     }
 

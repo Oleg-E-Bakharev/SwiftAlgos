@@ -71,6 +71,7 @@ public struct RedBlackCompactSet<T: RedBlackCompactKey, Storage: RedBlackStaticD
             self.value = key
         }
 
+        @inline(__always)
         public static func isRed(_ node: Node?) -> Bool {
             guard let node = node else { return false }
             return node._left!.key > node._right!.key
