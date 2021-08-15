@@ -67,6 +67,11 @@
 		CFB1818225DC493B00C61E12 /* BinarySetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB1818125DC493B00C61E12 /* BinarySetTests.swift */; };
 		CFB1818A25DC4BD800C61E12 /* BinaryTreeTraits.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB1818925DC4BD800C61E12 /* BinaryTreeTraits.swift */; };
 		CFB24D7B25ED7DAB00A5FBC4 /* SplaySetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB24D7A25ED7DAB00A5FBC4 /* SplaySetTests.swift */; };
+		CFB2A45126C92D7100004686 /* RedBlackCompactSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB2A44F26C9272300004686 /* RedBlackCompactSet.swift */; };
+		CFB2A45526C962C100004686 /* RedBlackCompactSet+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB2A45226C962C100004686 /* RedBlackCompactSet+Extensions.swift */; };
+		CFB2A45626C962C100004686 /* RedBlackCompactSet+BinaryTreeInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB2A45326C962C100004686 /* RedBlackCompactSet+BinaryTreeInfo.swift */; };
+		CFB2A45726C962C100004686 /* RedBlackCompactSet+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB2A45426C962C100004686 /* RedBlackCompactSet+Codable.swift */; };
+		CFB2A45B26C9649400004686 /* RedBlackCompactSetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB2A45A26C9648100004686 /* RedBlackCompactSetTests.swift */; };
 		CFB3138925C6FE85001E5268 /* PointerEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB3138825C6FE85001E5268 /* PointerEx.swift */; };
 		CFB3138E25C7035C001E5268 /* PointerExTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB3138D25C7035C001E5268 /* PointerExTests.swift */; };
 		CFB3139925C7108C001E5268 /* BitPtrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB3139825C7108C001E5268 /* BitPtrTests.swift */; };
@@ -154,6 +159,11 @@
 		CFB1818125DC493B00C61E12 /* BinarySetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinarySetTests.swift; sourceTree = "<group>"; };
 		CFB1818925DC4BD800C61E12 /* BinaryTreeTraits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTreeTraits.swift; sourceTree = "<group>"; };
 		CFB24D7A25ED7DAB00A5FBC4 /* SplaySetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplaySetTests.swift; sourceTree = "<group>"; };
+		CFB2A44F26C9272300004686 /* RedBlackCompactSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedBlackCompactSet.swift; sourceTree = "<group>"; };
+		CFB2A45226C962C100004686 /* RedBlackCompactSet+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RedBlackCompactSet+Extensions.swift"; sourceTree = "<group>"; };
+		CFB2A45326C962C100004686 /* RedBlackCompactSet+BinaryTreeInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RedBlackCompactSet+BinaryTreeInfo.swift"; sourceTree = "<group>"; };
+		CFB2A45426C962C100004686 /* RedBlackCompactSet+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RedBlackCompactSet+Codable.swift"; sourceTree = "<group>"; };
+		CFB2A45A26C9648100004686 /* RedBlackCompactSetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedBlackCompactSetTests.swift; sourceTree = "<group>"; };
 		CFB3138825C6FE85001E5268 /* PointerEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointerEx.swift; sourceTree = "<group>"; };
 		CFB3138D25C7035C001E5268 /* PointerExTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointerExTests.swift; sourceTree = "<group>"; };
 		CFB3139825C7108C001E5268 /* BitPtrTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitPtrTests.swift; sourceTree = "<group>"; };
@@ -277,9 +287,8 @@
 		CF3509C526B5D591004320D0 /* RedBlack */ = {
 			isa = PBXGroup;
 			children = (
-				CF3509C726B5D686004320D0 /* RedBlackSetTests.swift */,
-				CF3509CB26B5DA0E004320D0 /* RedBlackSetInfoTests.swift */,
-				CFA90E5826BFECAA00D34314 /* RedBlackSetCodableTest.swift */,
+				CFB2A45826C9644800004686 /* Set */,
+				CFB2A45926C9645C00004686 /* CompactSet */,
 			);
 			path = RedBlack;
 			sourceTree = "<group>";
@@ -389,10 +398,40 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		CFB2A44E26C926F500004686 /* RedBlackCompactSet */ = {
+			isa = PBXGroup;
+			children = (
+				CFB2A44F26C9272300004686 /* RedBlackCompactSet.swift */,
+				CFB2A45326C962C100004686 /* RedBlackCompactSet+BinaryTreeInfo.swift */,
+				CFB2A45226C962C100004686 /* RedBlackCompactSet+Extensions.swift */,
+				CFB2A45426C962C100004686 /* RedBlackCompactSet+Codable.swift */,
+			);
+			path = RedBlackCompactSet;
+			sourceTree = "<group>";
+		};
+		CFB2A45826C9644800004686 /* Set */ = {
+			isa = PBXGroup;
+			children = (
+				CF3509C726B5D686004320D0 /* RedBlackSetTests.swift */,
+				CF3509CB26B5DA0E004320D0 /* RedBlackSetInfoTests.swift */,
+				CFA90E5826BFECAA00D34314 /* RedBlackSetCodableTest.swift */,
+			);
+			path = Set;
+			sourceTree = "<group>";
+		};
+		CFB2A45926C9645C00004686 /* CompactSet */ = {
+			isa = PBXGroup;
+			children = (
+				CFB2A45A26C9648100004686 /* RedBlackCompactSetTests.swift */,
+			);
+			path = CompactSet;
+			sourceTree = "<group>";
+		};
 		CFB556C326AD97BC0047CC84 /* RedBlack */ = {
 			isa = PBXGroup;
 			children = (
 				CF32744A26C7E5D600DA1BD7 /* RedBlackSet */,
+				CFB2A44E26C926F500004686 /* RedBlackCompactSet */,
 				CFB556C426AD981B0047CC84 /* RedBlackTreeNode.swift */,
 			);
 			path = RedBlack;
@@ -573,6 +612,7 @@
 				CF32745B26C83A6800DA1BD7 /* BinaryMapCodableTests.swift in Sources */,
 				CF32745D26C83B1000DA1BD7 /* SplayMapTests.swift in Sources */,
 				CF39599A260F8F360001664B /* BinarySetCodableTest.swift in Sources */,
+				CFB2A45B26C9649400004686 /* RedBlackCompactSetTests.swift in Sources */,
 				CF3509CC26B5DA0E004320D0 /* RedBlackSetInfoTests.swift in Sources */,
 				7C3AD6C3252866B700CA7FB7 /* RingBufferTests.swift in Sources */,
 				CFB24D7B25ED7DAB00A5FBC4 /* SplaySetTests.swift in Sources */,
@@ -585,6 +625,7 @@
 			files = (
 				7C75E89E25A2E474007873F1 /* BinaryTreeInfo.swift in Sources */,
 				CF32745026C822A800DA1BD7 /* BinarySet.swift in Sources */,
+				CFB2A45526C962C100004686 /* RedBlackCompactSet+Extensions.swift in Sources */,
 				CF3509BA26B562B2004320D0 /* RedBlackSet.swift in Sources */,
 				CF3509BE26B571DE004320D0 /* BinaryTreeSerialOperations.swift in Sources */,
 				CF78566F25530805003321B5 /* Clusterizator.swift in Sources */,
@@ -593,6 +634,7 @@
 				CF3509C426B5D40F004320D0 /* BinaryMap+Extensions.swift in Sources */,
 				CF9376B22527B3540021CCBB /* Queue.swift in Sources */,
 				CFB32F1326B9C41A004FB08E /* BinaryTreeCopyOnWrite.swift in Sources */,
+				CFB2A45726C962C100004686 /* RedBlackCompactSet+Codable.swift in Sources */,
 				CF9376B62527B7590021CCBB /* Deque.swift in Sources */,
 				CF3509CA26B5D7D0004320D0 /* RedBlackSet+Extensions.swift in Sources */,
 				7C52E38C25419D99000746FA /* BinaryHeap.swift in Sources */,
@@ -602,8 +644,10 @@
 				CF3509BC26B56888004320D0 /* BinaryTreeNodeBase.swift in Sources */,
 				CFA90E5C26BFEDA800D34314 /* RedBlackSet+Codable.swift in Sources */,
 				CF32745126C822AB00DA1BD7 /* BinarySet+Extensions.swift in Sources */,
+				CFB2A45626C962C100004686 /* RedBlackCompactSet+BinaryTreeInfo.swift in Sources */,
 				CF85DA2B25090CC60099EABF /* Stack.swift in Sources */,
 				CF32745926C838BA00DA1BD7 /* BinaryTreeNodeInfo.swift in Sources */,
+				CFB2A45126C92D7100004686 /* RedBlackCompactSet.swift in Sources */,
 				CF26B32625C9DDB700BF034C /* BinaryMap.swift in Sources */,
 				CF78567025530808003321B5 /* DisjointSet.swift in Sources */,
 				CF395995260F8EE00001664B /* BinaryMap+Codable.swift in Sources */,

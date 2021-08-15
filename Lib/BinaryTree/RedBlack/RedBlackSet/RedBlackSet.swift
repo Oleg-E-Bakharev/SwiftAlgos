@@ -6,7 +6,6 @@
 //  Copyright © 2021 Oleg Bakharev. All rights reserved.
 //
 
-
 public struct RedBlackSet<T: Comparable> {
     public typealias Value = T
     public typealias Key = T
@@ -100,4 +99,3 @@ extension RedBlackSet: Equatable {
         lhs.root == rhs.root
     }
 }
-
