@@ -36,35 +36,35 @@ class QueueTests: XCTestCase {
     //        XCTAssertNil(queue.peek)
     //    }
     
-    func testPerformanceLongListQueue() throws {
-        self.measure {
-            (0..<1000).forEach { listQueue.enqueue($0) }
-            listQueue.forEach { _ in listQueue.dequeue() }
-        }
-    }
-    
-    func testPerformanceShortListQueue() throws {
-        self.measure {
-            (0..<1000).forEach {
-                listQueue.enqueue($0)
-                listQueue.dequeue()
-            }
-        }
-    }
-    
-    func testPerformanceLongRingQueue() throws {
-        self.measure {
-            (0..<1000).forEach { ringBufferQueue.enqueue($0) }
-            ringBufferQueue.forEach { _ in ringBufferQueue.dequeue() }
-        }
-    }
-    
-    func testPerformanceShortRingQueue() throws {
-        self.measure {
-            (0..<1000).forEach {
-                ringBufferQueue.enqueue($0)
-                ringBufferQueue.dequeue()
-            }
-        }
-    }
+//    func testPerformanceLongListQueue() throws {
+//        self.measure {
+//            (0..<1000).forEach { listQueue.enqueue($0) }
+//            listQueue.forEach { _ in listQueue.dequeue() }
+//        }
+//    }
+//
+//    func testPerformanceShortListQueue() throws {
+//        self.measure {
+//            (0..<1000).forEach {
+//                listQueue.enqueue($0)
+//                listQueue.dequeue()
+//            }
+//        }
+//    }
+//
+//    func testPerformanceLongRingQueue() throws {
+//        self.measure {
+//            (0..<1000).forEach { ringBufferQueue.enqueue($0) }
+//            ringBufferQueue.forEach { _ in ringBufferQueue.dequeue() }
+//        }
+//    }
+//
+//    func testPerformanceShortRingQueue() throws {
+//        self.measure {
+//            (0..<1000).forEach {
+//                ringBufferQueue.enqueue($0)
+//                ringBufferQueue.dequeue()
+//            }
+//        }
+//    }
 }

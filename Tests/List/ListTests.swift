@@ -226,4 +226,14 @@ class ListTest: XCTestCase {
         list = .init(extendedGraphemeClusterLiteral: "🇷🇺")
         XCTAssertEqual(list, List("🇷🇺"))
     }
+
+    func testListPush() throws {
+        var li: ListNode = [1]
+        for i in 2..<10 {
+            li = li.push(i)
+        }
+        var li2 = ListNode.reverse(li) ?? [1]
+        li2 = ListNode.reverse(li2) ?? [1]
+        XCTAssertEqual(li, li2)
+    }
 }

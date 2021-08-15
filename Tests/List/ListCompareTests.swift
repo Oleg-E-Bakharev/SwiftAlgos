@@ -26,22 +26,22 @@ class ListCompareTests: XCTestCase {
         el = [1]
     }
 
-    func testListReversePerformance() throws {
-        for i in 2..<50000 {
-            li = li.push(i)
-        }
-        self.measure {
-            li = ListNode.reverse(li) ?? [1]
-        }
-    }
-
-    func testEnumListReversePerformance() throws {
-        // On 90000 Stackoverflow
-        for i in 2..<50000 {
-            el.push(i)
-        }
-        self.measure {
-            el = el.reversed()
-        }
-    }
+//    func testListReversePerformance() throws {
+//        for i in 2..<10 {
+//            li = li.push(i)
+//        }
+//        self.measure {
+//            li = ListNode.reverse(li) ?? [1]
+//        }
+//    }
+//
+//    func testEnumListReversePerformance() throws {
+//        // On 90000 Stackoverflow
+//        for i in 2..<10 {
+//            el.push(i)
+//        }
+//        self.measure {
+//            el = el.reversed()
+//        }
+//    }
 }

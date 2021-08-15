@@ -307,20 +307,20 @@ class RingBufferRests: XCTestCase {
         sut.replaceSubrange(0..<0, with: [])
     }
     
-    func testPerformanceRingBufferReplaceSubrange() {
-        self.measure {
-             (0..<100).forEach { _ in
-                testReplaceSubrange()
-            }
-        }
-    }
-    
-    func testPerformanceRingBufferReplaceSubrangeRangeEquals() {
-        self.measure {
-             (0..<100).forEach { _ in
-                testReplaceSubrangeWhenRangeEquals()
-            }
-        }
-    }
+//    func testPerformanceRingBufferReplaceSubrange() {
+//        self.measure {
+//             (0..<100).forEach { _ in
+//                testReplaceSubrange()
+//            }
+//        }
+//    }
+//    
+//    func testPerformanceRingBufferReplaceSubrangeRangeEquals() {
+//        self.measure {
+//             (0..<100).forEach { _ in
+//                testReplaceSubrangeWhenRangeEquals()
+//            }
+//        }
+//    }
 
 }

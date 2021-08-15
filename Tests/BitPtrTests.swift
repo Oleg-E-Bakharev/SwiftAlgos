@@ -77,41 +77,41 @@ class BitPtrTests: XCTestCase {
         XCTAssertNil(obj)
     }
 
-    func testPtrPerformance() throws {
-        let obj1 = NSObject()
-        var obj: NSObject? = nil
-        self.measure {
-            (0..<10000).forEach {_ in obj = obj1 }
-        }
-        let obj2 = obj
-        obj = obj2
-    }
-
-    func testBitPtr0Performance() throws {
-        var obj: NSObject? = nil
-        self.measure {
-            (0..<10000).forEach {_ in obj = ptr.target }
-        }
-        let obj1 = obj
-        obj = obj1
-    }
-
-    func testBitPtr1Performance() throws {
-        ptr.bit = true
-        var obj: NSObject? = nil
-        self.measure {
-            (0..<10000).forEach { _ in obj = ptr.target  }
-        }
-        let obj1 = obj
-        obj = obj1
-    }
-
-    func testBitPtrBitPerformance() throws {
-        var bit: Bool = false
-        self.measure {
-            (0..<10000).forEach {_ in bit = ptr.bit }
-        }
-        let bit1 = bit
-        bit = bit1
-    }
+//    func testPtrPerformance() throws {
+//        let obj1 = NSObject()
+//        var obj: NSObject? = nil
+//        self.measure {
+//            (0..<10000).forEach {_ in obj = obj1 }
+//        }
+//        let obj2 = obj
+//        obj = obj2
+//    }
+//
+//    func testBitPtr0Performance() throws {
+//        var obj: NSObject? = nil
+//        self.measure {
+//            (0..<10000).forEach {_ in obj = ptr.target }
+//        }
+//        let obj1 = obj
+//        obj = obj1
+//    }
+//
+//    func testBitPtr1Performance() throws {
+//        ptr.bit = true
+//        var obj: NSObject? = nil
+//        self.measure {
+//            (0..<10000).forEach { _ in obj = ptr.target  }
+//        }
+//        let obj1 = obj
+//        obj = obj1
+//    }
+//
+//    func testBitPtrBitPerformance() throws {
+//        var bit: Bool = false
+//        self.measure {
+//            (0..<10000).forEach {_ in bit = ptr.bit }
+//        }
+//        let bit1 = bit
+//        bit = bit1
+//    }
 }
