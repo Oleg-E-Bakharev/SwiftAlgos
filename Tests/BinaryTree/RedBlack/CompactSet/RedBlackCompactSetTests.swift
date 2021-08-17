@@ -9,12 +9,12 @@
 import XCTest
 @testable import SwiftAlgosLib
 
-class StaticData: RedBlackStaticData {
-    static var minAnchor: AnyObject?
-    static var maxAnchor: AnyObject?
-}
-
 class RedBlackCompactSetTests: XCTestCase {
+    class StaticData: RedBlackStaticData {
+        static var minAnchor: AnyObject?
+        static var maxAnchor: AnyObject?
+    }
+
     typealias Tree = RedBlackCompactSet<Character, StaticData>
 
     var tree = Tree()

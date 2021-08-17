@@ -8,6 +8,9 @@
 
 extension RedBlackCompactSet: Decodable where Value: Decodable {
     public init(from decoder: Decoder) throws {
+        Storage.minAnchor = Node(.defaultMin)
+        Storage.maxAnchor = Node(.defaultMax)
+
         var container = try decoder.unkeyedContainer()
         while !container.isAtEnd {
             let value = try container.decode(Value.self)

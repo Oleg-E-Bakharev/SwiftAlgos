@@ -8,6 +8,9 @@
 
 extension RedBlackCompactSet: ExpressibleByArrayLiteral {
     public init(arrayLiteral elements: T...) {
+        Storage.minAnchor = Node(.defaultMin)
+        Storage.maxAnchor = Node(.defaultMax)
+        
         for element in elements {
             insert(element)
         }
@@ -15,13 +18,15 @@ extension RedBlackCompactSet: ExpressibleByArrayLiteral {
 }
 
 extension Character: RedBlackCompactKey {
-    public static var defaultMin: Character {
-        Character("\u{0}")
-    }
+    public static var defaultMin: Character { Character("\u{0}") }
 
-    public static var defaultMax: Character {
-        Character("\u{FFFFF}")
-    }
+    public static var defaultMax: Character { Character("\u{FFFFF}") }
+}
+
+extension String: RedBlackCompactKey {
+    public static var defaultMin: String { "" }
+
+    public static var defaultMax: String { "\u{FFFFF}" }
 }
 
 extension RedBlackCompactSet: ExpressibleByUnicodeScalarLiteral where T == Character {

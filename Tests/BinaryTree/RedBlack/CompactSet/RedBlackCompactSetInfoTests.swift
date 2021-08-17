@@ -10,7 +10,12 @@ import XCTest
 @testable import SwiftAlgosLib
 
 class RedBlackCompactSetInfoTests: XCTestCase {
-    var tree = RedBlackSet<Character>()
+    class StaticData: RedBlackStaticData {
+        static var minAnchor: AnyObject?
+        static var maxAnchor: AnyObject?
+    }
+
+    var tree = RedBlackCompactSet<Character, StaticData>()
 
     override func setUpWithError() throws {
 //        tree = ["A","B", "C", "D", "E", "F", "G", "H"]
@@ -55,18 +60,18 @@ class RedBlackCompactSetInfoTests: XCTestCase {
     func testDisplay() {
         let characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".unicodeScalars
         for char in characters.shuffled() {
-            print("inserting: \(char)")
-            print(tree.diagram())
+//            print("inserting: \(char)")
+//            print(tree)
             tree.insert(Character(char))
-            print(tree.diagram())
-            assert(tree.has(Character(char)))
+//            print(tree())
+            XCTAssertTrue(tree.has(Character(char)))
         }
         for char in characters.shuffled() {
-            print("deleting: \(char)")
-            assert(tree.has(Character(char)))
+//            print("deleting: \(char)")
+            XCTAssertTrue(tree.has(Character(char)))
             tree.remove(Character(char))
-            print(tree.diagram())
-            assert(!tree.has(Character(char)))
+//            print(tree)
+            XCTAssertTrue(!tree.has(Character(char)))
         }
     }
 

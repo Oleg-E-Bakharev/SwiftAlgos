@@ -11,7 +11,12 @@ import XCTest
 
 class RedBlackCompactSetCodableTest: XCTestCase {
 
-    typealias StringTree = RedBlackSet<String>
+    class StaticData: RedBlackStaticData {
+        static var minAnchor: AnyObject?
+        static var maxAnchor: AnyObject?
+    }
+
+    typealias StringTree = RedBlackCompactSet<String, StaticData>
     var sut: StringTree!
 
     override func setUp() {
