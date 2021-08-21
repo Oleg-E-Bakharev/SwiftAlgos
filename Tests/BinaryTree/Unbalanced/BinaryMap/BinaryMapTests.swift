@@ -193,6 +193,7 @@ class BinaryMapTests: XCTestCase {
     func testSequence() {
         tree = ["B": 2, "A": 1, "C": 3, "D": 4, "E": 5]
         print(tree)
+
         var tree2 = Tree()
         for (key, value) in tree {
             print(key, value)

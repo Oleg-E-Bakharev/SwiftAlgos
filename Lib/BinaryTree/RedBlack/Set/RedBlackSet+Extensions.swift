@@ -38,28 +38,12 @@ extension RedBlackSet: ExpressibleByStringLiteral where T == Character {
 }
 
 extension RedBlackSet: Sequence {
-    // Implements in-order traverse. This allow to identical encode / decode.
-    public struct Iterator: IteratorProtocol {
+    public struct Iterator: BinaryTreeSortedIterator, IteratorProtocol {
         public var ancestors: [Node] = []
         public var node: Node?
+        public var visited = false
 
-        public mutating func next() -> T? {
-            var result: Value?
-            guard let current = node else { return nil }
-            result = current.value
-
-            if let left = current.left {
-                ancestors.append(current)
-                node = left
-            } else {
-                // find unvisited right
-                node = current.right
-                while node == nil, !ancestors.isEmpty {
-                    node = ancestors.popLast()?.right
-                }
-            }
-            return result 
-        }
+        public mutating func next() -> Value? {  nextNode()?.value }
     }
 
     public __consuming func makeIterator() -> Iterator {

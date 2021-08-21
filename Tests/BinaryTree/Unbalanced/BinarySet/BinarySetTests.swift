@@ -204,11 +204,11 @@ class BinarySetTests: XCTestCase {
     }
 
     func testSequence() {
-        tree = "BACDE"
+        tree = "DCABHFEGIKLM"
         print(tree)
-        for item in tree {
-            print(item)
-        }
+        let sequence: String = tree.reduce("", { x, y in x + "\(y)"})
+        print(sequence)
+        XCTAssertEqual(sequence, "DCABHFEGIKLM")
     }
 
     func testSubscript() {

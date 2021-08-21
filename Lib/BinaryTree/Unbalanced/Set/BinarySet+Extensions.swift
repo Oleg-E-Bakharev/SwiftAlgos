@@ -39,27 +39,11 @@ extension BinarySet: ExpressibleByStringLiteral where Value == Character {
 
 extension BinarySet: Sequence {
     // Implements in-order traverse. This allow to identical encode / decode.
-    public struct Iterator: IteratorProtocol {
+    public struct Iterator: BinaryTreeNodeIterator, IteratorProtocol {
         public var ancestors: [Node] = []
         public var node: Node?
 
-        public mutating func next() -> Value? {
-            var result: Value?
-            guard let current = node else { return nil }
-            result = current.value
-
-            if let left = current.left {
-                ancestors.append(current)
-                node = left
-            } else {
-                // find unvisited right
-                node = current.right
-                while node == nil, !ancestors.isEmpty {
-                    node = ancestors.popLast()?.right
-                }
-            }
-            return result
-        }
+        public mutating func next() -> Value? {  nextNode()?.value }
     }
 
     public __consuming func makeIterator() -> Iterator {
