@@ -11,6 +11,7 @@
 public protocol RedBlackTreeNode: BinaryTreeNodeTraits where NodeRef == Self {
     static func isRed(_ node: NodeRef?) -> Bool
     static func setRed(_ node: inout NodeRef?, _ isRed: Bool)
+    func copyData(from node: Self)
 }
 
 public extension RedBlackTreeNode {
@@ -179,15 +180,15 @@ public extension RedBlackTreeNode {
             advanceRedToRight(at: &link)
         }
 
-        if link?.key == key {
-            // Equal and not leaf. Set value to min and del min.
-            if let minValue = link?.right?.min()?.value {
-                link?.value = minValue
-            }
-            if var node = link {
+        if var node = link {
+            if node.key == key {
+                // Equal and not leaf. Set value to min and del min.
+                if let minNode = link?.right?.min() {
+                    node.copyData(from: minNode)
+                }
                 removeMin(at: &node.right)
+                return true
             }
-            return true
         }
 
         var result = false

@@ -28,6 +28,11 @@ public struct RedBlackMap<Key: Comparable, Value> {
         public static func setRed(_ node: inout RedBlackMap.Node?, _ isRed: Bool) {
             node?.isRed = isRed
         }
+
+        public func copyData(from node: Node) {
+            key = node.key
+            value = node.value
+        }
     }
 
     public internal(set) var root: Node?
@@ -56,9 +61,9 @@ extension RedBlackMap: BinaryTreeTraits {
     }
 
     @discardableResult
-    public mutating func remove(_ value: Key) -> Bool {
+    public mutating func remove(_ key: Key) -> Bool {
         copyNodesIfNotUnique()
-        return Node.remove(value, from: &root)
+        return Node.remove(key, from: &root)
     }
 
     public mutating func removeMax() {

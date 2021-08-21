@@ -85,6 +85,10 @@ public struct RedBlackCompactSet<T: RedBlackCompactKey, Storage: RedBlackStaticD
             swap(&node._left, &node._right)
             assert(isRed(node) == newStatus)
         }
+
+        public func copyData(from node: Node) {
+            value = node.value
+        }
     }
 
     public init() {
@@ -123,9 +127,9 @@ extension RedBlackCompactSet: BinaryTreeTraits {
     }
 
     @discardableResult
-    public mutating func remove(_ value: T) -> Bool {
+    public mutating func remove(_ key: T) -> Bool {
         copyNodesIfNotUnique()
-        return Node.remove(value, from: &root)
+        return Node.remove(key, from: &root)
     }
 
     public mutating func removeMax() {

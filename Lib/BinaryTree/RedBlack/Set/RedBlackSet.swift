@@ -31,6 +31,10 @@ public struct RedBlackSet<T: Comparable> {
         public static func setRed(_ node: inout RedBlackSet<T>.Node?, _ isRed: Bool) {
             node?.isRed = isRed
         }
+
+        public func copyData(from node: Node) {
+            value = node.value
+        }
     }
 
     public internal(set) var root: Node?
@@ -64,9 +68,9 @@ extension RedBlackSet: BinaryTreeTraits {
     }
 
     @discardableResult
-    public mutating func remove(_ value: T) -> Bool {
+    public mutating func remove(_ key: T) -> Bool {
         copyNodesIfNotUnique()
-        return Node.remove(value, from: &root)
+        return Node.remove(key, from: &root)
     }
 
     public mutating func removeMax() {
