@@ -14,10 +14,13 @@ public protocol Clusterizator {
     mutating func getCluster(_ index: Index) -> Index
     
     mutating func connect(_ a: Index,_ b: Index)
+
+    mutating func isConnected(_ a: Index, _ b: Index) -> Bool
 }
 
 public extension Clusterizator {
+    @inline(__always)
     mutating func isConnected(_ a: Index, _ b: Index) -> Bool {
-        return getCluster(a) == getCluster(b)
+        getCluster(a) == getCluster(b)
     }
 }

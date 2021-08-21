@@ -158,3 +158,11 @@ extension RedBlackCompactSet: Equatable {
         lhs.root == rhs.root
     }
 }
+
+extension RedBlackCompactSet: CustomStringConvertible, BinaryTreeInfo {
+    public func diagram() -> String {
+        NodeRef.diagram(of: root)
+    }
+
+    public var description: String { diagram() }
+}

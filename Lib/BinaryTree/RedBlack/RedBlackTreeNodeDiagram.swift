@@ -1,17 +1,13 @@
 //
-//  RedBlackSet+BinarySetInfo.swift
-//  SwiftAlgosLib
+//  RedBlackTreeNodeDiagram.swift
+//  SwiftAlgosSandbox
 //
-//  Created by Oleg Bakharev on 31.07.2021.
+//  Created by Oleg Bakharev on 21.08.2021.
 //  Copyright © 2021 Oleg Bakharev. All rights reserved.
 //
 
-extension RedBlackSet: BinaryTreeInfo {
-    public func diagram() -> String {
-        diagram(of: root)
-    }
-
-    private func diagram(of node: NodeRef?, top: String = "", root: String = "", bottom: String = "" ) -> String {
+public extension BinaryTreeNodeBase where Self: RedBlackTreeNode {
+    static func diagram(of node: NodeRef?, top: String = "", root: String = "", bottom: String = "" ) -> String {
         guard let node = node else { return root + "nil\n" }
 
         if node.left == nil && node.right == nil {
@@ -25,8 +21,4 @@ extension RedBlackSet: BinaryTreeInfo {
         + root + "\(node)\n"
         + diagram(of: node.left, top: bottom + "│ ", root: bottom + "└" + leftColor, bottom: bottom + "  ")
     }
-}
-
-extension RedBlackSet: CustomStringConvertible {
-    public var description: String { diagram() }
 }

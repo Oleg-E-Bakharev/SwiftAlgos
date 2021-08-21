@@ -90,5 +90,9 @@ extension BinaryMap: BinaryTreeSerialOperations {}
 extension BinaryMap: BinaryTreeInfo {}
 
 extension BinaryMap: CustomStringConvertible {
+    public func diagram() -> String {
+        NodeRef.diagram(of: root)
+    }
+
     public var description: String { diagram() }
 }

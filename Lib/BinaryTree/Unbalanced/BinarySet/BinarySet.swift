@@ -99,5 +99,9 @@ extension BinarySet: BinaryTreeSerialOperations {}
 extension BinarySet: BinaryTreeInfo {}
 
 extension BinarySet: CustomStringConvertible {
+    public func diagram() -> String {
+        NodeRef.diagram(of: root)
+    }
+
     public var description: String { diagram() }
 }

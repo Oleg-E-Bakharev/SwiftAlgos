@@ -196,6 +196,4 @@ public extension RedBlackTreeNode {
         }
         return result
     }
-
-    var description: String { String(describing: value) }
 }

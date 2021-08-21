@@ -44,11 +44,7 @@ public extension BinaryTreeInfo {
         calculateWidth(of: root, level: 0, levelsWidth: &levelWidths, stopDepth: stopAtDepth)
         return levelWidths
     }
-    
-    func diagram() -> String {
-        diagram(of: root)
-    }
-    
+
     private func count(of node: NodeRef?) -> Int {
         guard let node = node else { return 0 }
         return count(of: node.left) + 1 + count(of: node.right)
@@ -68,17 +64,5 @@ public extension BinaryTreeInfo {
         guard level < stopDepth else { return }
         calculateWidth(of: node.left, level: level + 1, levelsWidth: &levelsWidth, stopDepth: stopDepth)
         calculateWidth(of: node.right, level: level + 1, levelsWidth: &levelsWidth, stopDepth: stopDepth)
-    }
-    
-    func diagram(of node: NodeRef?, top: String = "", root: String = "", bottom: String = "" ) -> String {
-        guard let node = node else { return root + "nil\n" }
-        
-        if node.left == nil && node.right == nil {
-            return root + "\(node)\n"
-        }
-        
-        return diagram(of: node.right, top: top + "  ", root: top + "┌─", bottom: top + "│ ")
-        + root + "\(node)\n"
-        + diagram(of: node.left, top: bottom + "│ ", root: bottom + "└─", bottom: bottom + "  ")
     }
 }
