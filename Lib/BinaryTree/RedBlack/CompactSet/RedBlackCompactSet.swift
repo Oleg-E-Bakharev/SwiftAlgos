@@ -5,6 +5,7 @@
 //  Created by Oleg Bakharev on 15.08.2021.
 //  Copyright © 2021 Oleg Bakharev. All rights reserved.
 //
+// Balanced binary tree with doubly linked list memory layout!!!
 
 public protocol RedBlackCompactKey: Comparable {
     // invariant: defaultMin < defaultMax.

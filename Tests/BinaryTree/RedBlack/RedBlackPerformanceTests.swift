@@ -34,24 +34,40 @@ class RedBlackPerformanceTests: XCTestCase {
         array = []
     }
 
-//    func testSetPrformance() {
-//        var sut = Set<String>()
-//        self.measure {
-//            array.forEach { sut.insert($0) }
-//        }
-//    }
-//
-//    func testRedBlackSetPrformance() {
-//        var sut = RedBlackSet<String>()
-//        self.measure {
-//            array.forEach { sut.insert($0) }
-//        }
-//    }
-//
-//    func testRedBlackCompactSetPrformance() {
-//        var sut = RedBlackCompactSet<String, StaticData>()
-//        self.measure {
-//            array.forEach { sut.insert($0) }
-//        }
-//    }
+    func testSetPrformance() {
+        var sut = Set<String>()
+        self.measure {
+            array.forEach { sut.insert($0) }
+        }
+    }
+
+    func testRedBlackSetInsertPrformance() {
+        typealias Tree = RedBlackSet<String>
+        var sut = Tree()
+        let size = class_getInstanceSize(Tree.Node.self)
+        print("Size of RedBlackSet<String>.Node is \(size)")
+        self.measure {
+            array.forEach { sut.insert($0) }
+        }
+    }
+
+    func testRedBlackCompactSetInsertPrformance() {
+        typealias Tree = RedBlackCompactSet<String, StaticData>
+        var sut = Tree()
+        let size = class_getInstanceSize(Tree.Node.self)
+        print("Size of RedBlackCompactSet<String>.Node is \(size)")
+        self.measure {
+            array.forEach { sut.insert($0) }
+        }
+    }
+
+    func testRedBlackTaggedSetInsertPrformance() {
+        typealias Tree = RedBlackTaggedSet<String>
+        var sut = Tree()
+        let size = class_getInstanceSize(Tree.Node.self)
+        print("Size of RedBlackTaggedSet<String>.Node is \(size)")
+        self.measure {
+            array.forEach { sut.insert($0) }
+        }
+    }
 }
