@@ -22,3 +22,5 @@ extension RingBuffer: Queue {
         last
     }
 }
+
+extension RingBuffer: Deque { }

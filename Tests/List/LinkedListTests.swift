@@ -1,23 +1,24 @@
 //
-//  ListTest.swift
+//  LinkedListTests.swift
 //  SwiftAlgosTests
 //
-//  Created by Oleg Bakharev on 13.09.2020.
-//  Copyright © 2020 Oleg Bakharev. All rights reserved.
+//  Created by Oleg Bakharev on 04.09.2021.
+//  Copyright © 2021 Oleg Bakharev. All rights reserved.
 //
 
 import XCTest
 @testable import SwiftAlgosLib
 
-class ListTest: XCTestCase {
-    private var list: List<Int> = List()
-    
-    override func setUp() {
-        list = List()
+class LinkedListTests: XCTestCase {
+    typealias List = LinkedList<Int, BlockAllocator<LinkedListNode<Int>, RingBuffer<Int>>>
+    var list = List()
+
+    override func setUpWithError() throws {
+        list.removeAll()
     }
 
-    override func tearDown() {
-        
+    override func tearDownWithError() throws {
+        list.removeAll()
     }
 
     func testEmpty() {
@@ -30,7 +31,7 @@ class ListTest: XCTestCase {
         XCTAssertTrue(list.isEmpty)
         XCTAssert(list.count == 0)
     }
-    
+
     func testPushOne() {
         list.push(1)
         XCTAssertFalse(list.isEmpty)
@@ -39,32 +40,33 @@ class ListTest: XCTestCase {
         XCTAssert(list.count == 0)
         XCTAssertTrue(list.isEmpty)
     }
-    
+
     func testAppendOne() {
         list.push(1)
         XCTAssertEqual(list.pop(), 1)
     }
-    
+
     func testHeadEqualsTailAfterPushPop() {
         XCTAssertNil(list.head)
-        XCTAssert(list.head === list.tail)
+        XCTAssert(list.head == list.tail)
         list.push(1)
-        XCTAssertNotNil(list.head)
-        XCTAssert(list.head === list.tail)
+        XCTAssert(list.head?.value == 1)
+        XCTAssert(list.head == list.tail)
         list.pop()
         XCTAssertNil(list.head)
-        XCTAssert(list.head === list.tail)
+        XCTAssert(list.head == list.tail)
     }
 
     func testHeadEqualsTailAfterAppendPop() {
         XCTAssertNil(list.head)
-        XCTAssert(list.head === list.tail)
+        XCTAssert(list.head == list.tail)
         list.append(1)
-        XCTAssertNotNil(list.head)
-        XCTAssert(list.head === list.tail)
+        let head = list.head
+        XCTAssert(head?.value == 1)
+        XCTAssert(list.head == list.tail)
         list.pop()
         XCTAssertNil(list.head)
-        XCTAssert(list.head === list.tail)
+        XCTAssert(list.head == list.tail)
     }
 
     func testPush() {
@@ -74,7 +76,7 @@ class ListTest: XCTestCase {
         XCTAssertEqual(list.pop(), 1)
         XCTAssertTrue(list.isEmpty)
     }
-    
+
     func testAppend() {
         list.append(1)
         list.append(2)
@@ -91,7 +93,7 @@ class ListTest: XCTestCase {
         XCTAssertEqual(list.pop(), 2)
         XCTAssertEqual(list.pop(), 3)
     }
-    
+
     func testInsertAfterHead() {
         list.append(1)
         list.insert(2, after: list.head!)
@@ -100,7 +102,7 @@ class ListTest: XCTestCase {
         XCTAssertEqual(list.pop(), 3)
         XCTAssertEqual(list.pop(), 2)
     }
-    
+
     func testRemove() {
         list.append(1)
         XCTAssertNil(list.remove(after: list.head!))
@@ -110,14 +112,14 @@ class ListTest: XCTestCase {
         XCTAssertEqual(list.remove(after: list.head!), 2)
         XCTAssertEqual(list, List(1, 3))
     }
-    
+
     func testInitArrayLiteral() {
         list = [1, 2, 3]
         XCTAssertEqual(list.head!.value, 1)
         XCTAssertEqual(list.head!.next!.value, 2)
         XCTAssertEqual(list.tail!.value, 3)
     }
-    
+
     func testSequence() {
         list = [1, 2, 3]
         var v = 1
@@ -126,7 +128,7 @@ class ListTest: XCTestCase {
             v += 1
         }
     }
-    
+
     func testDescripion() {
         XCTAssertEqual(String(describing: list), "Empty list")
         list.append(1)
@@ -134,13 +136,13 @@ class ListTest: XCTestCase {
         list.append(2)
         XCTAssertEqual(String(describing: list), "1 -> 2")
     }
-    
+
     func testCopyOnWrite() {
         list = [1, 2, 3]
         var list1 = list
         list1.append(4)
-        XCTAssertEqual(list, List(1, 2, 3))
         XCTAssertEqual(list1, List(1, 2, 3, 4))
+        XCTAssertEqual(list, List(1, 2, 3))
     }
 
     func testCopyOnWriteOnInsertAfterHead() {
@@ -175,25 +177,26 @@ class ListTest: XCTestCase {
         XCTAssertEqual(list1, List(1, 2, 3))
     }
 
-    
+
     func testPushAvoidCopyOnWrite() {
         list = [1, 2, 3]
         var list1 = list
         list1.push(0)
-        XCTAssertEqual(list, List(1, 2, 3))
-        XCTAssertEqual(list1, List(0, 1, 2, 3))
+        XCTAssert(list == List(1, 2, 3))
+        XCTAssert(list1 == List(0, 1, 2, 3))
     }
-    
-    func testPopAvoidCopyOnWrite() {
+
+    func testPopCopyOnWrite() {
         list = [1, 2, 3, 4]
         var list1 = list
         list1.pop()
-        XCTAssertEqual(list, List(1, 2, 3, 4))
+        XCTAssertNotEqual(list, list1)
+        XCTAssert(list == List(1, 2, 3, 4))
         XCTAssertEqual(list1, List(2, 3, 4))
     }
 
     func testInoutAvoidCopyOnWrite()  {
-        func fulfil(_ list: inout List<Int>) {
+        func fulfil(_ list: inout List) {
             list.append(2)
         }
         list = [1]
@@ -203,7 +206,7 @@ class ListTest: XCTestCase {
 
     func testListEquateble() {
         list = []
-        var list1: List<Int> = []
+        var list1: List = []
         XCTAssertEqual(list, list1)
         list.push(1)
         XCTAssertNotEqual(list, list1)
@@ -221,26 +224,10 @@ class ListTest: XCTestCase {
         list1.push(1)
         XCTAssertEqual(list, list1)
     }
-
-    func testListLiterals() {
-        var list: List<Character> = "abc"
-        list.pop()
-        XCTAssertEqual(list, List("bc"))
-
-        list = .init(unicodeScalarLiteral: "ñ")
-        XCTAssertEqual(list, List("ñ"))
-
-        list = .init(extendedGraphemeClusterLiteral: "🇷🇺")
-        XCTAssertEqual(list, List("🇷🇺"))
-    }
-
-    func testListPush() throws {
-        var li: ListNode = [1]
-        for i in 2..<10 {
-            li = li.push(i)
-        }
-        var li2 = ListNode.reverse(li) ?? [1]
-        li2 = ListNode.reverse(li2) ?? [1]
-        XCTAssertEqual(li, li2)
-    }
+//    func testPerformanceExample() throws {
+//        // This is an example of a performance test case.
+//        self.measure {
+//            // Put the code you want to measure the time of here.
+//        }
+//    }
 }

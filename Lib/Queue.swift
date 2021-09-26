@@ -10,13 +10,17 @@ import Foundation
 
 public protocol Queue : ExpressibleByArrayLiteral {
     associatedtype Element
-    
+
+    var isEmpty: Bool { get }
+
+    var count: Int { get }
+
+    var peek: Element? { get }
+
     mutating func enqueue(_ element: Element)
     
     @discardableResult
     mutating func dequeue() -> Element?
-    
-    var isEmpty: Bool { get }
-    
-    var peek: Element? { get }
+
+    mutating func removeAll()
 }

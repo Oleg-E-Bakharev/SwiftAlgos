@@ -10,7 +10,9 @@ import Foundation
 
 extension List: Queue {
     public typealias Element = Value
-    
+
+    public var peek: Element? { head?.value }
+
     public mutating func enqueue(_ element: Element) {
         append(element)
     }
@@ -19,6 +21,4 @@ extension List: Queue {
     public mutating func dequeue() -> Element? {
         pop()
     }
-    
-    public var peek: Element? { head?.value }
 }

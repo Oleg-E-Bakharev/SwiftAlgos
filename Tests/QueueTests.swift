@@ -13,12 +13,12 @@ class QueueTests: XCTestCase {
     var listQueue: List<Int> = []
     var ringBufferQueue: RingBuffer<Int> = []
     
-    override func tearDownWithError() throws {
+    override func tearDown() {
         listQueue = []
         ringBufferQueue = []
     }
     
-    func testQueueOne() throws {
+    func testQueueOne() {
         doTestQueueOne(queue: &listQueue)
         doTestQueueOne(queue: &ringBufferQueue)
     }
@@ -31,20 +31,35 @@ class QueueTests: XCTestCase {
         XCTAssertNil(queue.peek)
         XCTAssertNil(queue.dequeue())
     }
-    
+
+    func testQueueRemoveAll() {
+        doTestQueueRemoveAll(queue: &listQueue)
+        doTestQueueRemoveAll(queue: &ringBufferQueue)
+
+    }
+
+    func doTestQueueRemoveAll<Q: Queue>(queue: inout Q) where Q.Element == Int {
+        XCTAssertNil(queue.peek)
+        queue.enqueue(1)
+        queue.enqueue(2)
+        queue.removeAll()
+        XCTAssertNil(queue.peek)
+        XCTAssertNil(queue.dequeue())
+    }
+
     //    func doTestQueueEmpty<Q: Queue>(queue: inout Q) {
     //        XCTAssertNil(queue.peek)
     //    }
     
 //    func testPerformanceLongListQueue() throws {
-//        self.measure {
+//        measure {
 //            (0..<1000).forEach { listQueue.enqueue($0) }
 //            listQueue.forEach { _ in listQueue.dequeue() }
 //        }
 //    }
 //
 //    func testPerformanceShortListQueue() throws {
-//        self.measure {
+//        measure {
 //            (0..<1000).forEach {
 //                listQueue.enqueue($0)
 //                listQueue.dequeue()
@@ -53,14 +68,14 @@ class QueueTests: XCTestCase {
 //    }
 //
 //    func testPerformanceLongRingQueue() throws {
-//        self.measure {
+//        measure {
 //            (0..<1000).forEach { ringBufferQueue.enqueue($0) }
 //            ringBufferQueue.forEach { _ in ringBufferQueue.dequeue() }
 //        }
 //    }
 //
 //    func testPerformanceShortRingQueue() throws {
-//        self.measure {
+//        measure {
 //            (0..<1000).forEach {
 //                ringBufferQueue.enqueue($0)
 //                ringBufferQueue.dequeue()

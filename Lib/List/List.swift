@@ -18,6 +18,7 @@ public struct List<Value> {
     
     public private(set) var head: Node?
     public private(set) var tail: Node?
+    public private(set) var count: Int = 0
     
     public init(head: Node? = nil, tail: Node? = nil) {
         self.head = head
@@ -43,6 +44,7 @@ public struct List<Value> {
         if tail == nil {
             tail = head
         }
+        count += 1
     }
     
     /// O1 Adds after tail
@@ -52,7 +54,7 @@ public struct List<Value> {
             push(value)
             return
         }
-        
+        count += 1
         tail.next = Node(value: value)
         self.tail = tail.next
     }
@@ -65,6 +67,7 @@ public struct List<Value> {
             append(value)
             return tail!
         }
+        count += 1
         node.next = Node(value: value, next: node.next)
         return node.next!
     }
@@ -75,8 +78,10 @@ public struct List<Value> {
         // On pop we can avoid copy on write
         defer {
             head = head?.next
+            count -= 1
             if isEmpty {
                 tail = nil
+                count = 0
             }
         }
         return head?.value
@@ -87,12 +92,20 @@ public struct List<Value> {
     public mutating func remove(after node: Node) -> Value? {
         let node = copyNodesIfNotUnique(node)!
         defer {
+            count -= 1
             if node.next === tail {
                 tail = node
+                count = 0
             }
             node.next = node.next?.next
         }
         return node.next?.value
+    }
+
+    public mutating func removeAll() {
+        head = nil
+        tail = nil
+        count = 0
     }
 
     @discardableResult
@@ -127,67 +140,5 @@ public struct List<Value> {
     
     internal mutating func setTail(_ tail: Node?) {
         self.tail = tail
-    }
-}
-
-extension List: ExpressibleByArrayLiteral {
-    public init(arrayLiteral values: Value...) {
-        for value in values {
-            append(value)
-        }
-    }
-}
-
-extension List: ExpressibleByUnicodeScalarLiteral where Value == Character {
-    public typealias UnicodeScalarLiteralType = Value
-    public init(unicodeScalarLiteral value: Character) {
-        push(value)
-    }
-}
-
-extension List: ExpressibleByExtendedGraphemeClusterLiteral where Value == Character {
-    public typealias ExtendedGraphemeClusterLiteralType = Value
-    public init(extendedGraphemeClusterLiteral value: Character) {
-        push(value)
-    }
-}
-
-extension List: ExpressibleByStringLiteral where Value == Character {
-    public typealias StringLiteralType = String
-    public init(stringLiteral string: Self.StringLiteralType) {
-        for character in string {
-            append(character)
-        }
-    }
-}
-
-extension List: Sequence {
-    public struct Iterator: IteratorProtocol {
-        public var node: Node?
-        public mutating func next() -> Value? {
-            defer {
-                node = node?.next
-            }
-            return node?.value
-        }
-    }
-    
-    public __consuming func makeIterator() -> Iterator {
-        return Iterator(node: head)
-    }
-}
-
-extension List: CustomStringConvertible {
-    public var description: String {
-        guard let head = head else {
-            return "Empty list"
-        }
-        return "\(head)"
-    }
-}
-
-extension List: Equatable where Value: Equatable {
-    public static func == (lhs: List, rhs: List) -> Bool {
-        lhs.head == rhs.head
     }
 }

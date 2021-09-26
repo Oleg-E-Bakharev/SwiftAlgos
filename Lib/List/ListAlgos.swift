@@ -6,10 +6,7 @@
 //  Copyright © 2020 Oleg Bakharev. All rights reserved.
 //
 
-import Foundation
-
 public extension List {
-    
     /// On time, O1 memory
     mutating func reverse() {
         setTail(head)

@@ -134,5 +134,6 @@ class ListAlgosTests: XCTestCase {
         list = [1, 1, 1]
         list.sort(compare: <)
         XCTAssertEqual(String(describing: list), "1 -> 1 -> 1")
+        XCTAssert(list.count == 3)
     }
 }

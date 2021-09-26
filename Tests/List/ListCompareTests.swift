@@ -23,7 +23,7 @@ class ListCompareTests: XCTestCase {
 
     override func tearDownWithError() throws {
         el = [1]
-        el = [1]
+        li = [1]
     }
 
 //    func testListReversePerformance() throws {
@@ -43,5 +43,33 @@ class ListCompareTests: XCTestCase {
 //        self.measure {
 //            el = el.reversed()
 //        }
+//    }
+
+//    func testListFillPerformance() {
+//        self.measure {
+//            for i in 2..<5000 {
+//                li = li.push(i)
+//            }
+//        }
+//        li.next = nil
+//    }
+//
+//    func testSetFillPerformance() {
+//        var set = Set<Int>()
+//        self.measure {
+//            for i in 1..<5000 {
+//                set.insert(i)
+//            }
+//        }
+//        set.removeAll()
+//    }
+//
+//    func testEnumListFillPerformance() {
+//        self.measure {
+//            for i in 2..<5000 {
+//                el.push(i)
+//            }
+//        }
+//        el = .empty
 //    }
 }

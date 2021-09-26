@@ -21,6 +21,7 @@ class RingBufferRests: XCTestCase {
         XCTAssertTrue(sut.isEmpty)
         XCTAssertNil(sut.popFront())
         XCTAssertNil(sut.popBack())
+        XCTAssert(sut.count == 0)
     }
     
     func testFrontBack() throws {
@@ -29,10 +30,14 @@ class RingBufferRests: XCTestCase {
         sut = [1, 2]
         XCTAssertEqual(sut.front, 2)
         XCTAssertEqual(sut.back, 1)
+        XCTAssert(sut.count == 2)
         sut.popFront()
+        XCTAssert(sut.count == 1)
         XCTAssertEqual(sut.front, 1)
         XCTAssertEqual(sut.back, 1)
         XCTAssertEqual(sut.popBack(), 1)
+        XCTAssert(sut.count == 0)
+        XCTAssertTrue(sut.isEmpty)
         XCTAssertNil(sut.first)
         XCTAssertNil(sut.last)
     }
@@ -293,15 +298,18 @@ class RingBufferRests: XCTestCase {
         sut = [1, 2, 3]
         sut.replaceSubrange(0..<3, with: [])
         XCTAssertEqual(sut, [])
+        XCTAssert(sut.isEmpty)
+        XCTAssert(sut.count == 0)
     }
     
     func testReplaceSubrangeWithEmptyRangeWhenWillSingle() {
         sut = [1, 2, 3]
         sut.replaceSubrange(0..<2, with: [])
         XCTAssertEqual(sut, [3])
+        XCTAssertFalse(sut.isEmpty)
+        XCTAssert(sut.count == 1)
     }
 
-    
     func testReplaceSubrangeWithRangeWhenEmpty() {
         sut = []
         sut.replaceSubrange(0..<0, with: [])

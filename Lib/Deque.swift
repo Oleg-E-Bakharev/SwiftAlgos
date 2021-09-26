@@ -15,6 +15,7 @@ public protocol Deque {
     mutating func pushBack(_ element: Element)
     mutating func popBack() -> Element?
     var isEmpty: Bool { get }
+    var count: Int { get }
     var front: Element? { get }
     var back: Element? { get }
 }
